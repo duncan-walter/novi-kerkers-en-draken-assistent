@@ -1,0 +1,3 @@
+.form-control__error-message {
+    color: var(--color-error);
+}
