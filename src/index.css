@@ -1,68 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Metamorphous&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Background colors */
+  --color-background: #131D24;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Text colors */
+  --color-text-primary: #4A3211;
+  --color-text-secondary: #EEF4F8;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* UI Colors */
+  --color-primary-light: #F6E6D1;
+  --color-primary: #EFCFA4;
+  --color-primary-dark: #EDBF83;
+  --color-secondary-light: #9BB6B3;
+  --color-secondary: #5F888A;
+  --color-secondary-dark: #247377;
+
+  /* Other colors */
+  --color-accent: #4A3211;
+  --color-error: #FF4444;
+  --color-error-dark: #CC0000;
+  --color-success: #99C851;
+  --color-success-dark: #007E33;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* CSS-reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-a:hover {
-  color: #535bf2;
+
+/* Set font-size for em/rem usage */
+html {
+  font-size: 16px;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: 'MedievalSharp', Helvetica, cursive;
+  font-weight: 400;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Metamorphous', Helvetica, serif;
+  font-weight: 400;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button,
+input,
+select,
+textarea,
+::placeholder {
+  font: inherit;
 }
