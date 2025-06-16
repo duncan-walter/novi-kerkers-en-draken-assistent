@@ -12,9 +12,11 @@
   --color-primary-light: #F6E6D1;
   --color-primary: #EFCFA4;
   --color-primary-dark: #EDBF83;
+  --color-primary-gradient: linear-gradient(var(--color-primary-light), var(--color-primary));
   --color-secondary-light: #9BB6B3;
   --color-secondary: #5F888A;
   --color-secondary-dark: #247377;
+  --color-secondary-gradient: linear-gradient(var(--color-secondary-light), var(--color-secondary));
 
   /* Other colors */
   --color-accent: #4A3211;
