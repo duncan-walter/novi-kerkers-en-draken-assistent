@@ -1,27 +1,19 @@
 import './SelectFormControl.css';
 
+import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js";
+
 /* Notes:
  * - Supported validationRules parameter properties:
  *    - required (boolean)
  */
 function SelectFormControl({id, name, label, options, showPlaceholder = true, register, error, validationRules}) {
+  const supportedValidationRules = ['required'];
+
   const registerFormControl = () => {
-    return {...(register(name, {...getValidationRules()}))};
-  };
-
-  const getValidationRules = () => {
-    const rules = validationRules ?? {
-      required: undefined
-    };
-
     return {
-      // Required
-      ...(rules.required !== undefined && {
-        required: {
-          value: rules.required,
-          message: `${label} is verplicht.`
-        }
-      })
+      ...(register(name, {
+        ...buildFormControlValidationRules(label, validationRules, supportedValidationRules)
+      }))
     };
   };
 

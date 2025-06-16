@@ -96,9 +96,6 @@ function App() {
           showPlaceholder={false}
           register={register}
           error={errors.selectFormControl}
-          validationRules={{
-            required: true
-          }}
         />
         <SelectFormControl
           id="selectFormControlWithPlaceholder"
@@ -111,6 +108,9 @@ function App() {
           ]}
           register={register}
           error={errors.selectFormControlWithPlaceholder}
+          validationRules={{
+            required: true
+          }}
         />
 
         <SliderFormControl
