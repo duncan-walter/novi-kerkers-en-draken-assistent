@@ -24,6 +24,10 @@
   --color-error-dark: #CC0000;
   --color-success: #99C851;
   --color-success-dark: #007E33;
+
+  /* Shadows */
+  --box-shadow-soft: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  --box-shadow-hard: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /* CSS-reset */

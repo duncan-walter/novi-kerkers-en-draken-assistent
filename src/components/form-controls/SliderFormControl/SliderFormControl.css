@@ -1,0 +1,46 @@
+.slider-form-control {
+    input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: transparent;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+        height: 4px;
+        background-color: var(--color-accent);
+        border-radius: 5px;
+    }
+
+    input[type="range"]::-moz-range-track {
+        height: 4px;
+        background-color: var(--color-accent);
+        border-radius: 5px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        background: var(--color-primary-gradient);
+        border-radius: 50%;
+        border: none;
+        box-shadow: var(--box-shadow-hard);
+        margin-top: -6px; /* Aligns the thumb on the middle of the slider */
+        cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        background-color: var(--color-accent);
+        border-radius: 50%;
+        border: none;
+        box-shadow: var(--box-shadow-hard);
+        cursor: pointer;
+    }
+
+    input[type="range"]:focus {
+        box-shadow: none;
+    }
+}

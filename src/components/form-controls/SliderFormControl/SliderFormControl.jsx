@@ -1,6 +1,6 @@
 import './SliderFormControl.css';
 
-function SliderFormControl({id, name, label, minimumValue, maximumValue, register, error}) {
+function SliderFormControl({id, name, label, minimumValue, maximumValue, register, watch, error}) {
   const registerFormControl = () => {
     return {...(register(name, {valueAsNumber: true}))};
   };
@@ -8,7 +8,7 @@ function SliderFormControl({id, name, label, minimumValue, maximumValue, registe
   return (
     <div className="slider-form-control">
       <label htmlFor={id} className="form-control__label">
-        {label}
+        {`${label} (${watch(name)})`}
       </label>
       <input
         id={id}

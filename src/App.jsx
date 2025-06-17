@@ -18,7 +18,8 @@ function App() {
   const {
     handleSubmit,
     formState: {errors},
-    register
+    register,
+    watch
   } = useForm();
   const [formWidth, setFormWidth] = useState("500");
 
@@ -128,6 +129,7 @@ function App() {
             minimumValue={0}
             maximumValue={30}
             register={register}
+            watch={watch}
             error={errors.sliderFormControl}
           />
 
@@ -136,6 +138,7 @@ function App() {
             name="textareaFormControl"
             label="Textarea"
             register={register}
+            watch={watch}
             error={errors.textareaFormControl}
             validationRules={{
               required: true,
