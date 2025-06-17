@@ -2,6 +2,8 @@ import './NumberFormControl.css';
 
 import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js";
 
+// TODO: If time allows for it, implement custom "spinners" (increment an decrement arrows).
+
 /* Notes:
  * - Placeholder parameter is optional and will not be rendered if it is not passed as an argument.
  * - Supported validationRules parameter properties:

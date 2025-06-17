@@ -1,3 +1,5 @@
+/* This file declares the base styling that applies to all form control components */
+
 .form-control {
     width: 100%;
     background-color: var(--color-primary-light);

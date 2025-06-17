@@ -9,7 +9,7 @@ import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js
  *    - minimumLength (number)
  *    - maximumLength (number)
  */
-function TextareaFormControl({id, name, label, placeholder, register, error, validationRules}) {
+function TextareaFormControl({id, name, label, placeholder, register, error, validationRules, cols = 5, rows = 5}) {
   const supportedValidationRules = ['required', 'minimumLength', 'maximumLength'];
 
   const registerFormControl = () => {
@@ -30,6 +30,8 @@ function TextareaFormControl({id, name, label, placeholder, register, error, val
         name={name}
         autoComplete="off"
         placeholder={placeholder}
+        cols={cols}
+        rows={rows}
         className="form-control"
         {...registerFormControl()}
       />
