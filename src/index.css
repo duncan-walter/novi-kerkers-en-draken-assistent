@@ -56,6 +56,11 @@ textarea,
   font: inherit;
 }
 
+::selection {
+  color: var(--color-text-secondary);
+  background: var(--color-accent);
+}
+
 /* Reusables */
 .visible {
   opacity: 1;

@@ -1,5 +1,19 @@
 .form-control {
     width: 100%;
+    background-color: var(--color-primary-light);
+    color: var(--color-text-primary);
+    border: none;
+    padding: .5em;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-accent);
+    border-radius: 2px;
+}
+
+.form-control__label {
+    color: var(--color-text-primary);
 }
 
 .form-control__label::after {
