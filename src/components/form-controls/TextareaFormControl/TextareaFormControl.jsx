@@ -22,15 +22,20 @@ function TextareaFormControl({id, name, label, placeholder, register, error, val
 
   return (
     <div className="textarea-form-control">
-      <label htmlFor={id}>{`${label}:`}</label>
+      <label htmlFor={id} className="form-control__label">
+        {label}
+      </label>
       <textarea
         id={id}
         name={name}
         autoComplete="off"
         placeholder={placeholder}
+        className="form-control"
         {...registerFormControl()}
       />
-      {error && <p className="form-control__error-message">{error.message}</p>}
+      <p className={`form-control__error-message ${error ? 'visible' : 'invisible'}`}>
+        {error && error.message}
+      </p>
     </div>
   );
 }

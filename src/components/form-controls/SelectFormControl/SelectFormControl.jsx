@@ -19,11 +19,14 @@ function SelectFormControl({id, name, label, options, showPlaceholder = true, re
 
   return (
     <div className="select-form-control">
-      <label htmlFor={id}>{`${label}:`}</label>
+      <label htmlFor={id} className="form-control__label">
+        {label}
+      </label>
       <select
         id={id}
         name={name}
         autoComplete="off"
+        className="form-control"
         {...registerFormControl()}
       >
         {showPlaceholder && <option value="">kies een waarde</option>}
@@ -35,7 +38,9 @@ function SelectFormControl({id, name, label, options, showPlaceholder = true, re
           )
         })}
       </select>
-      {error && <p className="form-control__error-message">{error.message}</p>}
+      <p className={`form-control__error-message ${error ? 'visible' : 'invisible'}`}>
+        {error && error.message}
+      </p>
     </div>
   );
 }

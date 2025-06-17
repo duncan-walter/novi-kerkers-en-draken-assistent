@@ -21,16 +21,21 @@ function SearchFormControl({id, name, label, placeholder, register, error, valid
 
   return (
     <div className="search-form-control">
-      <label htmlFor={id}>{`${label}:`}</label>
+      <label htmlFor={id} className="form-control__label">
+        {label}
+      </label>
       <input
         id={id}
         name={name}
         type="text"
         autoComplete="off"
         placeholder={placeholder}
+        className="form-control"
         {...registerFormControl()}
       />
-      {error && <p className="form-control__error-message">{error.message}</p>}
+      <p className={`form-control__error-message ${error ? 'visible' : 'invisible'}`}>
+        {error && error.message}
+      </p>
     </div>
   );
 }

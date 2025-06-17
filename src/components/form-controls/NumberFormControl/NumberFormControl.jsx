@@ -23,16 +23,22 @@ function NumberFormControl({id, name, label, placeholder, register, error, valid
 
   return (
     <div className="number-form-control">
-      <label htmlFor={id}>{`${label}:`}</label>
+      <label htmlFor={id} className="form-control__label">
+        {label}
+      </label>
       <input
         id={id}
         name={name}
         type="number"
         placeholder={placeholder}
         autoComplete="off"
+        className="form-control"
         {...registerFormControl()}
       />
-      {error && <p className="form-control__error-message">{error.message}</p>}
+      {/* The error's height should always be present in the DOM to prevent too much content shifting when it appears */}
+      <p className={`form-control__error-message ${error ? 'visible' : 'invisible'}`}>
+        {error && error.message}
+      </p>
     </div>
   );
 }

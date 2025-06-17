@@ -21,15 +21,20 @@ function PasswordFormControl({id, name, label, register, error, validationRules}
 
   return (
     <div className="password-form-control">
-      <label htmlFor={id}>{`${label}:`}</label>
+      <label htmlFor={id} className="form-control__label">
+        {label}
+      </label>
       <input
         id={id}
         name={name}
         type="password"
         autoComplete="off"
+        className="form-control"
         {...registerFormControl()}
       />
-      {error && <p className="form-control__error-message">{error.message}</p>}
+      <p className={`form-control__error-message ${error ? 'visible' : 'invisible'}`}>
+        {error && error.message}
+      </p>
     </div>
   );
 }

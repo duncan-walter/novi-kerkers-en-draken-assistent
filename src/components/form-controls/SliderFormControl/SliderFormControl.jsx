@@ -7,17 +7,22 @@ function SliderFormControl({id, name, label, minimumValue, maximumValue, registe
 
   return (
     <div className="slider-form-control">
-      <label htmlFor={id}>{`${label}:`}</label>
+      <label htmlFor={id} className="form-control__label">
+        {label}
+      </label>
       <input
         id={id}
         name={name}
         type="range"
         min={minimumValue}
         max={maximumValue}
+        className="form-control"
         {...registerFormControl()}
       />
       {/* Errors are currently not possible in this component, but for consistency and potential future expansion it has been included. */}
-      {error && <p className="form-control__error-message">{error.message}</p>}
+      <p className={`form-control__error-message ${error ? 'visible' : 'invisible'}`}>
+        {error && error.message}
+      </p>
     </div>
   );
 }

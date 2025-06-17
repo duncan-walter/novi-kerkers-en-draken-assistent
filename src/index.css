@@ -55,3 +55,12 @@ textarea,
 ::placeholder {
   font: inherit;
 }
+
+/* Reusables */
+.visible {
+  opacity: 1;
+}
+
+.invisible {
+  opacity: 0;
+}
