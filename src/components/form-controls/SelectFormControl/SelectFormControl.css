@@ -1,0 +1,42 @@
+/* This select was styled with the knowledge out of this article:
+ * https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select
+ */
+.select-form-control {
+    select,
+    ::picker(select) {
+        appearance: base-select;
+        border: none;
+        color: var(--color-text-primary);
+    }
+
+    select {
+        border-radius: 0;
+    }
+
+    select::picker-icon {
+        color: var(--color-accent);
+        transition: 0.4s rotate;
+    }
+
+    select:open::picker-icon {
+        rotate: 180deg;
+    }
+
+    ::picker(select) {
+        border: 1px solid var(--color-accent);
+    }
+
+    option {
+        background-color: var(--color-primary-light);
+        padding: .5em;
+        cursor: pointer;
+    }
+
+    option:nth-child(odd) {
+        filter: brightness(105%);
+    }
+
+    option:hover {
+        filter: brightness(95%);
+    }
+}
