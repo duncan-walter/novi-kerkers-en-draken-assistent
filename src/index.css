@@ -1,55 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Metamorphous&display=swap');
 
 :root {
-  /* Background colors */
-  --color-background: #131D24;
+    /* Background colors */
+    --color-background: #131D24;
 
-  /* Text colors */
-  --color-text-primary: #4A3211;
-  --color-text-secondary: #EEF4F8;
+    /* Text colors */
+    --color-text-primary: #4A3211;
+    --color-text-secondary: #EEF4F8;
 
-  /* UI Colors */
-  --color-primary-light: #F6E6D1;
-  --color-primary: #EFCFA4;
-  --color-primary-dark: #EDBF83;
-  --color-primary-gradient: linear-gradient(var(--color-primary-light), var(--color-primary));
-  --color-secondary-light: #9BB6B3;
-  --color-secondary: #5F888A;
-  --color-secondary-dark: #247377;
-  --color-secondary-gradient: linear-gradient(var(--color-secondary-light), var(--color-secondary));
+    /* UI Colors */
+    --color-primary-light: #F6E6D1;
+    --color-primary: #EFCFA4;
+    --color-primary-dark: #EDBF83;
+    --color-primary-gradient: linear-gradient(var(--color-primary-light), var(--color-primary));
+    --color-secondary-light: #9BB6B3;
+    --color-secondary: #5F888A;
+    --color-secondary-dark: #247377;
+    --color-secondary-gradient: linear-gradient(var(--color-secondary-light), var(--color-secondary));
 
-  /* Other colors */
-  --color-accent: #4A3211;
-  --color-error: #FF4444;
-  --color-error-dark: #CC0000;
-  --color-success: #99C851;
-  --color-success-dark: #007E33;
+    /* Other colors */
+    --color-accent: #4A3211;
+    --color-error: #FF4444;
+    --color-error-dark: #CC0000;
+    --color-success: #99C851;
+    --color-success-dark: #007E33;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
 
-  /* Shadows */
-  --box-shadow-soft: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  --box-shadow-hard: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    /* Shadows */
+    --box-shadow-soft: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --box-shadow-hard: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /* CSS-reset */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+
+/* ----- Typography ----- */
 /* Set font-size for em/rem usage */
 html {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 body {
-  font-family: 'MedievalSharp', Helvetica, cursive;
-  font-weight: 400;
+    font-family: 'MedievalSharp', Helvetica, cursive;
+    font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Metamorphous', Helvetica, serif;
-  font-weight: 400;
+    font-family: 'Metamorphous', Helvetica, serif;
+    font-weight: 400;
 }
 
 button,
@@ -57,19 +61,51 @@ input,
 select,
 textarea,
 ::placeholder {
-  font: inherit;
+    font: inherit;
+}
+
+
+
+/* ----- Globals ----- */
+img {
+    width: 100%;
+}
+
+hr {
+    width: 100%;
+    border: 1px solid var(--color-white);
 }
 
 ::selection {
-  color: var(--color-text-secondary);
-  background: var(--color-accent);
+    color: var(--color-text-secondary);
+    background: var(--color-accent);
 }
 
-/* Reusables */
+/* All links are globally styled, apply the .secondary-link class selector to an anchor element if an alternative style is needed. */
+a,
+a:visited {
+    color: var(--color-text-primary);
+}
+
+a:hover {
+    color: var(--color-text-secondary);
+}
+
+
+/* ----- Reusables ----- */
 .visible {
-  opacity: 1;
+    opacity: 1;
 }
 
 .invisible {
-  opacity: 0;
+    opacity: 0;
+}
+
+.secondary-link,
+.secondary-link:visited {
+    color: var(--color-text-secondary);
+}
+
+.secondary-link:hover {
+    color: var(--color-text-primary);
 }

@@ -7,20 +7,27 @@ import navigationItems from '../../../constants/navigationItems.js';
 // Framework dependencies
 import {Link} from "react-router-dom";
 
+//Components
+import Panel from "../Panel/Panel.jsx";
+
 function Navigation() {
   return (
     <nav>
-      <ol>
+      <ul className="navigation-items">
         {navigationItems.map(navigationItem => {
           return (
-            <li>
-              <Link to={navigationItem.url}>{navigationItem.label}</Link>
-            </li>
+            <Link to={navigationItem.url}>
+              <Panel variant="small">
+                <li>
+                  {navigationItem.label}
+                </li>
+              </Panel>
+            </Link>
           )
         })}
-      </ol>
+      </ul>
     </nav>
-  )
+  );
 }
 
 export default Navigation;
