@@ -1,0 +1,19 @@
+.authorized-layout {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+
+    aside {
+        flex-basis: 300px;
+        flex-grow: 0;
+        flex-shrink: 1;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+    }
+
+    main {
+        /* Main should take up the remaining space */
+        flex-grow: 1;
+    }
+}
