@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom';
 
 // Components
 import Navigation from "../Navigation/Navigation.jsx";
+import LinkElement from "../LinkElement/LinkElement.jsx";
 
 function Sidebar() {
   return (
@@ -23,10 +24,12 @@ function Sidebar() {
 
       <div className="sidebar__bottom">
         <hr/>
-        <Link className="secondary-link" to="#">
-          <DoorIcon size={"1.2em"}/>
-          <span> Uitloggen</span>
-        </Link>
+        <LinkElement
+          url="#"
+          label="Uitloggen"
+          variant="secondary"
+          icon={<DoorIcon/>}
+        />
       </div>
     </div>
   );

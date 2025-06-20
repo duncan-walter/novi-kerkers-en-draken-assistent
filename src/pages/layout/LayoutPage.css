@@ -16,7 +16,7 @@
     main {
         /* Main should take up the remaining space */
         flex-grow: 1;
-        padding: 5em 2.5em;
+        padding: 5em 10em;
         /* This approach is not quite to my liking, the image is slightly blurry but I can't get it to scale nicely
          * TODO: If time allows for it, make this look nicer.
          */

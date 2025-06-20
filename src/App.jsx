@@ -9,11 +9,12 @@ import RegisterPage from "./pages/register/RegisterPage.jsx";
 import LoginPage from "./pages/login/LoginPage.jsx";
 import LayoutPage from "./pages/layout/LayoutPage.jsx";
 import HomePage from "./pages/home/HomePage.jsx";
-import CharacterManagementPage from "./pages/character-management/CharacterManagementPage.jsx";
 import EncounterTrackerPage from "./pages/encounter-tracker/EncounterTrackerPage.jsx";
 import GameInformationPage from "./pages/game-information/GameInformationPage.jsx";
 import NotFoundPage from "./pages/not-found/NotFoundPage.jsx";
 import TestingZonePage from "./pages/testing-zone/TestingZonePage.jsx";
+import CharacterOverview from "./pages/character-management/character-overview/CharacterOverview.jsx";
+import CharacterCreate from "./pages/character-management/character-create/CharacterCreate.jsx";
 
 function App() {
   // Temporary variable until authentication is implemented.
@@ -28,14 +29,15 @@ function App() {
       </Route>
 
       {/* Authenticated pages */}
-      <Route element={userIsLoggedIn ? <Outlet/> : <Navigate to="/login"/>}>
-        <Route path="/" element={<LayoutPage/>}>
-          <Route index element={<HomePage/>}/>
-          <Route path="/character-management" element={<CharacterManagementPage/>}/>
-          <Route path="/encounter-tracker" element={<EncounterTrackerPage/>}/>
-          <Route path="/game-information" element={<GameInformationPage/>}/>
-          <Route path="/testing-zone" element={<TestingZonePage/>}/>
+      <Route element={userIsLoggedIn ? <LayoutPage/> : <Navigate to="/login"/>}>
+        <Route index element={<HomePage/>}/>
+        <Route path="character-management">
+          <Route index element={<CharacterOverview/>}/>
+          <Route path="create-character" element={<CharacterCreate/>}/>
         </Route>
+        <Route path="encounter-tracker" element={<EncounterTrackerPage/>}/>
+        <Route path="game-information" element={<GameInformationPage/>}/>
+        <Route path="testing-zone" element={<TestingZonePage/>}/>
       </Route>
 
       {/* Not found / other pages */}

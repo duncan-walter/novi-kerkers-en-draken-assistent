@@ -2,10 +2,10 @@
 import './LayoutPage.css';
 
 // Framework dependencies
-import {Outlet} from "react-router-dom";
+import {Outlet} from 'react-router-dom';
 
 // Components
-import Sidebar from "../../components/ui/Sidebar/Sidebar.jsx";
+import Sidebar from '../../components/ui/Sidebar/Sidebar.jsx';
 
 function LayoutPage() {
   return (

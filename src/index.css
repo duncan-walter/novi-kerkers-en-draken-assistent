@@ -54,6 +54,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Metamorphous', Helvetica, serif;
     font-weight: 400;
+    color: var(--color-text-primary);
 }
 
 button,
@@ -81,16 +82,6 @@ hr {
     background: var(--color-accent);
 }
 
-/* All links are globally styled, apply the .secondary-link class selector to an anchor element if an alternative style is needed. */
-a,
-a:visited {
-    color: var(--color-text-primary);
-}
-
-a:hover {
-    color: var(--color-text-secondary);
-}
-
 
 /* ----- Reusables ----- */
 .visible {
@@ -99,13 +90,4 @@ a:hover {
 
 .invisible {
     opacity: 0;
-}
-
-.secondary-link,
-.secondary-link:visited {
-    color: var(--color-text-secondary);
-}
-
-.secondary-link:hover {
-    color: var(--color-text-primary);
 }

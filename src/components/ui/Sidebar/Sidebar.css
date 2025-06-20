@@ -11,10 +11,6 @@
         font-size: 2em;
         text-align: center;
     }
-
-    a {
-        text-decoration: none;
-    }
 }
 
 .sidebar__top {
@@ -28,12 +24,4 @@
     flex-direction: column;
     align-items: center;
     gap: 1em;
-
-    a {
-        display: flex;
-
-        span {
-            white-space: normal;
-        }
-    }
 }

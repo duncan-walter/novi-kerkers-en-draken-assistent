@@ -1,5 +1,4 @@
 .panel {
-    padding: 5em;
     /* No CSS variable is used for the center color of the radial-gradient because it is only used once to make this component look good. */
     /* The order of the image and the radial-gradient is important, the image has to be on top for the paper texture to come through */
     background-image:
@@ -24,4 +23,8 @@
 
 .panel--small {
     padding: .5em;
+}
+
+.panel--large {
+    padding: 5em;
 }
