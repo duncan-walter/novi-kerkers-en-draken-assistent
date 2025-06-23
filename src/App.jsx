@@ -2,12 +2,13 @@
 import './App.css'
 
 // Framework dependencies
-import {Navigate, Outlet, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 
 // Pages
+import UnauthorizedLayout from "./pages/layouts/unauthorized/UnauthorizedLayout.jsx";
 import RegisterPage from "./pages/register/RegisterPage.jsx";
 import LoginPage from "./pages/login/LoginPage.jsx";
-import LayoutPage from "./pages/layout/LayoutPage.jsx";
+import AuthorizedLayoutPage from "./pages/layouts/authorized/AuthorizedLayoutPage.jsx";
 import HomePage from "./pages/home/HomePage.jsx";
 import EncounterTrackerPage from "./pages/encounter-tracker/EncounterTrackerPage.jsx";
 import GameInformationPage from "./pages/game-information/GameInformationPage.jsx";
@@ -18,18 +19,18 @@ import CharacterCreate from "./pages/character-management/character-create/Chara
 
 function App() {
   // Temporary variable until authentication is implemented.
-  const userIsLoggedIn = true;
+  const userIsLoggedIn = false;
 
   return (
     <Routes>
       {/* Unauthenticated pages */}
-      <Route element={userIsLoggedIn ? <Navigate to="/"/> : <Outlet/>}>
-        <Route path="/register" element={<RegisterPage/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
+      <Route element={userIsLoggedIn ? <Navigate to="/"/> : <UnauthorizedLayout/>}>
+        <Route path="login" element={<LoginPage/>}/>
+        <Route path="register" element={<RegisterPage/>}/>
       </Route>
 
       {/* Authenticated pages */}
-      <Route element={userIsLoggedIn ? <LayoutPage/> : <Navigate to="/login"/>}>
+      <Route element={userIsLoggedIn ? <AuthorizedLayoutPage/> : <Navigate to="/login"/>}>
         <Route index element={<HomePage/>}/>
         <Route path="character-management">
           <Route index element={<CharacterOverview/>}/>
@@ -46,4 +47,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

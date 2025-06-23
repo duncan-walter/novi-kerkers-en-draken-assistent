@@ -1,0 +1,31 @@
+.register-form {
+    width: 400px;
+}
+
+.register-form__no-account {
+    font-size: .8em;
+    margin: .5em 0 2em 0;
+}
+
+.register-form__submit-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.register-welcome-message {
+    padding: 2em;
+    text-align: center;
+
+    p {
+        color: var(--color-text-secondary);
+    }
+
+    .register-welcome-message__title {
+        font-size: 1.5em;
+        padding: .1em;
+    }
+
+    .register-welcome-message__spoken {
+        font-size: .8em;
+    }
+}

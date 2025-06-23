@@ -7,6 +7,7 @@ import './Panel.css';
 function Panel({title, variant = 'large', children}) {
   const variants = {
     small: 'panel--small',
+    medium: 'panel--medium',
     large: 'panel--large'
   }
 

@@ -25,6 +25,10 @@
     padding: .5em;
 }
 
+.panel--medium {
+    padding: 2em;
+}
+
 .panel--large {
     padding: 5em;
 }

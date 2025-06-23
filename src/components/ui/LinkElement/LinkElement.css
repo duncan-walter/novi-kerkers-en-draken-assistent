@@ -1,3 +1,7 @@
+.link-wrapper {
+    display: inline-block;
+}
+
 .link {
     display: flex;
     white-space: pre;
@@ -6,18 +10,38 @@
 
 .link--primary,
 .link--primary:visited {
-    color: var(--color-text-primary);
+    .link__text,
+    .link__icon {
+        color: var(--color-text-primary);
+    }
 }
 
 .link--primary:hover {
-    color: var(--color-text-secondary);
+    .link__text,
+    .link__icon {
+        color: var(--color-text-secondary);
+    }
 }
 
 .link--secondary,
 .link--secondary:visited {
-    color: var(--color-text-secondary);
+    .link__text,
+    .link__icon {
+        color: var(--color-text-secondary);
+    }
 }
 
 .link--secondary:hover {
-    color: var(--color-text-primary);
+    .link__text,
+    .link__icon {
+        color: var(--color-text-primary);
+    }
+}
+
+.link__icon {
+    margin-right: .5em;
+}
+
+.link__text--underline {
+    text-decoration: underline;
 }

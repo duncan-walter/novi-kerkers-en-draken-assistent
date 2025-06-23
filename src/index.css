@@ -40,8 +40,8 @@
 }
 
 
+
 /* ----- Typography ----- */
-/* Set font-size for em/rem usage */
 html {
     font-size: 16px;
 }
@@ -54,6 +54,10 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Metamorphous', Helvetica, serif;
     font-weight: 400;
+    color: var(--color-text-primary);
+}
+
+p, span {
     color: var(--color-text-primary);
 }
 
@@ -81,6 +85,7 @@ hr {
     color: var(--color-text-secondary);
     background: var(--color-accent);
 }
+
 
 
 /* ----- Reusables ----- */
