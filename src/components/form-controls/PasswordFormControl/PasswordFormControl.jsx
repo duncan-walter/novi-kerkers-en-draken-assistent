@@ -15,11 +15,12 @@ import {useState} from 'react';
  *    - required (boolean)
  *    - minimumLength (number)
  *    - maximumLength (number)
+ *    - matchFormControl (object { name (string), label (string})
  */
 function PasswordFormControl({id, name, label, register, error, validationRules}) {
   const [showPassword, toggleShowPassword] = useState(false);
 
-  const supportedValidationRules = ['required', 'minimumLength', 'maximumLength'];
+  const supportedValidationRules = ['required', 'minimumLength', 'maximumLength', 'matchFormControl'];
 
   const registerFormControl = () => {
     return {

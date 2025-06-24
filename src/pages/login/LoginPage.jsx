@@ -16,7 +16,12 @@ function LoginPage() {
     handleSubmit,
     formState: {errors},
     register
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      loginFormEmail: '',
+      loginFormPassword: ''
+    }
+  });
 
   const handleFormSubmit = (data) => {
     console.log(data);
@@ -37,11 +42,11 @@ function LoginPage() {
       <form className="login-form" onSubmit={handleSubmit(handleFormSubmit)}>
         <TextFormControl
           id="login-form-email"
-          name="login-form-email"
+          name="loginFormEmail"
           label="E-mailadres"
           placeholder="student@novi-education.nl"
           register={register}
-          error={errors['login-form-email']}
+          error={errors.loginFormEmail}
           validationRules={{
             required: true
           }}
@@ -49,10 +54,10 @@ function LoginPage() {
 
         <PasswordFormControl
           id="login-form-password"
-          name="login-form-password"
+          name="loginFormPassword"
           label="Wachtwoord"
           register={register}
-          error={errors['login-form-password']}
+          error={errors.loginFormPassword}
           validationRules={{
             required: true
           }}

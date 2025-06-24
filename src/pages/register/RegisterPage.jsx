@@ -2,6 +2,7 @@
 import './RegisterPage.css';
 
 // Framework dependencies
+import {useEffect} from "react";
 import {useForm} from 'react-hook-form';
 
 // Components
@@ -13,14 +14,31 @@ import PasswordFormControl from '../../components/form-controls/PasswordFormCont
 
 function RegisterPage() {
   const {
+    register,
     handleSubmit,
-    formState: {errors},
-    register
-  } = useForm();
+    watch,
+    trigger,
+    formState: {errors, isSubmitted}
+  } = useForm({
+    defaultValues: {
+      registerFormEmail: '',
+      registerFormPassword: '',
+      registerFormRepeatPassword: ''
+    }
+  });
+
+  const password = watch('registerFormPassword');
 
   const handleFormSubmit = (data) => {
     console.log(data);
   }
+
+  // Used to trigger repeat password form control validation when password form control is updated
+  useEffect(() => {
+    if (isSubmitted) {
+      trigger('registerFormRepeatPassword');
+    }
+  }, [password]);
 
   return (<>
     <div className="register-welcome-message">
@@ -37,35 +55,42 @@ function RegisterPage() {
       <form className="register-form" onSubmit={handleSubmit(handleFormSubmit)}>
         <TextFormControl
           id="register-form-email"
-          name="register-form-email"
+          name="registerFormEmail"
           label="E-mailadres"
           placeholder="student@novi-education.nl"
           register={register}
-          error={errors['register-form-email']}
+          error={errors.registerFormEmail}
           validationRules={{
-            required: true
+            required: true,
+            validateEmail: true
           }}
         />
 
         <PasswordFormControl
           id="register-form-password"
-          name="register-form-password"
+          name="registerFormPassword"
           label="Wachtwoord"
           register={register}
-          error={errors['register-form-password']}
+          error={errors.registerFormPassword}
           validationRules={{
-            required: true
+            required: true,
+            minimumLength: 8,
+            maximumLength: 255
           }}
         />
 
         <PasswordFormControl
           id="register-form-repeat-password"
-          name="register-form-repeat-password"
+          name="registerFormRepeatPassword"
           label="Wachtwoord herhalen"
           register={register}
-          error={errors['register-form-repeat-password']}
+          error={errors.registerFormRepeatPassword}
           validationRules={{
-            required: true
+            required: true,
+            matchFormControl: {
+              name: 'registerFormPassword',
+              label: 'Wachtwoord'
+            }
           }}
         />
 
