@@ -17,9 +17,9 @@ async function login(email, password) {
       token: response.data.token
     });
 
-    return true;
+    return response.status;
   } catch (e) {
-    return false;
+    return e.status ?? 500;
   }
 }
 
@@ -29,14 +29,14 @@ function logout() {
 
 async function register(email, password) {
   try {
-    await authorizationClient.post('/users', {
+    const response = await authorizationClient.post('/users', {
       email: email,
       password: password
     });
 
-    return true;
+    return response.status;
   } catch (e) {
-    return false
+    return e.status ?? 500;
   }
 }
 

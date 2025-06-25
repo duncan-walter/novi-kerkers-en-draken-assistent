@@ -5,6 +5,9 @@ import './LoginPage.css';
 import {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 
+// Custom hooks
+import {useToaster} from '../../context/ToasterContext.jsx';
+
 // Contexts
 import {AuthorizationContext} from '../../context/AuthorizationContext.jsx';
 
@@ -28,12 +31,25 @@ function LoginPage() {
       loginFormPassword: ''
     }
   });
+  const {showToast} = useToaster();
 
   const handleFormSubmit = async (data) => {
-    await authorizationContext.login(
+    const statusCode = await authorizationContext.login(
       data.loginFormEmail,
       data.loginFormPassword
     );
+
+    switch (statusCode) {
+      case 200:
+        break;
+      case 401:
+        showToast('De mistige stem herkent je niet. Controleer je gegevens.', 'error');
+        break;
+      case 500:
+      default:
+        showToast('Een mysterieuze storing blokkeert je pad', 'error');
+        break;
+    }
   }
 
   return (<>

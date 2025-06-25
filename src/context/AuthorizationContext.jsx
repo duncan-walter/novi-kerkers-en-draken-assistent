@@ -23,14 +23,16 @@ function AuthorizationContextProvider({children}) {
   }, []);
 
   const login = async (email, password) => {
-    const success = await authorizationService.login(email, password);
+    const statusCode = await authorizationService.login(email, password);
 
-    if (success) {
+    if (statusCode === 200) {
       const localStorageUser = getLocalStorageItem(userKey);
       setUser(localStorageUser);
     }
 
     setStatus('ready');
+
+    return statusCode;
   }
 
   const logout = () => {

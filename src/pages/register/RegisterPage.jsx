@@ -3,7 +3,11 @@ import './RegisterPage.css';
 
 // Framework dependencies
 import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import {useForm} from 'react-hook-form';
+
+// Custom hooks
+import {useToaster} from "../../context/ToasterContext.jsx";
 
 // Services
 import {register as registerUser} from '../../services/authorizationService.js';
@@ -14,7 +18,6 @@ import LinkElement from '../../components/ui/LinkElement/LinkElement.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
 import TextFormControl from '../../components/form-controls/TextFormControl/TextFormControl.jsx';
 import PasswordFormControl from '../../components/form-controls/PasswordFormControl/PasswordFormControl.jsx';
-import {useNavigate} from "react-router-dom";
 
 function RegisterPage() {
   const {
@@ -31,14 +34,34 @@ function RegisterPage() {
     }
   });
   const navigate = useNavigate();
+  const {showToast} = useToaster();
 
   const handleFormSubmit = async (data) => {
-    const success = await registerUser(
+    const statusCode = await registerUser(
       data.registerFormEmail,
       data.registerFormPassword
     );
 
-    if (success) {
+    switch (statusCode) {
+      case 201:
+        showToast('Je inschrijving is voltooid! Het avontuur begint nu!', 'success');
+        break;
+      case 400:
+        showToast('Je poging tot toetreding is mislukt. Misschien draagt een ander jouw naam al', 'error');
+        break;
+      case 401:
+        showToast('Onbekende reiziger, toegang geweigerd', 'error');
+        break;
+      case 403:
+        showToast('De wachters erkennen je rang niet als voldoende', 'error');
+        break;
+      case 500:
+      default:
+        showToast('Een mysterieuze storing blokkeert je pad', 'error');
+        break;
+    }
+
+    if (statusCode === 201) {
       navigate('/login');
     }
   }
