@@ -1,0 +1,29 @@
+.authorized-layout {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+
+    aside {
+        flex-basis: 300px;
+        flex-grow: 0;
+        flex-shrink: 1;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        z-index: 0;
+    }
+
+    main {
+        /* Main should take up the remaining space */
+        flex-grow: 1;
+        padding: 5em 10em;
+        /* This approach is not quite to my liking, the image is slightly blurry but I can't get it to scale nicely
+         * TODO: If time allows for it, make this look nicer.
+         */
+        background-image: url("../../../assets/backgrounds/authorized-background.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: 100vw 100vh;
+    }
+}

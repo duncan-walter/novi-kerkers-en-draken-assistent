@@ -8,9 +8,10 @@ import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js
  *    - required (boolean)
  *    - minimumLength (number)
  *    - maximumLength (number)
+ *    - validateEmail (boolean)
  */
 function TextFormControl({id, name, label, placeholder, register, error, validationRules}) {
-  const supportedValidationRules = ['required', 'minimumLength', 'maximumLength'];
+  const supportedValidationRules = ['required', 'minimumLength', 'maximumLength', 'validateEmail'];
 
   const registerFormControl = () => {
     return {...(register(name, {

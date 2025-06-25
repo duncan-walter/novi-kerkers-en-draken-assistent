@@ -1,0 +1,12 @@
+.unauthorized-layout {
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url("../../../assets/backgrounds/unauthorized-background.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+}

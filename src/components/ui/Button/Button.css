@@ -1,0 +1,31 @@
+.button {
+    display: flex;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.button:active {
+    transform: translateY(1px) !important;
+}
+
+.button:hover {
+    box-shadow: var(--box-shadow-soft);
+    transform: translateY(-1px);
+}
+
+.button--primary {
+    color: var(--color-text-secondary);
+    background: var(--color-secondary-gradient);
+}
+
+.button--secondary {
+    color: var(--color-text-primary);
+    background: var(--color-primary-gradient);
+}
+
+.button__icon {
+    margin-right: .5em;
+}

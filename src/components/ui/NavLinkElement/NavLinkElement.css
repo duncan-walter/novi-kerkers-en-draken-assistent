@@ -1,0 +1,17 @@
+.navigation-item{
+    text-decoration: none;
+}
+
+.navigation-item,
+.navigation-item:visited {
+    color: var(--color-text-primary);
+}
+
+.navigation-item:hover {
+    color: var(--color-text-secondary);
+}
+
+.navigation-item--active {
+    color: var(--color-text-secondary);
+    filter: brightness(110%);
+}

@@ -1,7 +1,7 @@
 function buildFormControlValidationRules(label, validationRules, supportedValidationRules = []) {
   const rules = {};
 
-  // We filter out unsupported validation rules to prevent illegal validation rules from being set on certain form controls.
+  // Unsupported validation rules are filtered out to prevent illegal validation rules from being set on certain form controls.
   if (validationRules) {
     for (const key in validationRules) {
       if (supportedValidationRules.includes(key)) {
@@ -10,6 +10,10 @@ function buildFormControlValidationRules(label, validationRules, supportedValida
     }
   }
 
+  /* The validation rules a developer wants to implement while using the form controls are set.
+   * Unset validation rules will evaluate to undefined. That is why null checks are not used instead.
+   * Explicit undefined checks are needed because certain allowed values will evaluate to falsy e.g. rules.minimumValue = 0.
+   */
   return {
     // Required
     ...(rules.required !== undefined && {
@@ -45,7 +49,25 @@ function buildFormControlValidationRules(label, validationRules, supportedValida
         value: rules.maximumLength,
         message: `${label} moet minder dan "${rules.maximumLength}" karakter(s) lang zijn.`
       }
-    })
+    }),
+    // Custom validation rules
+    validate: {
+      // Validate valid email
+      ...(rules.validateEmail !== undefined && {
+        validateEmail: (formControlValue) => {
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          return emailRegex.test(formControlValue) || `${label} moet een geldig e-mailadres zijn.`;
+        }
+      }),
+      // Match form control
+      ...(rules.matchFormControl !== undefined && {
+        matchFormControl: (formControlValue, allFormControls) => {
+          const otherFormControlValue = allFormControls[rules.matchFormControl.name];
+          const otherFormControlLabel = rules.matchFormControl.label;
+          return formControlValue === otherFormControlValue || `"${label}" en "${otherFormControlLabel}" moeten overeenkomen.`
+        }
+      })
+    }
   };
 }
 

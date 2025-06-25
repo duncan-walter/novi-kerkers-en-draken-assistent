@@ -1,0 +1,47 @@
+.link-wrapper {
+    display: inline-block;
+}
+
+.link {
+    display: flex;
+    white-space: pre;
+    text-decoration: none;
+}
+
+.link--primary,
+.link--primary:visited {
+    .link__text,
+    .link__icon {
+        color: var(--color-text-primary);
+    }
+}
+
+.link--primary:hover {
+    .link__text,
+    .link__icon {
+        color: var(--color-text-secondary);
+    }
+}
+
+.link--secondary,
+.link--secondary:visited {
+    .link__text,
+    .link__icon {
+        color: var(--color-text-secondary);
+    }
+}
+
+.link--secondary:hover {
+    .link__text,
+    .link__icon {
+        color: var(--color-text-primary);
+    }
+}
+
+.link__icon {
+    margin-right: .5em;
+}
+
+.link__text--underline {
+    text-decoration: underline;
+}
