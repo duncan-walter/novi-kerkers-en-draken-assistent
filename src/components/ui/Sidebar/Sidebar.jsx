@@ -6,13 +6,19 @@ import DNDLogo from '/src/assets/logos/dnd-logo-white.png';
 import {DoorIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
+import {useContext} from "react";
 import {Link} from 'react-router-dom';
+
+// Contexts
+import {AuthorizationContext} from '../../../context/AuthorizationContext.jsx';
 
 // Components
 import Navigation from "../Navigation/Navigation.jsx";
-import LinkElement from "../LinkElement/LinkElement.jsx";
+import Button from "../Button/Button.jsx";
 
 function Sidebar() {
+  const authorizationContext = useContext(AuthorizationContext);
+
   return (
     <div className="sidebar">
       <div className="sidebar__top">
@@ -24,10 +30,9 @@ function Sidebar() {
 
       <div className="sidebar__bottom">
         <hr/>
-        <LinkElement
-          url="#"
+        <Button
+          onClick={authorizationContext.logout}
           label="Uitloggen"
-          variant="secondary"
           icon={<DoorIcon/>}
         />
       </div>

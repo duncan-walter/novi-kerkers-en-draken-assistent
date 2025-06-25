@@ -7,13 +7,18 @@ import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import {BrowserRouter as Router} from 'react-router-dom';
 
+// Contexts
+import AuthorizationContextProvider from "./context/AuthorizationContext.jsx";
+
 // Components
 import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
-      <App/>
+      <AuthorizationContextProvider>
+        <App/>
+      </AuthorizationContextProvider>
     </Router>
   </StrictMode>,
 )

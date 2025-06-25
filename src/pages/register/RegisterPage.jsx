@@ -5,12 +5,16 @@ import './RegisterPage.css';
 import {useEffect} from "react";
 import {useForm} from 'react-hook-form';
 
+// Services
+import {register as registerUser} from '../../services/authorizationService.js';
+
 // Components
 import Panel from '../../components/ui/Panel/Panel.jsx';
 import LinkElement from '../../components/ui/LinkElement/LinkElement.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
 import TextFormControl from '../../components/form-controls/TextFormControl/TextFormControl.jsx';
 import PasswordFormControl from '../../components/form-controls/PasswordFormControl/PasswordFormControl.jsx';
+import {useNavigate} from "react-router-dom";
 
 function RegisterPage() {
   const {
@@ -26,12 +30,20 @@ function RegisterPage() {
       registerFormRepeatPassword: ''
     }
   });
+  const navigate = useNavigate();
+
+  const handleFormSubmit = async (data) => {
+    const success = await registerUser(
+      data.registerFormEmail,
+      data.registerFormPassword
+    );
+
+    if (success) {
+      navigate('/login');
+    }
+  }
 
   const password = watch('registerFormPassword');
-
-  const handleFormSubmit = (data) => {
-    console.log(data);
-  }
 
   // Used to trigger repeat password form control validation when password form control is updated
   useEffect(() => {

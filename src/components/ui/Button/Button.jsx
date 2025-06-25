@@ -1,6 +1,6 @@
 import './Button.css';
 
-function Button({label, type = 'button', variant = 'primary', handleClick = () => {}}) {
+function Button({label, icon, type = 'button', variant = 'primary', onClick = () => {}}) {
   const variants = {
     primary: 'button--primary',
     secondary: 'button--secondary'
@@ -12,8 +12,9 @@ function Button({label, type = 'button', variant = 'primary', handleClick = () =
     <button
       className={buttonClasses}
       type={type}
-      onClick={handleClick}
+      onClick={onClick}
     >
+      {icon && <div className="button__icon">{icon}</div>}
       {label}
     </button>
   );

@@ -2,7 +2,11 @@
 import './LoginPage.css';
 
 // Framework dependencies
+import {useContext} from 'react';
 import {useForm} from 'react-hook-form';
+
+// Contexts
+import {AuthorizationContext} from '../../context/AuthorizationContext.jsx';
 
 // Components
 import Panel from '../../components/ui/Panel/Panel.jsx';
@@ -12,6 +16,8 @@ import TextFormControl from '../../components/form-controls/TextFormControl/Text
 import PasswordFormControl from '../../components/form-controls/PasswordFormControl/PasswordFormControl.jsx';
 
 function LoginPage() {
+  const authorizationContext = useContext(AuthorizationContext);
+
   const {
     handleSubmit,
     formState: {errors},
@@ -23,8 +29,11 @@ function LoginPage() {
     }
   });
 
-  const handleFormSubmit = (data) => {
-    console.log(data);
+  const handleFormSubmit = async (data) => {
+    await authorizationContext.login(
+      data.loginFormEmail,
+      data.loginFormPassword
+    );
   }
 
   return (<>

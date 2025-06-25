@@ -2,7 +2,11 @@
 import './App.css'
 
 // Framework dependencies
+import {useContext} from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
+
+// Contexts
+import {AuthorizationContext} from "./context/AuthorizationContext.jsx";
 
 // Pages
 import UnauthorizedLayout from "./pages/layouts/unauthorized/UnauthorizedLayout.jsx";
@@ -18,19 +22,18 @@ import CharacterOverview from "./pages/character-management/character-overview/C
 import CharacterCreate from "./pages/character-management/character-create/CharacterCreate.jsx";
 
 function App() {
-  // Temporary variable until authentication is implemented.
-  const userIsLoggedIn = false;
+  const authorizationContext = useContext(AuthorizationContext);
 
   return (
     <Routes>
       {/* Unauthenticated pages */}
-      <Route element={userIsLoggedIn ? <Navigate to="/"/> : <UnauthorizedLayout/>}>
+      <Route element={authorizationContext.user ? <Navigate to="/"/> : <UnauthorizedLayout/>}>
         <Route path="login" element={<LoginPage/>}/>
         <Route path="register" element={<RegisterPage/>}/>
       </Route>
 
       {/* Authenticated pages */}
-      <Route element={userIsLoggedIn ? <AuthorizedLayoutPage/> : <Navigate to="/login"/>}>
+      <Route element={authorizationContext.user ? <AuthorizedLayoutPage/> : <Navigate to="/login"/>}>
         <Route index element={<HomePage/>}/>
         <Route path="character-management">
           <Route index element={<CharacterOverview/>}/>

@@ -1,5 +1,6 @@
 .button {
-    padding: .5em 2em;
+    display: flex;
+    padding: .5em 1em;
     border: none;
     border-radius: 5px;
     text-transform: uppercase;
@@ -23,4 +24,8 @@
 .button--secondary {
     color: var(--color-text-primary);
     background: var(--color-primary-gradient);
+}
+
+.button__icon {
+    margin-right: .5em;
 }

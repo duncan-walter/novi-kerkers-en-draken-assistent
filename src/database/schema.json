@@ -1,0 +1,29 @@
+{
+  "collections": [
+    {
+      "name": "placeholder",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "permissions": {
+        "GET": [
+          "anonymous"
+        ]
+      }
+    }
+  ],
+  "users": [
+    {
+      "email": "kerkersendrakenassistent@testaccount.nl",
+      "password": "ditwachtiszomoeilijkhetisgewoonnietteraden",
+      "roles": [
+        "user"
+      ]
+    }
+  ],
+  "data": {}
+}
