@@ -1,23 +1,250 @@
 {
   "collections": [
     {
-      "name": "placeholder",
+      "name": "characters",
       "fields": [
         {
           "name": "id",
           "type": "number",
           "required": true
+        },
+        {
+          "name": "userId",
+          "type": "reference:users",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "reference:characterTypes",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 100
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 50
+        },
+        {
+          "name": "subClass",
+          "type": "string",
+          "min": 1,
+          "max": 50
+        },
+        {
+          "name": "race",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 50
+        },
+        {
+          "name": "charisma",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "constitution",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "dexterity",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "intelligence",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "strength",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "wisdom",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "proficiencyBonus",
+          "type": "number",
+          "required": true,
+          "min": 2,
+          "max": 6
+        },
+        {
+          "name": "armorClass",
+          "type": "number",
+          "required": true,
+          "min": -10,
+          "max": 50
+        },
+        {
+          "name": "maxHitPoints",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 1000
+        },
+        {
+          "name": "currentHitPoints",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 1000
+        },
+        {
+          "name": "experiencePoints",
+          "type": "number",
+          "required": true,
+          "min": 0,
+          "max": 355000
+        },
+        {
+          "name": "size",
+          "type": "string",
+          "max": 50
+        },
+        {
+          "name": "alignment",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 50
+        },
+        {
+          "name": "copperPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "silverPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "electrumPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "goldPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "platinumPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "notes",
+          "type": "string",
+          "max": 1000,
+          "default": 0
         }
       ],
       "permissions": {
         "GET": [
-          "anonymous"
+          "user"
+        ],
+        "POST": [
+          "user"
+        ],
+        "PUT": [
+          "user"
+        ]
+      }
+    },
+    {
+      "name": "characterTypes",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "permissions": {
+        "GET": [
+          "user"
+        ]
+      }
+    },
+    {
+      "name": "characterPossessions",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "characterId",
+          "type": "reference:characters",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 255
+        }
+      ],
+      "permissions": {
+        "GET": [
+          "user"
+        ],
+        "POST": [
+          "user"
+        ],
+        "PUT": [
+          "user"
         ]
       }
     }
   ],
   "users": [
     {
+      "id": 0,
       "email": "kerkersendrakenassistent@testaccount.nl",
       "password": "ditwachtiszomoeilijkhetisgewoonnietteraden",
       "roles": [
@@ -25,5 +252,53 @@
       ]
     }
   ],
-  "data": {}
+  "data": {
+    "characters": [
+      {
+        "id": 0,
+        "userId": 0,
+        "type": 0,
+        "name": "Xandoril Thornbriar",
+        "class": "Rogue",
+        "race": "Woof Elf",
+        "charisma": 10,
+        "constitution": 15,
+        "dexterity": 15,
+        "intelligence": 10,
+        "strength": 12,
+        "wisdom": 8,
+        "proficiencyBonus": 2,
+        "armorClass": 14,
+        "maxHitPoints": 18,
+        "currentHitPoints": 6,
+        "experiencePoints": 669,
+        "size": "5'8\" (medium)",
+        "alignment": "Chaotic Neutral",
+        "copperPieces": 85,
+        "silverPieces": 45,
+        "electrumPieces": 3,
+        "goldPieces": 79,
+        "platinumPieces": 0,
+        "notes": "-Dit is een notitie"
+      }
+    ],
+    "characterTypes": [
+      {
+        "id": 0,
+        "name": "player"
+      },
+      {
+        "id": 1,
+        "name": "monster"
+      },
+      {
+        "id": 2,
+        "name": "summon"
+      },
+      {
+        "id": 3,
+        "name": "npc"
+      }
+    ]
+  }
 }
