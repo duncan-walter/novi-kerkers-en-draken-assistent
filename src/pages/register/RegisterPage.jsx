@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {useForm} from 'react-hook-form';
 
 // Custom hooks
-import {useToaster} from "../../context/ToasterContext.jsx";
+import {useToaster} from "../../contexts/ToasterContext.jsx";
 
 // Services
 import {register as registerUser} from '../../services/authorizationService.js';

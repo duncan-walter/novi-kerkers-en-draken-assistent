@@ -6,10 +6,10 @@ import {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 
 // Custom hooks
-import {useToaster} from '../../context/ToasterContext.jsx';
+import {useToaster} from '../../contexts/ToasterContext.jsx';
 
 // Contexts
-import {AuthorizationContext} from '../../context/AuthorizationContext.jsx';
+import {AuthorizationContext} from '../../contexts/AuthorizationContext.jsx';
 
 // Components
 import Panel from '../../components/ui/Panel/Panel.jsx';

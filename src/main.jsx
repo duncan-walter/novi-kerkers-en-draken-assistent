@@ -8,7 +8,7 @@ import {createRoot} from 'react-dom/client';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 // Contexts
-import AuthorizationContextProvider from "./context/AuthorizationContext.jsx";
+import AuthorizationContextProvider from "./contexts/AuthorizationContext.jsx";
 
 // Components
 import App from './App.jsx';

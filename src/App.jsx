@@ -6,8 +6,8 @@ import {useContext} from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
 
 // Contexts
-import ToasterContextProvider from "./context/ToasterContext.jsx";
-import {AuthorizationContext} from "./context/AuthorizationContext.jsx";
+import ToasterContextProvider from "./contexts/ToasterContext.jsx";
+import {AuthorizationContext} from "./contexts/AuthorizationContext.jsx";
 
 // Pages
 import UnauthorizedLayout from "./pages/layouts/unauthorized/UnauthorizedLayout.jsx";
