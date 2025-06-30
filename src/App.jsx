@@ -6,7 +6,6 @@ import {useContext} from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
 
 // Contexts
-import ToasterContextProvider from "./contexts/ToasterContext.jsx";
 import {AuthorizationContext} from "./contexts/AuthorizationContext.jsx";
 
 // Pages
@@ -26,30 +25,29 @@ function App() {
   const authorizationContext = useContext(AuthorizationContext);
 
   return (
-    <ToasterContextProvider>
-      <Routes>
-        {/* Unauthenticated pages */}
-        <Route element={authorizationContext.user ? <Navigate to="/"/> : <UnauthorizedLayout/>}>
-          <Route path="login" element={<LoginPage/>}/>
-          <Route path="register" element={<RegisterPage/>}/>
-        </Route>
+    <Routes>
+      {/* Unauthenticated pages */}
+      <Route element={authorizationContext.user ? <Navigate to="/"/> : <UnauthorizedLayout/>}>
+        <Route path="login" element={<LoginPage/>}/>
+        <Route path="register" element={<RegisterPage/>}/>
+      </Route>
 
-        {/* Authenticated pages */}
-        <Route element={authorizationContext.user ? <AuthorizedLayoutPage/> : <Navigate to="/login"/>}>
-          <Route index element={<HomePage/>}/>
-          <Route path="character-management">
-            <Route index element={<CharacterOverview/>}/>
-            <Route path="create-character" element={<CharacterCreate/>}/>
-          </Route>
-          <Route path="encounter-tracker" element={<EncounterTrackerPage/>}/>
-          <Route path="game-information" element={<GameInformationPage/>}/>
-          <Route path="testing-zone" element={<TestingZonePage/>}/>
+      {/* Authenticated pages */}
+      <Route element={authorizationContext.user ? <AuthorizedLayoutPage/> : <Navigate to="/login"/>}>
+        <Route index element={<HomePage/>}/>
+        <Route path="character-management">
+          <Route index element={<CharacterOverview/>}/>
+          <Route path="create-character" element={<CharacterCreate/>}/>
         </Route>
+        <Route path="encounter-tracker" element={<EncounterTrackerPage/>}/>
+        <Route path="game-information" element={<GameInformationPage/>}/>
+        <Route path="testing-zone" element={<TestingZonePage/>}/>
+      </Route>
 
-        {/* Not found / other pages */}
-        <Route path="*" element={<NotFoundPage/>}/>
-      </Routes>
-    </ToasterContextProvider>);
+      {/* Not found / other pages */}
+      <Route path="*" element={<NotFoundPage/>}/>
+    </Routes>
+  );
 }
 
 export default App;

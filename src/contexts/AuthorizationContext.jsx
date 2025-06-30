@@ -1,5 +1,9 @@
 // Framework dependencies
 import {createContext, useEffect, useState} from 'react';
+import {jwtDecode} from "jwt-decode";
+
+// Custom hooks
+import {useToaster} from "./ToasterContext.jsx";
 
 // Services
 import * as authorizationService from '../services/authorizationService.js';
@@ -14,12 +18,27 @@ export const AuthorizationContext = createContext(null);
 function AuthorizationContextProvider({children}) {
   const [user, setUser] = useState(null);
   const [status, setStatus] = useState('pending');
+  const {showToast} = useToaster();
 
   // Executed on application load
   useEffect(() => {
     const localStorageUser = getLocalStorageItem(userKey);
     setUser(localStorageUser);
     setStatus('ready');
+
+    let autoLogout;
+
+    if (localStorageUser) {
+      const tokenExpiration = jwtDecode(localStorageUser.token).exp;
+      const autoLogoutTimeout = tokenExpiration * 1000 - Date.now();
+
+      autoLogout = setTimeout(() => {
+        showToast('Je sessie is verlopen. Log opnieuw in om verder te gaan.', 'error');
+        logout();
+      }, autoLogoutTimeout);
+    }
+
+    return () => clearTimeout(autoLogout);
   }, []);
 
   const login = async (email, password) => {

@@ -47,7 +47,7 @@ function LoginPage() {
         break;
       case 500:
       default:
-        showToast('Een mysterieuze storing blokkeert je pad', 'error');
+        showToast('Een mysterieuze storing blokkeert je pad.', 'error');
         break;
     }
   }

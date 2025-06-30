@@ -47,17 +47,17 @@ function RegisterPage() {
         showToast('Je inschrijving is voltooid! Het avontuur begint nu!', 'success');
         break;
       case 400:
-        showToast('Je poging tot toetreding is mislukt. Misschien draagt een ander jouw naam al', 'error');
+        showToast('Je poging tot toetreding is mislukt. Misschien draagt een ander jouw naam al.', 'error');
         break;
       case 401:
-        showToast('Onbekende reiziger, toegang geweigerd', 'error');
+        showToast('Onbekende reiziger, toegang geweigerd.', 'error');
         break;
       case 403:
-        showToast('De wachters erkennen je rang niet als voldoende', 'error');
+        showToast('De wachters erkennen je rang niet als voldoende.', 'error');
         break;
       case 500:
       default:
-        showToast('Een mysterieuze storing blokkeert je pad', 'error');
+        showToast('Een mysterieuze storing blokkeert je pad.', 'error');
         break;
     }
 
