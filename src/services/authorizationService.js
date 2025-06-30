@@ -31,7 +31,8 @@ async function register(email, password) {
   try {
     const response = await authorizationClient.post('/users', {
       email: email,
-      password: password
+      password: password,
+      roles: ["user"]
     });
 
     return response.status;

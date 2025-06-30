@@ -26,10 +26,6 @@
     color: inherit;
 }
 
-.toast__text {
-    word-break: break-all;
-}
-
 .toast__close-button {
     display: flex;
     height: 100%;
