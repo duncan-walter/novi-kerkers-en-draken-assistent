@@ -42,16 +42,17 @@ function CharacterOverview() {
   }, [error]);
 
   return (
-    <Panel title="Personages">
+    <Panel
+      title="Personages"
+      panelButton={
+        <Button
+          label="Personage toevoegen"
+          icon={PlusIcon}
+          onClick={() => navigate('./create-character')}
+        />
+      }
+    >
       <div className="character-overview">
-        <div className="character-overview__header">
-          <Button
-            label="Personage toevoegen"
-            icon={PlusIcon}
-            onClick={() => navigate('./create-character')}
-          />
-        </div>
-
         {loading && (
           <div className="character-overview__loading">
             <Spinner size='large'/>

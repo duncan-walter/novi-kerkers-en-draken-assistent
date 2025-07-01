@@ -21,6 +21,13 @@
     }
 }
 
+.panel__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .panel--small {
     padding: .5em;
 }

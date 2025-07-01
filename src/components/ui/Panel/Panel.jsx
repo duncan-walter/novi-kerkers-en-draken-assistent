@@ -4,7 +4,7 @@ import './Panel.css';
  * - Variants reduce or increase the padding at the moment
  *     - Supported variants: small, large
  */
-function Panel({title, variant = 'large', children}) {
+function Panel({title, panelButton, variant = 'large', children}) {
   const variants = {
     small: 'panel--small',
     medium: 'panel--medium',
@@ -13,7 +13,10 @@ function Panel({title, variant = 'large', children}) {
 
   return (
     <div className={`panel ${variants[variant]}`}>
-      {title && <h1 className="panel__title">{title}</h1>}
+      <div className="panel__header">
+        {title && <h1 className="panel__title">{title}</h1>}
+        {panelButton}
+      </div>
       {children &&
         <div className="panel__content">
           {children}
