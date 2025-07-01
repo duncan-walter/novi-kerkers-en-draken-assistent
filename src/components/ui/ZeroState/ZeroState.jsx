@@ -1,4 +1,7 @@
+// Styling
 import './ZeroState.css';
+
+// Components
 import Button from "../Button/Button.jsx";
 
 function ZeroState({icon: Icon, text, buttonLabel, buttonIcon, buttonOnClick}) {
