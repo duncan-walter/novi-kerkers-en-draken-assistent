@@ -9,7 +9,7 @@
     background-position: top left, center;
     border-radius: 10px;
     /* This inset box-shadow is used to make the edges of the parchment paper effect look more dark. */
-    box-shadow: inset 0 0 10px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 25px 10px rgba(0, 0, 0, 0.4);
     /* This clip-path comes from this stackoverflow question's answers:
      * https://stackoverflow.com/questions/27686522/generating-ragged-edges-in-css
      * There is an interesting alternative answer in there too still that could be used.

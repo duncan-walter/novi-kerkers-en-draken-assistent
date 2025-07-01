@@ -1,0 +1,19 @@
+.spinner--primary {
+    color: var(--color-text-primary);
+}
+
+.spinner--secondary {
+    color: var(--color-text-secondary);
+}
+
+.spinner--small {
+    width: 2em;
+}
+
+.spinner--medium {
+    width: 5em;
+}
+
+.spinner--large {
+    width: 10em;
+}

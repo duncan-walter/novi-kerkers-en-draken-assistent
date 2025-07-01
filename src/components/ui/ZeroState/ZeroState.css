@@ -1,0 +1,15 @@
+.zero-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.zero-state__icon {
+    color: var(--color-text-primary);
+}
+
+.zero-state__text {
+    white-space: pre-wrap;
+}

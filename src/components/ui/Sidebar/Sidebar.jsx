@@ -33,7 +33,7 @@ function Sidebar() {
         <Button
           onClick={authorizationContext.logout}
           label="Uitloggen"
-          icon={<DoorIcon/>}
+          icon={DoorIcon}
         />
       </div>
     </div>
