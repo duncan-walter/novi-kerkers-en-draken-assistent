@@ -1,8 +1,12 @@
 // Styling
 import './CharacterOverview.css';
 
+// Icons
+import {UserPlusIcon, PlusIcon} from '@phosphor-icons/react';
+
 // Framework dependencies
 import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 // Custom hooks
 import useRequestState from "../../../hooks/useRequestState.js";
@@ -11,11 +15,12 @@ import {useToaster} from "../../../contexts/ToasterContext.jsx";
 // Services
 import characterService from "../../../services/characterService.js";
 
-// Helpers
-import calculateCharacterLevel from "../../../helpers/calculateCharacterLevel.js";
-
 // Components
 import Panel from '../../../components/ui/Panel/Panel.jsx';
+import Button from '../../../components/ui/Button/Button.jsx';
+import Spinner from '../../../components/ui/Spinner/Spinner.jsx';
+import ZeroState from '../../../components/ui/ZeroState/ZeroState.jsx';
+import CharacterCard from '../../../components/ui/CharacterCard/CharacterCard.jsx';
 
 function CharacterOverview() {
   const {data, loading, error} = useRequestState(
@@ -28,6 +33,7 @@ function CharacterOverview() {
     }
   );
   const {showToast} = useToaster();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (error) {
@@ -37,14 +43,48 @@ function CharacterOverview() {
 
   return (
     <Panel title="Personages">
-      {loading && 'loading...'}
-      {data && data.length > 0 && (
-        data.map(character => (
-          <div key={character.id}>
-            <p>{character.name} (lvl. {calculateCharacterLevel(character.experiencePoints)})</p>
+      <div className="character-overview">
+        <div className="character-overview__header">
+          <Button
+            label="Personage toevoegen"
+            icon={PlusIcon}
+            onClick={() => navigate('./create-character')}
+          />
+        </div>
+
+        {loading && (
+          <div className="character-overview__loading">
+            <Spinner size='large'/>
           </div>
-        ))
-      )}
+        )}
+
+        {!loading && data?.length > 0 && (
+          <div className="character-overview__characters">
+            {data.map(character => (
+              <CharacterCard
+                key={character.id}
+                character={character}
+                onClick={() => {
+                  navigate(`./character-details/${character.id}`)
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {!loading && data?.length === 0 && (
+          <div className="character-overview__zero-state">
+            <ZeroState
+              icon={UserPlusIcon}
+              text="Zelfs de goblins hebben zich nog niet laten zien...
+              Voeg je eerste personage toe!"
+              buttonLabel="Personage toevoegen"
+              buttonIcon={PlusIcon}
+              buttonOnClick={() => navigate('./create-character')}
+            />
+          </div>
+        )}
+      </div>
     </Panel>
   );
 }

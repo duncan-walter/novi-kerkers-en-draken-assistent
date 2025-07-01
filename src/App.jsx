@@ -20,6 +20,7 @@ import NotFoundPage from "./pages/not-found/NotFoundPage.jsx";
 import TestingZonePage from "./pages/testing-zone/TestingZonePage.jsx";
 import CharacterOverview from "./pages/character-management/character-overview/CharacterOverview.jsx";
 import CharacterCreate from "./pages/character-management/character-create/CharacterCreate.jsx";
+import CharacterDetails from "./pages/character-management/character-details/CharacterDetails.jsx";
 
 function App() {
   const authorizationContext = useContext(AuthorizationContext);
@@ -37,6 +38,7 @@ function App() {
         <Route index element={<HomePage/>}/>
         <Route path="character-management">
           <Route index element={<CharacterOverview/>}/>
+          <Route path="character-details/:id" element={<CharacterDetails/>}/>
           <Route path="create-character" element={<CharacterCreate/>}/>
         </Route>
         <Route path="encounter-tracker" element={<EncounterTrackerPage/>}/>
