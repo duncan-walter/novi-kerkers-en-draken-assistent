@@ -12,17 +12,18 @@ function useRequestState(request, options = {executeOnMount: false, isAbortable:
   const abortableRequest = useAbortableRequest(request);
   request = options.isAbortable ? abortableRequest : request;
 
-  const executeRequest = async () => {
+  const executeRequest = async (payload) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await request();
+      console.log(payload);
+      const response = await request(payload);
       setData(response.data);
     } catch (e) {
       if (e.code !== 'ERR_CANCELED') {
         setError({
-          message: 'Er ging iets mis tijdens het ophalen van de gegevens.',
+          message: 'Er is iets misgegaan bij het verwerken van je verzoek. Probeer het later opnieuw.',
           statusCode: e.response.status
         });
       }
