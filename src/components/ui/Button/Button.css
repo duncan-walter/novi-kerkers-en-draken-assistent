@@ -1,5 +1,7 @@
 .button {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: .25em;
     padding: .5em 1em;
     border: none;
@@ -30,6 +32,15 @@
 .button--secondary {
     color: var(--color-text-primary);
     background: var(--color-primary-gradient);
+}
+
+/* Note:
+ * This project doesn't have a tertiary color scheme, this terminology is only used here so no CSS variables have been created.
+ * That's why this is partly hard-coded. If more tertiary usage pops up then a tertiary color schema has to be designed.
+ */
+.button--tertiary {
+    color: var(--color-primary-dark);
+    background: linear-gradient(#695231, var(--color-accent));
 }
 
 .button__icon {

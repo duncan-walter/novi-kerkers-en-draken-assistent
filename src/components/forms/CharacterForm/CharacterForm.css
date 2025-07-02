@@ -6,7 +6,7 @@
 }
 
 .character-form__left,
-.character-form__right{
+.character-form__right {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -16,10 +16,6 @@
 .character-form__abilities-row {
     display: flex;
     gap: 1em;
-}
-
-.character-form__abilities-row {
-    flex: 1;
 }
 
 .character-from__controls {

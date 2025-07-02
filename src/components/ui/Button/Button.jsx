@@ -7,7 +7,8 @@ import Spinner from '../Spinner/Spinner.jsx';
 function Button({label, icon: Icon, type = 'button', variant = 'primary', loading = false, onClick = () => {}}) {
   const variants = {
     primary: 'button--primary',
-    secondary: 'button--secondary'
+    secondary: 'button--secondary',
+    tertiary: 'button--tertiary'
   }
 
   let buttonClasses = `button ${variants[variant]}`;

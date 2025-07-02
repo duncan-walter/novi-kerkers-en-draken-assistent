@@ -12,8 +12,10 @@ import {useToaster} from "../../../contexts/ToasterContext.jsx";
 // Services
 import characterService from "../../../services/characterService.js";
 
-// Helpers
+// Helpers and constants
 import mapFormKeysToAPIKeys from "../../../helpers/mapFormKeysToAPIKeys.js";
+import {removeLocalStorageItem} from "../../../helpers/localStorageHelpers.js";
+import {charactersKey} from "../../../constants/localStorageKeys.js";
 
 // Components
 import Panel from '../../../components/ui/Panel/Panel.jsx';
@@ -44,6 +46,9 @@ function CharacterCreate() {
     if (statusCode) {
       switch (statusCode) {
         case 201:
+          // Manually invalidate characters cache
+          removeLocalStorageItem(charactersKey);
+
           showToast(`${data.name} sluit zich aan bij de strijd!`, 'success');
           navigate(`/character-management/character-details/${data.id}`);
           break;

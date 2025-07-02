@@ -18,12 +18,14 @@ import TextFormControl from "../../form-controls/TextFormControl/TextFormControl
 import SliderFormControl from "../../form-controls/SliderFormControl/SliderFormControl.jsx";
 import NumberFormControl from "../../form-controls/NumberFormControl/NumberFormControl.jsx";
 import TextareaFormControl from "../../form-controls/TextareaFormControl/TextareaFormControl.jsx";
+import CharacterAlignmentFormControl from "../../form-controls/CharacterAlignmentFormControl/CharacterAlignmentFormControl.jsx";
 import Button from "../../ui/Button/Button.jsx";
 
 function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
   const {
     handleSubmit,
     register,
+    setValue,
     formState: {
       errors
     },
@@ -35,8 +37,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
   const handleFormSubmit = async (characterData) => {
     characterData = {
       ...characterData,
-      characterFormUserId: jwtDecode(getLocalStorageItem(userKey).token).userId,
-      characterFormAlignment: "Neutral" // Hardcoded until alignment component is implemented
+      characterFormUserId: jwtDecode(getLocalStorageItem(userKey).token).userId
     }
 
     await onSubmit(characterData);
@@ -304,7 +305,17 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                 }}
               />
 
-              {/* TODO: Alignment form control here */}
+              <CharacterAlignmentFormControl
+                id="character-form-alignment"
+                name="characterFormAlignment"
+                label="Alignment"
+                register={register}
+                setValue={setValue}
+                error={errors.characterFormAlignment}
+                validationRules={{
+                  required: true
+                }}
+              />
             </div>
           </fieldset>
 
