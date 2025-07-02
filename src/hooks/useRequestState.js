@@ -17,7 +17,6 @@ function useRequestState(request, options = {executeOnMount: false, isAbortable:
     setError(null);
 
     try {
-      console.log(payload);
       const response = await request(payload);
       setData(response.data);
     } catch (e) {
