@@ -6,6 +6,7 @@ import useAbortableRequest from './useAbortableRequest.js';
 
 function useRequestState(request, options = {executeOnMount: false, isAbortable: false}) {
   const [data, setData] = useState(null);
+  const [statusCode, setStatusCode] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -18,13 +19,12 @@ function useRequestState(request, options = {executeOnMount: false, isAbortable:
 
     try {
       const response = await request(payload);
+      setStatusCode(response.status);
       setData(response.data);
     } catch (e) {
       if (e.code !== 'ERR_CANCELED') {
-        setError({
-          message: 'Er is iets misgegaan bij het verwerken van je verzoek. Probeer het later opnieuw.',
-          statusCode: e.response.status
-        });
+        setStatusCode(e.response.status);
+        setError('Er is iets misgegaan bij het verwerken van je verzoek. Probeer het later opnieuw.');
       }
     } finally {
       setLoading(false);
@@ -37,7 +37,7 @@ function useRequestState(request, options = {executeOnMount: false, isAbortable:
     }
   }, []);
 
-  return {data, loading, error, executeRequest};
+  return {data, statusCode, loading, error, executeRequest};
 }
 
 export default useRequestState;

@@ -37,7 +37,7 @@ function CharacterOverview() {
 
   useEffect(() => {
     if (error) {
-      showToast(error.message, 'error');
+      showToast(error, 'error');
     }
   }, [error]);
 

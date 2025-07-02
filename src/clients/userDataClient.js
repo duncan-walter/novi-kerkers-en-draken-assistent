@@ -6,7 +6,10 @@ import {getLocalStorageItem} from "../helpers/localStorageHelpers.js";
 import {userKey} from "../constants/localStorageKeys.js";
 
 const userDataClient = axios.create({
-  baseURL: import.meta.env.VITE_NOVI_DYNAMIC_API_BASE_URL
+  baseURL: import.meta.env.VITE_NOVI_DYNAMIC_API_BASE_URL,
+  headers: {
+    accept: 'application/json'
+  }
 });
 
 // An interceptor is used to set the Authorization header at request time.

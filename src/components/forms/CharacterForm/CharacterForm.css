@@ -1,0 +1,30 @@
+.character-form {
+    display: flex;
+    flex-direction: row;
+    gap: 5em;
+    flex-wrap: wrap;
+}
+
+.character-form__left,
+.character-form__right{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.character-form__abilities-row {
+    display: flex;
+    gap: 1em;
+}
+
+.character-form__abilities-row {
+    flex: 1;
+}
+
+.character-from__controls {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 2em;
+}
