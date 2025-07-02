@@ -30,7 +30,7 @@ function SelectFormControl({id, name, label, options, showPlaceholder = true, re
         {...registerFormControl()}
       >
         {showPlaceholder && <option value="">kies een waarde</option>}
-        {options.map(option => {
+        {options && options.map(option => {
           return (
             <option key={option.value} value={option.value}>
               {option.label}

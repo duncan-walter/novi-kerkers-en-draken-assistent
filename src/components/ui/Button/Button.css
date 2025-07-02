@@ -1,5 +1,6 @@
 .button {
     display: flex;
+    gap: .25em;
     padding: .5em 1em;
     border: none;
     border-radius: 5px;
@@ -7,11 +8,16 @@
     cursor: pointer;
 }
 
-.button:active {
+.button:disabled {
+    opacity: .75;
+    cursor: default;
+}
+
+.button:active:not([disabled]) {
     transform: translateY(1px) !important;
 }
 
-.button:hover {
+.button:hover:not([disabled]) {
     box-shadow: var(--box-shadow-soft);
     transform: translateY(-1px);
 }
@@ -27,5 +33,5 @@
 }
 
 .button__icon {
-    margin-right: .5em;
+    display: flex;
 }
