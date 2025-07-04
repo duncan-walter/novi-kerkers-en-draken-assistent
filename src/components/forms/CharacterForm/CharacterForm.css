@@ -5,6 +5,11 @@
     flex-wrap: wrap;
 }
 
+.character-form__loading {
+    display: flex;
+    justify-content: center;
+}
+
 .character-form__left,
 .character-form__right {
     display: flex;
