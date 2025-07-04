@@ -2,7 +2,7 @@
 import {getLocalStorageItem, setLocalStorageItem} from './localStorageHelpers.js';
 
 function requestWithCache(request, cacheKey, timeToLiveInSeconds) {
-  return async (signal) => {
+  return async (payload, signal) => {
     const cacheItem = getLocalStorageItem(cacheKey);
 
     if (cacheItem) {
@@ -13,7 +13,7 @@ function requestWithCache(request, cacheKey, timeToLiveInSeconds) {
       }
     }
 
-    const response = await request(signal);
+    const response = await request(payload, signal);
     const expirationTime = Date.now() + (1000 * timeToLiveInSeconds);
     setLocalStorageItem(cacheKey, {data: response.data, expirationTime});
 
