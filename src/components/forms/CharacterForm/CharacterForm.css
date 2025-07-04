@@ -29,3 +29,18 @@
     gap: 1em;
     margin-top: 2em;
 }
+
+.character-form__currency {
+    display: flex;
+    flex-direction: row;
+    gap: .2em;
+}
+
+.character-form__currency-image {
+    display: flex;
+    align-items: center;
+}
+
+.character-form__currency-image img {
+    width: 1.5em;
+}

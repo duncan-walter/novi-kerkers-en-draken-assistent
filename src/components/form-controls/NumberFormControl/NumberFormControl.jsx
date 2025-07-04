@@ -25,9 +25,11 @@ function NumberFormControl({id, name, label, placeholder, register, error, valid
 
   return (
     <div className="number-form-control">
-      <label htmlFor={id} className="form-control__label">
-        {label}
-      </label>
+      {label &&
+        <label htmlFor={id} className="form-control__label">
+          {label}
+        </label>
+      }
       <input
         id={id}
         name={name}

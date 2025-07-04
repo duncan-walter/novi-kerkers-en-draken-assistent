@@ -1,7 +1,12 @@
 // Styling
 import './CharacterForm.css';
 
-// Icons
+// Images / Icons
+import CopperPiece from '../../../assets/images/copper-piece.png'
+import SilverPiece from '../../../assets/images/silver-piece.png'
+import ElectrumPiece from '../../../assets/images/electrum-piece.png'
+import GoldPiece from '../../../assets/images/gold-piece.png'
+import PlatinumPiece from '../../../assets/images/platinum-piece.png'
 import {FloppyDiskIcon, XIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
@@ -359,66 +364,90 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
               </legend>
 
               <div className="fieldset__content fieldset__content-row">
-                {/* TODO: Should be an image, find a nice way to support this (icon label) */}
-                <NumberFormControl
-                  id="character-form-copper-pieces"
-                  name="characterFormCopperPieces"
-                  label="cp"
-                  register={register}
-                  error={errors.characterFormCopperPieces}
-                  validationRules={{
-                    minimumValue: 0,
-                    maximumValue: 10000
-                  }}
-                />
+                <div className="character-form__currency">
+                  <NumberFormControl
+                    id="character-form-copper-pieces"
+                    name="characterFormCopperPieces"
+                    label="CP"
+                    register={register}
+                    error={errors.characterFormCopperPieces}
+                    validationRules={{
+                      minimumValue: 0,
+                      maximumValue: 10000
+                    }}
+                  />
+                  <div className="character-form__currency-image">
+                    <img src={CopperPiece} alt="Copper Piece"/>
+                  </div>
+                </div>
 
-                <NumberFormControl
-                  id="character-form-silver-pieces"
-                  name="characterFormSilverPieces"
-                  label="sp"
-                  register={register}
-                  error={errors.characterFormSilverPieces}
-                  validationRules={{
-                    minimumValue: 0,
-                    maximumValue: 10000
-                  }}
-                />
+                <div className="character-form__currency">
+                  <NumberFormControl
+                    id="character-form-silver-pieces"
+                    name="characterFormSilverPieces"
+                    label="SP"
+                    register={register}
+                    error={errors.characterFormSilverPieces}
+                    validationRules={{
+                      minimumValue: 0,
+                      maximumValue: 10000
+                    }}
+                  />
+                  <div className="character-form__currency-image">
+                    <img src={SilverPiece} alt="Silver Piece"/>
+                  </div>
+                </div>
 
-                <NumberFormControl
-                  id="character-form-electrum-pieces"
-                  name="characterFormElectrumPieces"
-                  label="ep"
-                  register={register}
-                  error={errors.characterFormElectrumPieces}
-                  validationRules={{
-                    minimumValue: 0,
-                    maximumValue: 10000
-                  }}
-                />
+                <div className="character-form__currency">
+                  <NumberFormControl
+                    id="character-form-electrum-pieces"
+                    name="characterFormElectrumPieces"
+                    label="EP"
+                    register={register}
+                    error={errors.characterFormElectrumPieces}
+                    validationRules={{
+                      minimumValue: 0,
+                      maximumValue: 10000
+                    }}
+                  />
+                  <div className="character-form__currency-image">
+                    <img src={ElectrumPiece} alt="Electrum Piece"/>
+                  </div>
+                </div>
 
-                <NumberFormControl
-                  id="character-form-gold-pieces"
-                  name="characterFormGoldPieces"
-                  label="gp"
-                  register={register}
-                  error={errors.characterFormGoldPieces}
-                  validationRules={{
-                    minimumValue: 0,
-                    maximumValue: 10000
-                  }}
-                />
+                <div className="character-form__currency">
+                  <NumberFormControl
+                    id="character-form-gold-pieces"
+                    name="characterFormGoldPieces"
+                    label="GP"
+                    register={register}
+                    error={errors.characterFormGoldPieces}
+                    validationRules={{
+                      minimumValue: 0,
+                      maximumValue: 10000
+                    }}
+                  />
+                  <div className="character-form__currency-image">
+                    <img src={GoldPiece} alt="Gold Piece"/>
+                  </div>
+                </div>
 
-                <NumberFormControl
-                  id="character-form-platinum-pieces"
-                  name="characterFormPlatinumPieces"
-                  label="pp"
-                  register={register}
-                  error={errors.characterFormPlatinumPieces}
-                  validationRules={{
-                    minimumValue: 0,
-                    maximumValue: 10000
-                  }}
-                />
+                <div className="character-form__currency">
+                  <NumberFormControl
+                    id="character-form-platinum-pieces"
+                    name="characterFormPlatinumPieces"
+                    label="PP"
+                    register={register}
+                    error={errors.characterFormPlatinumPieces}
+                    validationRules={{
+                      minimumValue: 0,
+                      maximumValue: 10000
+                    }}
+                  />
+                  <div className="character-form__currency-image">
+                    <img src={PlatinumPiece} alt="Platinum Piece"/>
+                  </div>
+                </div>
               </div>
 
               {/* TODO: Implement additional belongings */}
