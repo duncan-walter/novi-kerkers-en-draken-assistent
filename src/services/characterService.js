@@ -9,10 +9,10 @@ import {charactersKey} from '../constants/localStorageKeys.js';
 const client = userDataClient;
 const endpoint = 'characters';
 
-// TODO: Find a way to remove the signal passing, currently this is needed to support the useAbortableRequest hook.
+// TODO: Find a way to remove the payload and signal passing, currently this is needed to support the useAbortableRequest hook.
 const characterService = {
   getCharacters: (options = {useCache: false}) => {
-    let request = (signal) => client.get(endpoint, {signal});
+    let request = (_, signal) => client.get(endpoint, {signal});
 
     if (options.useCache) {
       request = requestWithCache(request, charactersKey, 60);
