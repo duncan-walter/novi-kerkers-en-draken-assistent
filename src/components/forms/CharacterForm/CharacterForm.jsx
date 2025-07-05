@@ -33,8 +33,8 @@ import TextFormControl from "../../form-controls/TextFormControl/TextFormControl
 import SliderFormControl from "../../form-controls/SliderFormControl/SliderFormControl.jsx";
 import NumberFormControl from "../../form-controls/NumberFormControl/NumberFormControl.jsx";
 import TextareaFormControl from "../../form-controls/TextareaFormControl/TextareaFormControl.jsx";
-import CharacterAlignmentFormControl
-  from "../../form-controls/CharacterAlignmentFormControl/CharacterAlignmentFormControl.jsx";
+import CharacterAlignmentFormControl from "../../form-controls/CharacterAlignmentFormControl/CharacterAlignmentFormControl.jsx";
+import TextFormGroupControl from "../../form-controls/RepeatingTextFormControl/RepeatingTextFormControl.jsx";
 import Button from "../../ui/Button/Button.jsx";
 import Spinner from "../../ui/Spinner/Spinner.jsx";
 
@@ -63,6 +63,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
   const {
     handleSubmit,
     register,
+    unregister,
     setValue,
     formState: {
       errors
@@ -450,7 +451,20 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                 </div>
               </div>
 
-              {/* TODO: Implement additional belongings */}
+              <div className="fieldset__content">
+                <TextFormGroupControl
+                  id="character-form-character-possessions"
+                  name="characterFormCharacterPossessions"
+                  label="Uitrusting"
+                  register={register}
+                  unregister={unregister}
+                  errors={errors}
+                  validationRules={{
+                    minimumLength: 1,
+                    maximumLength: 255
+                  }}
+                />
+              </div>
             </fieldset>
 
             <fieldset className="fieldset">

@@ -28,6 +28,8 @@ function useRequestState(request, options = {executeOnMount: false, isAbortable:
       const response = await request(payload);
       setStatusCode(response.status);
       setData(response.data);
+
+      return response.data;
     } catch (e) {
       if (e.code !== 'ERR_CANCELED') {
         setStatusCode(e.response.status);
