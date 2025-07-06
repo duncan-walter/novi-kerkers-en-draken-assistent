@@ -42,14 +42,14 @@ function CharacterAlignmentFormControl({id, name, label, register, setValue, err
           key={rowIndex}
           className="character-alignment-form-control__row"
         >
-          {row.map(({id: alignmentId, value}) => (
+          {row.map(({id: alignmentId, value, label: alignmentLabel}) => (
             <div
               key={alignmentId}
               className="character-alignment-form-control__cell"
             >
               <Button
                 type="button"
-                label={value}
+                label={alignmentLabel}
                 variant={selectedValue === value ? "tertiary" : "secondary"}
                 onClick={() => handleAlignmentSelect(value)}
               />

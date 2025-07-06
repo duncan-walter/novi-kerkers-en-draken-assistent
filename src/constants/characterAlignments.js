@@ -1,44 +1,53 @@
 const alignments = [
   [
     {
-      id: "lawful-good",
-      value: "Lawful Good"
+      id: 0,
+      value: "lawful-good",
+      label: "Lawful Good"
     },
     {
-      id: "lawful-neutral",
-      value: "Lawful Neutral"
+      id: 1,
+      value: "lawful-neutral",
+      label: "Lawful Neutral"
     },
     {
-      id: "lawful-evil",
-      value: "Lawful Evil"
+      id: 2,
+      value: "lawful-evil",
+      label: "Lawful Evil"
     }
   ],
   [
     {
-      id: "neutral-good",
-      value: "Neutral Good"
+      id: 3,
+      value: "neutral-good",
+      label: "Neutral Good",
     },
     {
-      id: "neutral",
-      value: "Neutral"
+      id: 4,
+      value: "neutral",
+      label: "Neutral"
     },
     {
-      id: "neutral-evil",
-      value: "Neutral Evil"
+      id: 5,
+      value: "neutral-evil",
+      label: "Neutral Evil"
     }
   ],
   [
     {
-      id: "chaotic-good",
-      value: "Chaotic Good"
+      id: 6,
+      value: "chaotic-good",
+      label: "Chaotic Good"
     },
     {
-      id: "chaotic-neutral",
-      value: "Chaotic Neutral"
+      id: 7,
+      value: "chaotic-neutral",
+      label: "Chaotic Neutral",
     },
     {
-      id: "chaotic-evil",
-      value: "Chaotic Evil"
+      id: 8,
+      value: "chaotic-evil",
+      label: "Chaotic Evil",
     }
   ]
 ];
