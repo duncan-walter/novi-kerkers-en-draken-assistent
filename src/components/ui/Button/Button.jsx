@@ -4,7 +4,7 @@ import './Button.css';
 // Components
 import Spinner from '../Spinner/Spinner.jsx';
 
-function Button({label, icon: Icon, type = 'button', variant = 'primary', loading = false, onClick = () => {}}) {
+function Button({label, icon: Icon, type = 'button', variant = 'primary', loading = false, disabled = false, onClick = () => {}}) {
   const variants = {
     primary: 'button--primary',
     secondary: 'button--secondary',
@@ -18,7 +18,7 @@ function Button({label, icon: Icon, type = 'button', variant = 'primary', loadin
       className={buttonClasses}
       type={type}
       onClick={onClick}
-      disabled={loading}
+      disabled={loading || disabled}
     >
       {loading ? (
         /* Note:

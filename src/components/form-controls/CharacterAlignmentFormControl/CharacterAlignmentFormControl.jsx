@@ -71,4 +71,33 @@ function CharacterAlignmentFormControl({id, name, label, register, setValue, wat
   )
 }
 
+// This component was implemented in the same file to reuse the CSS of the CharacterAlignmentFormControl component.
+function CharacterAlignmentDetails({currentValue}) {
+  return (
+    <div className="character-alignment-form-control">
+      {alignments.map((row, rowIndex) => (
+        <div
+          key={rowIndex}
+          className="character-alignment-form-control__row"
+        >
+          {row.map(({id: alignmentId, value, label: alignmentLabel}) => (
+            <div
+              key={alignmentId}
+              className="character-alignment-form-control__cell"
+            >
+              <Button
+                type="button"
+                label={alignmentLabel}
+                variant={currentValue === value ? "tertiary" : "secondary"}
+                disabled
+              />
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default CharacterAlignmentFormControl;
+export {CharacterAlignmentDetails};
