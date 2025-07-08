@@ -2,7 +2,7 @@
 import './CharacterDetailsPage.css';
 
 // Icons
-import {PencilIcon} from "@phosphor-icons/react";
+import {PencilIcon, XIcon} from "@phosphor-icons/react";
 
 // Framework dependencies
 import {useEffect, useState} from "react";
@@ -27,6 +27,8 @@ import Panel from "../../../components/ui/Panel/Panel.jsx";
 import Button from "../../../components/ui/Button/Button.jsx";
 import Spinner from "../../../components/ui/Spinner/Spinner.jsx";
 import CharacterForm from "../../../components/forms/CharacterForm/CharacterForm.jsx";
+import {CharacterAlignmentDetails} from "../../../components/form-controls/CharacterAlignmentFormControl/CharacterAlignmentFormControl.jsx";
+import CharacterAbility from "../../../components/ui/CharacterAbility/CharacterAbility.jsx";
 
 function CharacterDetailsPage() {
   const [mode, setMode] = useState('read');
@@ -142,12 +144,12 @@ function CharacterDetailsPage() {
   return (
     <Panel
       title={getCharacterLoading ? '' : character?.name}
-      panelButton={mode === 'read' ?
+      panelButton={
         <Button
-          label="Personage aanpassen"
-          icon={PencilIcon}
-          onClick={() => setMode('edit')}
-        /> : null
+          label={mode === 'read' ? 'Personage aanpassen' : 'Annuleren'}
+          icon={mode === 'read' ? PencilIcon : XIcon}
+          onClick={mode === 'read' ? () => setMode('edit') : () => setMode('read')}
+        />
       }
     >
       {getCharacterLoading || getCharacterPossessionsLoading ? (
@@ -162,7 +164,172 @@ function CharacterDetailsPage() {
           loading={updateCharacterLoading}
         />
       ) : mode === 'read' && character ? (
-        Object.entries(character).map(([key, value], index) => <p key={index}>{key}: {value}</p>)
+        <div className="character-details">
+          <div className="character-details__left">
+            <div className="character-details__group">
+              <p className="character-details__group-title">
+                Algemene informatie
+              </p>
+
+              <dl className="character-details__group-content">
+                <div>
+                  <dt>Type:</dt>
+                  <dd>{character.type}</dd>
+                </div>
+
+                <div>
+                  <dt>Naam:</dt>
+                  <dd>{character.name}</dd>
+                </div>
+
+                <div>
+                  <dt>Class:</dt>
+                  <dd>{character.class}</dd>
+                </div>
+
+                <div>
+                  <dt>Subclass:</dt>
+                  <dd>{character.subclass}</dd>
+                </div>
+
+                <div>
+                  <dt>Ras:</dt>
+                  <dd>{character.race}</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="character-details__group">
+              <p className="character-details__group-title">
+                Vaardigheden
+              </p>
+
+              <dl className="character-details__group-content">
+                <div className="character-details__abilities-row">
+                  <CharacterAbility label="Charisma" value={character.charisma}/>
+                  <CharacterAbility label="Constitution" value={character.constitution}/>
+                  <CharacterAbility label="Dexterity" value={character.dexterity}/>
+                </div>
+
+                <div className="character-details__abilities-row">
+                  <CharacterAbility label="Intelligence" value={character.intelligence}/>
+                  <CharacterAbility label="Strength" value={character.strength}/>
+                  <CharacterAbility label="Wisdom" value={character.wisdom}/>
+                </div>
+              </dl>
+            </div>
+
+            <div className="character-details__group">
+              <p className="character-details__group-title">
+                Gevechtseigenschappen
+              </p>
+
+              <dl className="character-details__group-content character-details__group-content-row">
+                <div>
+                  <dt>Proficiency bonus:</dt>
+                  <dd>{character.proficiencyBonus}</dd>
+                </div>
+
+                <div>
+                  <dt>Armor class:</dt>
+                  <dd>{character.armorClass}</dd>
+                </div>
+
+                <div>
+                  <dt>Max Hit Points:</dt>
+                  <dd>{character.maxHitPoints}</dd>
+                </div>
+
+                <div>
+                  <dt>Current Hit Points:</dt>
+                  <dd>{character.currentHitPoints}</dd>
+                </div>
+
+                <div>
+                  <dt>Experience points:</dt>
+                  <dd>{character.experiencePoints}</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <div className="character-details__right">
+            <div className="character-details__group">
+              <p className="character-details__group-title">
+                Persoonlijke eigenschappen
+              </p>
+
+              <dl className="character-details__group-content">
+                <div>
+                  <dt>Size:</dt>
+                  <dd>{character.size}</dd>
+                </div>
+
+                <div>
+                  <dt>Alignment:</dt>
+                  <CharacterAlignmentDetails currentValue={character.alignment}/>
+                </div>
+              </dl>
+            </div>
+
+            <div className="character-details__group">
+              <p className="character-details__group-title">
+                Bezittingen
+              </p>
+
+              <dl className="character-details__group-content">
+                <div className="character-details__group-content-row">
+                  <dl>
+                    <dt>CP:</dt>
+                    <dd>{character.copperPieces}</dd>
+                  </dl>
+
+                  <div>
+                    <dt>SP:</dt>
+                    <dd>{character.silverPieces}</dd>
+                  </div>
+
+                  <div>
+                    <dt>EP:</dt>
+                    <dd>{character.electrumPieces}</dd>
+                  </div>
+
+                  <div>
+                    <dt>GP:</dt>
+                    <dd>{character.goldPieces}</dd>
+                  </div>
+
+                  <div>
+                    <dt>PP:</dt>
+                    <dd>{character.platinumPieces}</dd>
+                  </div>
+                </div>
+
+                <div>
+                  <dt>Uitrusting</dt>
+                  {characterPossessions && characterPossessions.map((characterPossession, index) => (
+                    <dd key={index}>
+                      {characterPossession.name}
+                    </dd>
+                  ))}
+                </div>
+              </dl>
+            </div>
+
+            <div className="character-details__group">
+              <p className="character-details__group-title">
+                Extra's
+              </p>
+
+              <dl className="character-details__group-content">
+                <div>
+                  <dt>Notities:</dt>
+                  <dd>{character.notes}</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
       ) : null}
     </Panel>
   )
