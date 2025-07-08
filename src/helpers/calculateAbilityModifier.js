@@ -3,7 +3,7 @@ function calculateAbilityModifier(value) {
 
   if (abilityModifier === 0) return 0;
 
-  return `${Math.sign(abilityModifier) ? '+' : '-'}${Math.abs(abilityModifier)}`;
+  return `${abilityModifier > 0 ? '+' : '-'}${Math.abs(abilityModifier)}`;
 }
 
 export default calculateAbilityModifier;
