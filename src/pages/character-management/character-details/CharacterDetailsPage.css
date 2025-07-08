@@ -38,6 +38,7 @@
 
 .character-details__group-content dd {
     margin: .5em;
+    white-space: pre-line;
 }
 
 .character-details__group-title {

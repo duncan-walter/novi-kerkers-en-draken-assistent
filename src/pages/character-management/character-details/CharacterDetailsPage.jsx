@@ -226,27 +226,27 @@ function CharacterDetailsPage() {
 
               <dl className="character-details__group-content character-details__group-content-row">
                 <div>
-                  <dt>Proficiency bonus:</dt>
+                  <dt>Proficiency bonus</dt>
                   <dd>{character.proficiencyBonus}</dd>
                 </div>
 
                 <div>
-                  <dt>Armor class:</dt>
+                  <dt>Armor class</dt>
                   <dd>{character.armorClass}</dd>
                 </div>
 
                 <div>
-                  <dt>Max Hit Points:</dt>
+                  <dt>Max Hit Points</dt>
                   <dd>{character.maxHitPoints}</dd>
                 </div>
 
                 <div>
-                  <dt>Current Hit Points:</dt>
+                  <dt>Current Hit Points</dt>
                   <dd>{character.currentHitPoints}</dd>
                 </div>
 
                 <div>
-                  <dt>Experience points:</dt>
+                  <dt>Experience points</dt>
                   <dd>{character.experiencePoints}</dd>
                 </div>
               </dl>
