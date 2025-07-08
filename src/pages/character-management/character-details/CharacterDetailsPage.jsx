@@ -18,6 +18,7 @@ import characterPossessionsService from "../../../services/characterPossessionsS
 
 // Helpers and constants
 import mapFormKeysToAPIKeys from "../../../helpers/mapFormKeysToAPIKeys.js";
+import showDefaultStatusCodeToast from "../../../helpers/showDefaultStatusCodeToast.js";
 import {removeLocalStorageItem} from "../../../helpers/localStorageHelpers.js";
 import {charactersKey} from "../../../constants/localStorageKeys.js";
 
@@ -110,24 +111,11 @@ function CharacterDetailsPage() {
   // Toast messages after update.
   useEffect(() => {
     if (updateCharacterStatusCode) {
-      switch (updateCharacterStatusCode) {
-        case 200:
-          showToast(`${updatedCharacter.name} is klaar voor een nieuw hoofdstuk!`, 'success');
-          break;
-        case 401:
-          showToast('Onbekende reiziger, toegang geweigerd.', 'error');
-          break;
-        case 403:
-          showToast('De wachters erkennen je rang niet als voldoende.', 'error');
-          break;
-        case 406:
-          showToast('Als je dit ziet heeft Duncan zijn intelligence check gefaald.', 'error');
-          break;
-        case 500:
-        default:
-          showToast('Een mysterieuze storing blokkeert je pad.', 'error');
-          break;
-      }
+      showDefaultStatusCodeToast(
+        updateCharacterStatusCode,
+        showToast,
+        `${updatedCharacter.name} is klaar voor een nieuw hoofdstuk!`
+      );
     }
   }, [updateCharacterStatusCode])
 

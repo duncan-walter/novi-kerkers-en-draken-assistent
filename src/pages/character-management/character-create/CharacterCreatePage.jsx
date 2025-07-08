@@ -15,6 +15,7 @@ import characterPossessionsService from "../../../services/characterPossessionsS
 
 // Helpers and constants
 import mapFormKeysToAPIKeys from "../../../helpers/mapFormKeysToAPIKeys.js";
+import showDefaultStatusCodeToast from "../../../helpers/showDefaultStatusCodeToast.js";
 import {removeLocalStorageItem} from "../../../helpers/localStorageHelpers.js";
 import {charactersKey} from "../../../constants/localStorageKeys.js";
 
@@ -94,24 +95,11 @@ function CharacterCreatePage() {
 
   useEffect(() => {
     if (statusCode) {
-      switch (statusCode) {
-        case 201:
-          showToast(`${data.name} sluit zich aan bij de strijd!`, 'success');
-          break;
-        case 401:
-          showToast('Onbekende reiziger, toegang geweigerd.', 'error');
-          break;
-        case 403:
-          showToast('De wachters erkennen je rang niet als voldoende.', 'error');
-          break;
-        case 406:
-          showToast('Als je dit ziet heeft Duncan zijn intelligence check gefaald.', 'error');
-          break;
-        case 500:
-        default:
-          showToast('Een mysterieuze storing blokkeert je pad.', 'error');
-          break;
-      }
+      showDefaultStatusCodeToast(
+        statusCode,
+        showToast,
+        `${data.name} sluit zich aan bij de strijd!`
+      );
     }
   }, [statusCode])
 
