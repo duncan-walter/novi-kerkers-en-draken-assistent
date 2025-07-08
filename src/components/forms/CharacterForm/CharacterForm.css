@@ -44,3 +44,25 @@
 .character-form__currency-image img {
     width: 1.5em;
 }
+
+.character-form__not-supported {
+    position: relative;
+    pointer-events: none;
+}
+
+.character-form__not-supported-message {
+    position: absolute;
+    display: flex;
+    width: 110%;
+    height: 120%;
+    left: -5%;
+    top: -10%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2.5em;
+}
+
+.character-form__not-supported-message p {
+    color: var(--color-text-secondary);
+}

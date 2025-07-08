@@ -21,7 +21,19 @@ const characterService = {
     return request;
   },
 
+  getCharacterById: (id, options = {useCache: false}) => {
+    let request = (_, signal) => client.get(`${endpoint}/${id}`, {signal});
+
+    if (options.useCache) {
+      request = requestWithCache(request, `${charactersKey}/${id}`, 300);
+    }
+
+    return request;
+  },
+
   createCharacter: (characterData, signal) => client.post(endpoint, characterData, {signal}),
+
+  updateCharacter: (characterData, signal) => client.put(`${endpoint}/${characterData.id}`, characterData, {signal}),
 }
 
 export default characterService;

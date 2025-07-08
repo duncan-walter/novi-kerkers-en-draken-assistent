@@ -11,9 +11,11 @@ import {useEffect, useRef, useState} from 'react';
 import TextFormControl from '../TextFormControl/TextFormControl.jsx';
 import Button from "../../ui/Button/Button.jsx";
 
-function TextFormGroupControl({id, name, label, placeholder, register, unregister, errors, validationRules}) {
+function RepeatingTextFormControl({id, name, label, placeholder, register, unregister, watch, errors, validationRules}) {
   const [textFormControls, setTextFormControls] = useState([]);
+  const mounted = useRef(false);
   const pendingUnregisterIndexRef = useRef(null);
+  const currentValues = watch(name);
 
   const addTextFormControl = () => {
     setTextFormControls([
@@ -39,8 +41,21 @@ function TextFormGroupControl({id, name, label, placeholder, register, unregiste
   }, [textFormControls]);
 
   useEffect(() => {
-    addTextFormControl();
-  }, []);
+    if (mounted.current) {
+      return;
+    }
+
+    if (currentValues && textFormControls.length === 0) {
+      const currentValuesIds = Object.entries(currentValues).map(([key]) => ({
+        id: key
+      }));
+      setTextFormControls(currentValuesIds);
+    } else if (!currentValues && textFormControls.length === 0) {
+      addTextFormControl();
+    }
+
+    mounted.current = true;
+  }, [currentValues]);
 
   return (
     <div className="text-form-group-control">
@@ -81,4 +96,4 @@ function TextFormGroupControl({id, name, label, placeholder, register, unregiste
   );
 }
 
-export default TextFormGroupControl;
+export default RepeatingTextFormControl;

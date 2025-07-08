@@ -14,6 +14,7 @@ function useRequestState(request, options = {executeOnMount: false, isAbortable:
   request = options.isAbortable ? abortableRequest : request;
 
   const executeRequest = async (payload) => {
+    setStatusCode(null);
     setLoading(true);
     setError(null);
 

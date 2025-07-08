@@ -384,6 +384,18 @@
         "id": 3,
         "name": "npc"
       }
+    ],
+    "characterPossessions": [
+      {
+        "id": "b48fd9e5-a84b-4da2-bc02-d2ee9afdafd9",
+        "characterId": 0,
+        "name": "Dagger"
+      },
+      {
+        "id": "6d8ed938-c389-44ba-abca-843ed3e76411",
+        "characterId": 0,
+        "name": "Silver sword (+1)"
+      }
     ]
   }
 }

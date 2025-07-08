@@ -10,6 +10,7 @@ import PlatinumPiece from '../../../assets/images/platinum-piece.png'
 import {FloppyDiskIcon, XIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
+import {useEffect} from "react";
 import {useForm} from "react-hook-form";
 import {jwtDecode} from "jwt-decode";
 
@@ -23,6 +24,7 @@ import characterSubClassesService from "../../../services/characterSubClassesSer
 import characterRacesService from "../../../services/characterRacesService.js";
 
 // Helpers and constants
+import mapFormKeysToAPIKeys from "../../../helpers/mapFormKeysToAPIKeys.js";
 import {firstCharacterToUpperCase} from "../../../helpers/formatCaseHelpers.js";
 import {getLocalStorageItem} from "../../../helpers/localStorageHelpers.js";
 import {userKey} from "../../../constants/localStorageKeys.js";
@@ -34,10 +36,16 @@ import SliderFormControl from "../../form-controls/SliderFormControl/SliderFormC
 import NumberFormControl from "../../form-controls/NumberFormControl/NumberFormControl.jsx";
 import TextareaFormControl from "../../form-controls/TextareaFormControl/TextareaFormControl.jsx";
 import CharacterAlignmentFormControl from "../../form-controls/CharacterAlignmentFormControl/CharacterAlignmentFormControl.jsx";
-import TextFormGroupControl from "../../form-controls/RepeatingTextFormControl/RepeatingTextFormControl.jsx";
+import RepeatingTextFormControl from "../../form-controls/RepeatingTextFormControl/RepeatingTextFormControl.jsx";
 import Button from "../../ui/Button/Button.jsx";
 import Spinner from "../../ui/Spinner/Spinner.jsx";
 
+/* Note:
+ * For the initialValues I considered just supplying the character id and let this component fetch the data itself. But...
+ * This form is used on the character detail page to update characters, that page must be able to display a read and edit mode.
+ * That means that this form would also need to implement a read mode. But that makes this component less pure since it is not just a form anymore.
+ * Therefore I opted to feed this component with data instead, so the implementing component is responsible for fetching the data.
+ */
 function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
   // Character Types
   const {data: types, loading: typesLoading} = useRequestState(
@@ -65,13 +73,19 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
     register,
     unregister,
     setValue,
+    reset,
     formState: {
       errors
     },
     watch
-  } = useForm({
-    initialValues: initialValues
-  });
+  } = useForm();
+
+  useEffect(() => {
+    if (initialValues) {
+      mapFormKeysToAPIKeys(initialValues, 'characterForm', true);
+      reset({...initialValues});
+    }
+  }, [initialValues]);
 
   const handleFormSubmit = async (characterData) => {
     characterData = {
@@ -145,14 +159,14 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
 
                 <SelectFormControl
                   id="character-form-subclass"
-                  name="characterSubclass"
+                  name="characterFormSubclass"
                   label="Subclass"
                   placeholder="Selecteer subclass"
                   register={register}
                   error={errors.characterFormSubclass}
-                  options={subClassesData && subClassesData.results.map(characterSubClass => ({
-                    value: characterSubClass.index,
-                    label: characterSubClass.name
+                  options={subClassesData && subClassesData.results.map(characterSubclass => ({
+                    value: characterSubclass.index,
+                    label: characterSubclass.name
                   }))}
                 />
 
@@ -351,6 +365,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                   label="Alignment"
                   register={register}
                   setValue={setValue}
+                  watch={watch}
                   error={errors.characterFormAlignment}
                   validationRules={{
                     required: true
@@ -452,18 +467,27 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
               </div>
 
               <div className="fieldset__content">
-                <TextFormGroupControl
-                  id="character-form-character-possessions"
-                  name="characterFormCharacterPossessions"
-                  label="Uitrusting"
-                  register={register}
-                  unregister={unregister}
-                  errors={errors}
-                  validationRules={{
-                    minimumLength: 1,
-                    maximumLength: 255
-                  }}
-                />
+                <div className={initialValues && 'character-form__not-supported'}>
+                  {initialValues &&
+                    <div className="character-form__not-supported-message">
+                      <p>Door een technische limitatie kan de uitrusting van een personage niet worden aangepast.</p>
+                    </div>
+                  }
+
+                  <RepeatingTextFormControl
+                    id="character-form-character-possessions"
+                    name="characterFormCharacterPossessions"
+                    label="Uitrusting"
+                    register={register}
+                    unregister={unregister}
+                    watch={watch}
+                    errors={errors}
+                    validationRules={{
+                      minimumLength: 1,
+                      maximumLength: 255
+                    }}
+                  />
+                </div>
               </div>
             </fieldset>
 

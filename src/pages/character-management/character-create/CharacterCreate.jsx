@@ -116,7 +116,7 @@ function CharacterCreate() {
   }, [statusCode])
 
   return (
-    // Make title dynamic according to character name
+    // TODO: Make title dynamic according to current character name.
     <Panel title="Personage aanmaken">
       <CharacterForm
         onSubmit={handleSubmit}

@@ -1,9 +1,6 @@
 // Styling
 import './CharacterAlignmentFormControl.css';
 
-// Framework dependencies
-import {useState} from "react";
-
 // Helpers and constants
 import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js";
 import alignments from "../../../constants/characterAlignments.js";
@@ -11,8 +8,8 @@ import alignments from "../../../constants/characterAlignments.js";
 // Components
 import Button from "../../ui/Button/Button.jsx";
 
-function CharacterAlignmentFormControl({id, name, label, register, setValue, error, validationRules}) {
-  const [selectedValue, setSelectedValue] = useState(null);
+function CharacterAlignmentFormControl({id, name, label, register, setValue, watch, error, validationRules}) {
+  const currentValue = watch(name);
 
   const supportedValidationRules = ['required'];
 
@@ -25,7 +22,6 @@ function CharacterAlignmentFormControl({id, name, label, register, setValue, err
   }
 
   function handleAlignmentSelect(value) {
-    setSelectedValue(value);
     setValue(name, value, {shouldValidate: true});
   }
 
@@ -50,7 +46,7 @@ function CharacterAlignmentFormControl({id, name, label, register, setValue, err
               <Button
                 type="button"
                 label={alignmentLabel}
-                variant={selectedValue === value ? "tertiary" : "secondary"}
+                variant={currentValue === value ? "tertiary" : "secondary"}
                 onClick={() => handleAlignmentSelect(value)}
               />
               <input
@@ -58,7 +54,7 @@ function CharacterAlignmentFormControl({id, name, label, register, setValue, err
                 id={`${id}-${alignmentId}`}
                 name={name}
                 value={value}
-                checked={selectedValue === value}
+                checked={currentValue === value}
                 readOnly={true}
                 hidden={true}
                 {...registerFormControl()}
