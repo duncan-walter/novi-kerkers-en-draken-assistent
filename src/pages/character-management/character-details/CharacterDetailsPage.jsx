@@ -173,27 +173,27 @@ function CharacterDetailsPage() {
 
               <dl className="character-details__group-content">
                 <div>
-                  <dt>Type:</dt>
+                  <dt>Type</dt>
                   <dd>{character.type}</dd>
                 </div>
 
                 <div>
-                  <dt>Naam:</dt>
+                  <dt>Naam</dt>
                   <dd>{character.name}</dd>
                 </div>
 
                 <div>
-                  <dt>Class:</dt>
+                  <dt>Class</dt>
                   <dd>{character.class}</dd>
                 </div>
 
                 <div>
-                  <dt>Subclass:</dt>
+                  <dt>Subclass</dt>
                   <dd>{character.subclass}</dd>
                 </div>
 
                 <div>
-                  <dt>Ras:</dt>
+                  <dt>Ras</dt>
                   <dd>{character.race}</dd>
                 </div>
               </dl>
@@ -261,12 +261,12 @@ function CharacterDetailsPage() {
 
               <dl className="character-details__group-content">
                 <div>
-                  <dt>Size:</dt>
+                  <dt>Size</dt>
                   <dd>{character.size}</dd>
                 </div>
 
                 <div>
-                  <dt>Alignment:</dt>
+                  <dt>Alignment</dt>
                   <CharacterAlignmentDetails currentValue={character.alignment}/>
                 </div>
               </dl>
@@ -280,27 +280,27 @@ function CharacterDetailsPage() {
               <dl className="character-details__group-content">
                 <div className="character-details__group-content-row">
                   <dl>
-                    <dt>CP:</dt>
+                    <dt>CP</dt>
                     <dd>{character.copperPieces}</dd>
                   </dl>
 
                   <div>
-                    <dt>SP:</dt>
+                    <dt>SP</dt>
                     <dd>{character.silverPieces}</dd>
                   </div>
 
                   <div>
-                    <dt>EP:</dt>
+                    <dt>EP</dt>
                     <dd>{character.electrumPieces}</dd>
                   </div>
 
                   <div>
-                    <dt>GP:</dt>
+                    <dt>GP</dt>
                     <dd>{character.goldPieces}</dd>
                   </div>
 
                   <div>
-                    <dt>PP:</dt>
+                    <dt>PP</dt>
                     <dd>{character.platinumPieces}</dd>
                   </div>
                 </div>
@@ -323,7 +323,7 @@ function CharacterDetailsPage() {
 
               <dl className="character-details__group-content">
                 <div>
-                  <dt>Notities:</dt>
+                  <dt>Notities</dt>
                   <dd>{character.notes}</dd>
                 </div>
               </dl>
