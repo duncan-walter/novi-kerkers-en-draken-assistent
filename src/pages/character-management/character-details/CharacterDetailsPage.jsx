@@ -1,5 +1,5 @@
 // Styling
-import './CharacterDetails.css';
+import './CharacterDetailsPage.css';
 
 // Icons
 import {PencilIcon} from "@phosphor-icons/react";
@@ -27,7 +27,7 @@ import Button from "../../../components/ui/Button/Button.jsx";
 import Spinner from "../../../components/ui/Spinner/Spinner.jsx";
 import CharacterForm from "../../../components/forms/CharacterForm/CharacterForm.jsx";
 
-function CharacterDetails() {
+function CharacterDetailsPage() {
   const [mode, setMode] = useState('read');
   const [initialValues, setInitialValues] = useState(null);
 
@@ -180,4 +180,4 @@ function CharacterDetails() {
   )
 }
 
-export default CharacterDetails;
+export default CharacterDetailsPage;

@@ -1,5 +1,5 @@
 // Styling
-import './CharacterOverview.css';
+import './CharacterOverviewPage.css';
 
 // Icons
 import {UserPlusIcon, PlusIcon} from '@phosphor-icons/react';
@@ -22,7 +22,7 @@ import Spinner from '../../../components/ui/Spinner/Spinner.jsx';
 import ZeroState from '../../../components/ui/ZeroState/ZeroState.jsx';
 import CharacterCard from '../../../components/ui/CharacterCard/CharacterCard.jsx';
 
-function CharacterOverview() {
+function CharacterOverviewPage() {
   const {data, loading, error} = useRequestState(
     characterService.getCharacters({
       useCache: true
@@ -90,4 +90,4 @@ function CharacterOverview() {
   );
 }
 
-export default CharacterOverview;
+export default CharacterOverviewPage;

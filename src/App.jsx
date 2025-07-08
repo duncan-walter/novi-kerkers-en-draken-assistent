@@ -18,9 +18,9 @@ import EncounterTrackerPage from "./pages/encounter-tracker/EncounterTrackerPage
 import GameInformationPage from "./pages/game-information/GameInformationPage.jsx";
 import NotFoundPage from "./pages/not-found/NotFoundPage.jsx";
 import TestingZonePage from "./pages/testing-zone/TestingZonePage.jsx";
-import CharacterOverview from "./pages/character-management/character-overview/CharacterOverview.jsx";
-import CharacterCreate from "./pages/character-management/character-create/CharacterCreate.jsx";
-import CharacterDetails from "./pages/character-management/character-details/CharacterDetails.jsx";
+import CharacterOverviewPage from "./pages/character-management/character-overview/CharacterOverviewPage.jsx";
+import CharacterCreatePage from "./pages/character-management/character-create/CharacterCreatePage.jsx";
+import CharacterDetailsPage from "./pages/character-management/character-details/CharacterDetailsPage.jsx";
 
 function App() {
   const authorizationContext = useContext(AuthorizationContext);
@@ -37,9 +37,9 @@ function App() {
       <Route element={authorizationContext.user ? <AuthorizedLayoutPage/> : <Navigate to="/login"/>}>
         <Route index element={<HomePage/>}/>
         <Route path="character-management">
-          <Route index element={<CharacterOverview/>}/>
-          <Route path="character-details/:id" element={<CharacterDetails/>}/>
-          <Route path="create-character" element={<CharacterCreate/>}/>
+          <Route index element={<CharacterOverviewPage/>}/>
+          <Route path="character-details/:id" element={<CharacterDetailsPage/>}/>
+          <Route path="create-character" element={<CharacterCreatePage/>}/>
         </Route>
         <Route path="encounter-tracker" element={<EncounterTrackerPage/>}/>
         <Route path="game-information" element={<GameInformationPage/>}/>

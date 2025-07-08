@@ -1,5 +1,5 @@
 // Styling
-import './CharacterCreate.css';
+import './CharacterCreatePage.css';
 
 // Framework dependencies
 import {useEffect} from "react";
@@ -22,7 +22,7 @@ import {charactersKey} from "../../../constants/localStorageKeys.js";
 import Panel from '../../../components/ui/Panel/Panel.jsx';
 import CharacterForm from "../../../components/forms/CharacterForm/CharacterForm.jsx";
 
-function CharacterCreate() {
+function CharacterCreatePage() {
   const {data, statusCode, loading, executeRequest} = useRequestState(
     characterService.createCharacter,
     {
@@ -127,4 +127,4 @@ function CharacterCreate() {
   );
 }
 
-export default CharacterCreate;
+export default CharacterCreatePage;
