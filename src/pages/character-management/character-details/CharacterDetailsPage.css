@@ -5,7 +5,9 @@
 
 .character-details {
     display: flex;
+    flex-direction: row;
     gap: 5em;
+    flex-wrap: wrap;
 }
 
 .character-details__left,
@@ -26,6 +28,7 @@
 .character-details__group-content-row {
     display: flex;
     flex-direction: row;
+    gap: 1em;
 }
 
 .character-details__group-content:last-child {
@@ -49,4 +52,20 @@
     display: flex;
     flex-direction: row;
     gap: 1em;
+}
+
+.character-details__currency {
+    width: 100%;
+}
+
+.character-details__currency dd {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 22px;
+    gap: .2em;
+}
+
+.character-details__currency-image {
+    width: 1.5em;
 }

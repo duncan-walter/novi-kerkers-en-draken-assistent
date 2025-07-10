@@ -3,6 +3,11 @@ import './CharacterDetailsPage.css';
 
 // Icons
 import {PencilIcon, XIcon} from "@phosphor-icons/react";
+import CopperPiece from "../../../assets/images/copper-piece.png";
+import SilverPiece from "../../../assets/images/silver-piece.png";
+import ElectrumPiece from "../../../assets/images/electrum-piece.png";
+import GoldPiece from "../../../assets/images/gold-piece.png";
+import PlatinumPiece from "../../../assets/images/platinum-piece.png";
 
 // Framework dependencies
 import {useEffect, useState} from "react";
@@ -27,7 +32,9 @@ import Panel from "../../../components/ui/Panel/Panel.jsx";
 import Button from "../../../components/ui/Button/Button.jsx";
 import Spinner from "../../../components/ui/Spinner/Spinner.jsx";
 import CharacterForm from "../../../components/forms/CharacterForm/CharacterForm.jsx";
-import {CharacterAlignmentDetails} from "../../../components/form-controls/CharacterAlignmentFormControl/CharacterAlignmentFormControl.jsx";
+import {
+  CharacterAlignmentDetails
+} from "../../../components/form-controls/CharacterAlignmentFormControl/CharacterAlignmentFormControl.jsx";
 import CharacterAbility from "../../../components/ui/CharacterAbility/CharacterAbility.jsx";
 
 function CharacterDetailsPage() {
@@ -277,32 +284,25 @@ function CharacterDetailsPage() {
                 Bezittingen
               </p>
 
-              <dl className="character-details__group-content">
+              <div className="character-details__group-content">
                 <div className="character-details__group-content-row">
-                  <dl>
-                    <dt>CP</dt>
-                    <dd>{character.copperPieces}</dd>
-                  </dl>
-
-                  <div>
-                    <dt>SP</dt>
-                    <dd>{character.silverPieces}</dd>
-                  </div>
-
-                  <div>
-                    <dt>EP</dt>
-                    <dd>{character.electrumPieces}</dd>
-                  </div>
-
-                  <div>
-                    <dt>GP</dt>
-                    <dd>{character.goldPieces}</dd>
-                  </div>
-
-                  <div>
-                    <dt>PP</dt>
-                    <dd>{character.platinumPieces}</dd>
-                  </div>
+                  {[
+                    {label: 'CP', value: character.copperPieces, icon: CopperPiece, alt: 'Copper Piece'},
+                    {label: 'SP', value: character.silverPieces, icon: SilverPiece, alt: 'Silver Piece'},
+                    {label: 'EP', value: character.electrumPieces, icon: ElectrumPiece, alt: 'Electrum Piece'},
+                    {label: 'GP', value: character.goldPieces, icon: GoldPiece, alt: 'Gold Piece'},
+                    {label: 'PP', value: character.platinumPieces, icon: PlatinumPiece, alt: 'Platinum Piece'},
+                  ].map(currency => (
+                    <dl className="character-details__currency" key={currency.label}>
+                      <dt>{currency.label}</dt>
+                      <dd>
+                        {currency.value ?? 0}
+                        <span className="character-details__currency-image">
+                          <img src={currency.icon} alt={currency.alt}/>
+                        </span>
+                      </dd>
+                    </dl>
+                  ))}
                 </div>
 
                 <div>
@@ -313,7 +313,7 @@ function CharacterDetailsPage() {
                     </dd>
                   ))}
                 </div>
-              </dl>
+              </div>
             </div>
 
             <div className="character-details__group">
