@@ -20,10 +20,12 @@ import {useToaster} from "../../../contexts/ToasterContext.jsx";
 // Services
 import characterService from "../../../services/characterService.js";
 import characterPossessionsService from "../../../services/characterPossessionsService.js";
+import characterTypeService from "../../../services/characterTypeService.js";
 
 // Helpers and constants
 import mapFormKeysToAPIKeys from "../../../helpers/mapFormKeysToAPIKeys.js";
 import showDefaultStatusCodeToast from "../../../helpers/showDefaultStatusCodeToast.js";
+import {firstCharacterToUpperCase} from "../../../helpers/formatCaseHelpers.js";
 import {removeLocalStorageItem} from "../../../helpers/localStorageHelpers.js";
 import {charactersKey} from "../../../constants/localStorageKeys.js";
 
@@ -84,6 +86,11 @@ function CharacterDetailsPage() {
       isAbortable: false
     }
   );
+  // Get character types
+  const {data: characterTypes, loading: characterTypesLoading} = useRequestState(
+    characterTypeService.getCharacterTypes({useCache: true}),
+    {executeOnMount: true, isAbortable: true}
+  );
 
   // Character possessions are not updated because of a bug in the NOVI Backend API. The API can generate duplicate ids.
   const handleUpdateSubmit = async (characterFormData) => {
@@ -106,6 +113,13 @@ function CharacterDetailsPage() {
 
   const handleUpdateCancel = () => {
     setMode('read');
+  }
+
+  const formatCharacterType = (currentCharacterTypeId) => {
+    const foundCharacterType = characterTypes.find(characterType => characterType.id.toString() === currentCharacterTypeId.toString());
+    const characterTypeName = foundCharacterType?.name ?? currentCharacterTypeId;
+
+    return firstCharacterToUpperCase(characterTypeName);
   }
 
   // Generic error from useRequestState.
@@ -181,7 +195,7 @@ function CharacterDetailsPage() {
               <dl className="character-details__group-content">
                 <div>
                   <dt>Type</dt>
-                  <dd>{character.type}</dd>
+                  <dd>{formatCharacterType(character.type)}</dd>
                 </div>
 
                 <div>
