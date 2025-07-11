@@ -1,0 +1,31 @@
+.encounter-tracker-character-selection__loading {
+    display: flex;
+    justify-content: center;
+}
+
+.encounter-tracker-character-selection__characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 5em;
+    justify-content: center;
+}
+
+.character-select-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.character-select-wrapper:hover {
+    transform: scale(1.01);
+}
+
+.character-select-overlay {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-image: url("../../../assets/textures/stars.png"), var(--color-secondary-gradient);
+    width: 270px;
+    height: 270px;
+    z-index: -1;
+}

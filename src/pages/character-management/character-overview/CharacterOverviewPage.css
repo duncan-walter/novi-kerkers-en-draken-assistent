@@ -9,9 +9,3 @@
     gap: 5em;
     justify-content: center;
 }
-
-.character-overview__header {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1em;
-}
