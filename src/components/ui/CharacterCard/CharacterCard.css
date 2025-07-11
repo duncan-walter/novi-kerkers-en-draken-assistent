@@ -1,0 +1,38 @@
+.character-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.character-card__image {
+    aspect-ratio: 1 / 1;
+    flex-basis: 250px;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-accent);
+    background-image: url("../../../assets/textures/wood.png");
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: top left;
+}
+
+.character-card__image svg {
+    color: var(--color-primary);
+}
+
+.character-card__info {
+    width: 100%;
+    margin-top: .25em;
+    text-wrap: pretty;
+}
+
+.character-card__info-race-class {
+    font-size: .9em;
+}

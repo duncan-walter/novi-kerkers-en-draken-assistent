@@ -1,0 +1,17 @@
+.character-overview__loading {
+    display: flex;
+    justify-content: center;
+}
+
+.character-overview__characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 5em;
+    justify-content: center;
+}
+
+.character-overview__header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1em;
+}

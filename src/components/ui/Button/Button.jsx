@@ -1,9 +1,14 @@
+// Styling
 import './Button.css';
 
-function Button({label, icon, type = 'button', variant = 'primary', onClick = () => {}}) {
+// Components
+import Spinner from '../Spinner/Spinner.jsx';
+
+function Button({label, icon: Icon, type = 'button', variant = 'primary', loading = false, disabled = false, onClick = () => {}}) {
   const variants = {
     primary: 'button--primary',
-    secondary: 'button--secondary'
+    secondary: 'button--secondary',
+    tertiary: 'button--tertiary'
   }
 
   let buttonClasses = `button ${variants[variant]}`;
@@ -13,8 +18,17 @@ function Button({label, icon, type = 'button', variant = 'primary', onClick = ()
       className={buttonClasses}
       type={type}
       onClick={onClick}
+      disabled={loading || disabled}
     >
-      {icon && <div className="button__icon">{icon}</div>}
+      {loading ? (
+        /* Note:
+         * Inherit is not an actual variant but forces the spinner to inherit the color of the button's variant.
+         * TODO: Implement a cleaner solution
+         */
+        <Spinner size="extra-small" variant="inherit"/>
+      ) : (
+        Icon && <div className="button__icon"><Icon/></div>
+      )}
       {label}
     </button>
   );

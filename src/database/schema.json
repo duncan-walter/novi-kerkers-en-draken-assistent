@@ -1,23 +1,250 @@
 {
   "collections": [
     {
-      "name": "placeholder",
+      "name": "characters",
       "fields": [
         {
           "name": "id",
           "type": "number",
           "required": true
+        },
+        {
+          "name": "userId",
+          "type": "reference:users",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "reference:characterTypes",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 100
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 50
+        },
+        {
+          "name": "subClass",
+          "type": "string",
+          "min": 1,
+          "max": 50
+        },
+        {
+          "name": "race",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 50
+        },
+        {
+          "name": "charisma",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "constitution",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "dexterity",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "intelligence",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "strength",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "wisdom",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 30
+        },
+        {
+          "name": "proficiencyBonus",
+          "type": "number",
+          "required": true,
+          "min": 2,
+          "max": 6
+        },
+        {
+          "name": "armorClass",
+          "type": "number",
+          "required": true,
+          "min": -10,
+          "max": 50
+        },
+        {
+          "name": "maxHitPoints",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 1000
+        },
+        {
+          "name": "currentHitPoints",
+          "type": "number",
+          "required": true,
+          "min": 0,
+          "max": 1000
+        },
+        {
+          "name": "experiencePoints",
+          "type": "number",
+          "required": true,
+          "min": 0,
+          "max": 355000
+        },
+        {
+          "name": "size",
+          "type": "string",
+          "max": 50
+        },
+        {
+          "name": "alignment",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 50
+        },
+        {
+          "name": "copperPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "silverPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "electrumPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "goldPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "platinumPieces",
+          "type": "number",
+          "min": 0,
+          "max": 10000,
+          "default": 0
+        },
+        {
+          "name": "notes",
+          "type": "string",
+          "max": 1000,
+          "default": 0
         }
       ],
       "permissions": {
         "GET": [
-          "anonymous"
+          "user"
+        ],
+        "POST": [
+          "user"
+        ],
+        "PUT": [
+          "user"
+        ]
+      }
+    },
+    {
+      "name": "characterTypes",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "permissions": {
+        "GET": [
+          "user"
+        ]
+      }
+    },
+    {
+      "name": "characterPossessions",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "characterId",
+          "type": "reference:characters",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "min": 1,
+          "max": 255
+        }
+      ],
+      "permissions": {
+        "GET": [
+          "user"
+        ],
+        "POST": [
+          "user"
+        ],
+        "PUT": [
+          "user"
         ]
       }
     }
   ],
   "users": [
     {
+      "id": 0,
       "email": "kerkersendrakenassistent@testaccount.nl",
       "password": "ditwachtiszomoeilijkhetisgewoonnietteraden",
       "roles": [
@@ -25,5 +252,150 @@
       ]
     }
   ],
-  "data": {}
+  "data": {
+    "characters": [
+      {
+        "id": 0,
+        "userId": 0,
+        "type": 0,
+        "name": "Xandoril Thornbriar",
+        "class": "rogue",
+        "subclass": "thief",
+        "race": "elf",
+        "charisma": 10,
+        "constitution": 15,
+        "dexterity": 15,
+        "intelligence": 10,
+        "strength": 12,
+        "wisdom": 8,
+        "proficiencyBonus": 2,
+        "armorClass": 14,
+        "maxHitPoints": 18,
+        "currentHitPoints": 6,
+        "experiencePoints": 669,
+        "size": "5'8\" (medium)",
+        "alignment": "chaotic-neutral",
+        "copperPieces": 85,
+        "silverPieces": 45,
+        "electrumPieces": 3,
+        "goldPieces": 79,
+        "platinumPieces": 0,
+        "notes": "-Dit is een notitie"
+      },
+      {
+        "id": 1,
+        "userId": 0,
+        "type": 1,
+        "name": "Goblin",
+        "class": "druid",
+        "subclass": "fiend",
+        "race": "tiefling",
+        "charisma": 8,
+        "constitution": 10,
+        "dexterity": 14,
+        "intelligence": 10,
+        "strength": 8,
+        "wisdom": 8,
+        "proficiencyBonus": 2,
+        "armorClass": 15,
+        "maxHitPoints": 7,
+        "currentHitPoints": 7,
+        "experiencePoints": 0,
+        "size": "Small",
+        "alignment": "neutral-evil",
+        "copperPieces": 0,
+        "silverPieces": 0,
+        "electrumPieces": 0,
+        "goldPieces": 0,
+        "platinumPieces": 0,
+        "notes": "-Dit is een notitie"
+      },
+      {
+        "id": 2,
+        "userId": 0,
+        "type": 2,
+        "name": "Construct Spirit",
+        "class": "fighter",
+        "subclass": "evocation",
+        "race": "dwarf",
+        "charisma": 5,
+        "constitution": 18,
+        "dexterity": 0,
+        "intelligence": 14,
+        "strength": 18,
+        "wisdom": 11,
+        "proficiencyBonus": 2,
+        "armorClass": 13,
+        "maxHitPoints": 40,
+        "currentHitPoints": 40,
+        "experiencePoints": 900,
+        "size": "Medium",
+        "alignment": "neutral",
+        "copperPieces": 0,
+        "silverPieces": 0,
+        "electrumPieces": 0,
+        "goldPieces": 0,
+        "platinumPieces": 0,
+        "notes": "-Dit is een notitie"
+      },
+      {
+        "id": 3,
+        "userId": 0,
+        "type": 3,
+        "name": "Droop",
+        "class": "rogue",
+        "subclass": "fiend",
+        "race": "gnome",
+        "charisma": 8,
+        "constitution": 10,
+        "dexterity": 14,
+        "intelligence": 10,
+        "strength": 8,
+        "wisdom": 8,
+        "proficiencyBonus": 2,
+        "armorClass": 15,
+        "maxHitPoints": 7,
+        "currentHitPoints": 7,
+        "experiencePoints": 0,
+        "size": "Small",
+        "alignment": "neutral-evil",
+        "copperPieces": 0,
+        "silverPieces": 0,
+        "electrumPieces": 0,
+        "goldPieces": 0,
+        "platinumPieces": 0,
+        "notes": "-Dit is een notitie"
+      }
+    ],
+    "characterTypes": [
+      {
+        "id": 0,
+        "name": "player"
+      },
+      {
+        "id": 1,
+        "name": "monster"
+      },
+      {
+        "id": 2,
+        "name": "summon"
+      },
+      {
+        "id": 3,
+        "name": "npc"
+      }
+    ],
+    "characterPossessions": [
+      {
+        "id": "b48fd9e5-a84b-4da2-bc02-d2ee9afdafd9",
+        "characterId": 0,
+        "name": "Dagger"
+      },
+      {
+        "id": "6d8ed938-c389-44ba-abca-843ed3e76411",
+        "characterId": 0,
+        "name": "Silver sword (+1)"
+      }
+    ]
+  }
 }

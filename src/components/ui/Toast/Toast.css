@@ -27,7 +27,7 @@
 }
 
 .toast__text {
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .toast__close-button {

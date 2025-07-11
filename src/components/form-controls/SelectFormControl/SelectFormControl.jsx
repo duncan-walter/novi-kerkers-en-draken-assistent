@@ -6,7 +6,7 @@ import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js
  * - Supported validationRules parameter properties:
  *    - required (boolean)
  */
-function SelectFormControl({id, name, label, options, showPlaceholder = true, register, error, validationRules}) {
+function SelectFormControl({id, name, label, options, placeholder, register, error, validationRules}) {
   const supportedValidationRules = ['required'];
 
   const registerFormControl = () => {
@@ -29,8 +29,8 @@ function SelectFormControl({id, name, label, options, showPlaceholder = true, re
         className="form-control"
         {...registerFormControl()}
       >
-        {showPlaceholder && <option value="">kies een waarde</option>}
-        {options.map(option => {
+        {placeholder && <option value="">{placeholder}</option>}
+        {options && options.map(option => {
           return (
             <option key={option.value} value={option.value}>
               {option.label}

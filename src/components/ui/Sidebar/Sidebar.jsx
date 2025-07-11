@@ -10,7 +10,7 @@ import {useContext} from "react";
 import {Link} from 'react-router-dom';
 
 // Contexts
-import {AuthorizationContext} from '../../../context/AuthorizationContext.jsx';
+import {AuthorizationContext} from '../../../contexts/AuthorizationContext.jsx';
 
 // Components
 import Navigation from "../Navigation/Navigation.jsx";
@@ -33,7 +33,7 @@ function Sidebar() {
         <Button
           onClick={authorizationContext.logout}
           label="Uitloggen"
-          icon={<DoorIcon/>}
+          icon={DoorIcon}
         />
       </div>
     </div>

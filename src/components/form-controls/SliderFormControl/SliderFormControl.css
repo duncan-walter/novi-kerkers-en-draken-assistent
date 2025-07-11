@@ -1,4 +1,6 @@
 .slider-form-control {
+    width: 100%;
+
     input[type="range"] {
         -webkit-appearance: none;
         appearance: none;

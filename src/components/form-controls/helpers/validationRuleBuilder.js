@@ -1,5 +1,6 @@
 function buildFormControlValidationRules(label, validationRules, supportedValidationRules = []) {
   const rules = {};
+  const displayLabel = label ?? 'Dit veld';
 
   // Unsupported validation rules are filtered out to prevent illegal validation rules from being set on certain form controls.
   if (validationRules) {
@@ -19,35 +20,35 @@ function buildFormControlValidationRules(label, validationRules, supportedValida
     ...(rules.required !== undefined && {
       required: {
         value: rules.required,
-        message: `${label} is verplicht.`
+        message: `${displayLabel} is verplicht.`
       }
     }),
     // Minimum value
     ...(rules.minimumValue !== undefined && {
       min: {
         value: rules.minimumValue,
-        message: `${label} moet groter dan "${rules.minimumValue}" zijn.`
+        message: `${displayLabel} moet groter dan "${rules.minimumValue}" zijn.`
       }
     }),
     // Maximum value
     ...(rules.maximumValue !== undefined && {
       max: {
         value: rules.maximumValue,
-        message: `${label} moet kleiner dan "${rules.maximumValue}" zijn.`
+        message: `${displayLabel} moet kleiner dan "${rules.maximumValue}" zijn.`
       }
     }),
     // Minimum length
     ...(rules.minimumLength !== undefined && {
       minLength: {
         value: rules.minimumLength,
-        message: `${label} moet meer dan "${rules.minimumLength}" karakter(s) lang zijn.`
+        message: `${displayLabel} moet meer dan "${rules.minimumLength}" karakter(s) lang zijn.`
       }
     }),
     // Maximum length
     ...(rules.maximumLength !== undefined && {
       maxLength: {
         value: rules.maximumLength,
-        message: `${label} moet minder dan "${rules.maximumLength}" karakter(s) lang zijn.`
+        message: `${displayLabel} moet minder dan "${rules.maximumLength}" karakter(s) lang zijn.`
       }
     }),
     // Custom validation rules
@@ -56,7 +57,7 @@ function buildFormControlValidationRules(label, validationRules, supportedValida
       ...(rules.validateEmail !== undefined && {
         validateEmail: (formControlValue) => {
           const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-          return emailRegex.test(formControlValue) || `${label} moet een geldig e-mailadres zijn.`;
+          return emailRegex.test(formControlValue) || `${displayLabel} moet een geldig e-mailadres zijn.`;
         }
       }),
       // Match form control
@@ -64,7 +65,7 @@ function buildFormControlValidationRules(label, validationRules, supportedValida
         matchFormControl: (formControlValue, allFormControls) => {
           const otherFormControlValue = allFormControls[rules.matchFormControl.name];
           const otherFormControlLabel = rules.matchFormControl.label;
-          return formControlValue === otherFormControlValue || `"${label}" en "${otherFormControlLabel}" moeten overeenkomen.`
+          return formControlValue === otherFormControlValue || `"${displayLabel}" en "${otherFormControlLabel}" moeten overeenkomen.`
         }
       })
     }

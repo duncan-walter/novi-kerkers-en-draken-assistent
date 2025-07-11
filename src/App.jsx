@@ -6,8 +6,7 @@ import {useContext} from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
 
 // Contexts
-import ToasterContextProvider from "./context/ToasterContext.jsx";
-import {AuthorizationContext} from "./context/AuthorizationContext.jsx";
+import {AuthorizationContext} from "./contexts/AuthorizationContext.jsx";
 
 // Pages
 import UnauthorizedLayout from "./pages/layouts/unauthorized/UnauthorizedLayout.jsx";
@@ -19,37 +18,38 @@ import EncounterTrackerPage from "./pages/encounter-tracker/EncounterTrackerPage
 import GameInformationPage from "./pages/game-information/GameInformationPage.jsx";
 import NotFoundPage from "./pages/not-found/NotFoundPage.jsx";
 import TestingZonePage from "./pages/testing-zone/TestingZonePage.jsx";
-import CharacterOverview from "./pages/character-management/character-overview/CharacterOverview.jsx";
-import CharacterCreate from "./pages/character-management/character-create/CharacterCreate.jsx";
+import CharacterOverviewPage from "./pages/character-management/character-overview/CharacterOverviewPage.jsx";
+import CharacterCreatePage from "./pages/character-management/character-create/CharacterCreatePage.jsx";
+import CharacterDetailsPage from "./pages/character-management/character-details/CharacterDetailsPage.jsx";
 
 function App() {
   const authorizationContext = useContext(AuthorizationContext);
 
   return (
-    <ToasterContextProvider>
-      <Routes>
-        {/* Unauthenticated pages */}
-        <Route element={authorizationContext.user ? <Navigate to="/"/> : <UnauthorizedLayout/>}>
-          <Route path="login" element={<LoginPage/>}/>
-          <Route path="register" element={<RegisterPage/>}/>
-        </Route>
+    <Routes>
+      {/* Unauthenticated pages */}
+      <Route element={authorizationContext.user ? <Navigate to="/"/> : <UnauthorizedLayout/>}>
+        <Route path="login" element={<LoginPage/>}/>
+        <Route path="register" element={<RegisterPage/>}/>
+      </Route>
 
-        {/* Authenticated pages */}
-        <Route element={authorizationContext.user ? <AuthorizedLayoutPage/> : <Navigate to="/login"/>}>
-          <Route index element={<HomePage/>}/>
-          <Route path="character-management">
-            <Route index element={<CharacterOverview/>}/>
-            <Route path="create-character" element={<CharacterCreate/>}/>
-          </Route>
-          <Route path="encounter-tracker" element={<EncounterTrackerPage/>}/>
-          <Route path="game-information" element={<GameInformationPage/>}/>
-          <Route path="testing-zone" element={<TestingZonePage/>}/>
+      {/* Authenticated pages */}
+      <Route element={authorizationContext.user ? <AuthorizedLayoutPage/> : <Navigate to="/login"/>}>
+        <Route index element={<HomePage/>}/>
+        <Route path="character-management">
+          <Route index element={<CharacterOverviewPage/>}/>
+          <Route path="character-details/:id" element={<CharacterDetailsPage/>}/>
+          <Route path="create-character" element={<CharacterCreatePage/>}/>
         </Route>
+        <Route path="encounter-tracker" element={<EncounterTrackerPage/>}/>
+        <Route path="game-information" element={<GameInformationPage/>}/>
+        <Route path="testing-zone" element={<TestingZonePage/>}/>
+      </Route>
 
-        {/* Not found / other pages */}
-        <Route path="*" element={<NotFoundPage/>}/>
-      </Routes>
-    </ToasterContextProvider>);
+      {/* Not found / other pages */}
+      <Route path="*" element={<NotFoundPage/>}/>
+    </Routes>
+  );
 }
 
 export default App;

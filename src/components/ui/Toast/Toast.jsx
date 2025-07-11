@@ -21,7 +21,7 @@ function Toast({message, type = "success", onClose}) {
         <div className={`toast toast--${type}`}>
           <div className="toast__message">
             <span className="toast__icon">{toastIcon}</span>
-            <p className="toast__text">{message}.</p>
+            <p className="toast__text">{message}</p>
           </div>
 
           <button className="toast__close-button" onClick={onClose}>

@@ -1,4 +1,7 @@
-/* This file declares the base styling that applies to all form control components */
+/* Note:
+ * This file declares the base styling that applies to all form control components including styled fieldsets.
+ * To use the base styled fieldsets the class selector "fieldset" has to be assigned. This is to be able to implement more styles in the future.
+ */
 
 .form-control {
     width: 100%;
@@ -31,4 +34,21 @@
 
 .form-control__error-message::before {
     content: '*'
+}
+
+.fieldset {
+    border: none;
+}
+
+.fieldset__legend {
+    font-size: 1.5em;
+}
+
+.fieldset__content {
+    padding: 1em;
+}
+
+.fieldset__content-row {
+    display: flex;
+    gap: 1em;
 }

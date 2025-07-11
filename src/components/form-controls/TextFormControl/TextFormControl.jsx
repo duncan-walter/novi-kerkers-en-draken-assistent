@@ -14,16 +14,21 @@ function TextFormControl({id, name, label, placeholder, register, error, validat
   const supportedValidationRules = ['required', 'minimumLength', 'maximumLength', 'validateEmail'];
 
   const registerFormControl = () => {
-    return {...(register(name, {
+    return {
+      ...(register(name, {
         ...buildFormControlValidationRules(label, validationRules, supportedValidationRules)
-      }))};
+      }))
+    };
   };
 
   return (
     <div className="text-form-control">
-      <label htmlFor={id} className="form-control__label">
-        {label}
-      </label>
+      {label &&
+        <label htmlFor={id} className="form-control__label">
+          {label}
+        </label>
+      }
+
       <input
         id={id}
         name={name}
@@ -33,6 +38,7 @@ function TextFormControl({id, name, label, placeholder, register, error, validat
         className="form-control"
         {...registerFormControl()}
       />
+
       <p className={`form-control__error-message ${error ? 'visible' : 'invisible'}`}>
         {error && error.message}
       </p>

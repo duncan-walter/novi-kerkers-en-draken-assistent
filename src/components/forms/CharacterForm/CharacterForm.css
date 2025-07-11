@@ -1,0 +1,68 @@
+.character-form {
+    display: flex;
+    flex-direction: row;
+    gap: 5em;
+    flex-wrap: wrap;
+}
+
+.character-form__loading {
+    display: flex;
+    justify-content: center;
+}
+
+.character-form__left,
+.character-form__right {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.character-form__abilities-row {
+    display: flex;
+    gap: 1em;
+}
+
+.character-from__controls {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+.character-form__currency {
+    display: flex;
+    flex-direction: row;
+    gap: .2em;
+}
+
+.character-form__currency-image {
+    display: flex;
+    align-items: center;
+}
+
+.character-form__currency-image img {
+    width: 1.5em;
+}
+
+.character-form__not-supported {
+    position: relative;
+    pointer-events: none;
+}
+
+.character-form__not-supported-message {
+    position: absolute;
+    display: flex;
+    width: 110%;
+    height: 120%;
+    left: -5%;
+    top: -10%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2.5em;
+}
+
+.character-form__not-supported-message p {
+    color: var(--color-text-secondary);
+}

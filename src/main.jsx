@@ -8,7 +8,8 @@ import {createRoot} from 'react-dom/client';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 // Contexts
-import AuthorizationContextProvider from "./context/AuthorizationContext.jsx";
+import AuthorizationContextProvider from "./contexts/AuthorizationContext.jsx";
+import ToasterContextProvider from "./contexts/ToasterContext.jsx";
 
 // Components
 import App from './App.jsx';
@@ -16,9 +17,11 @@ import App from './App.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
-      <AuthorizationContextProvider>
-        <App/>
-      </AuthorizationContextProvider>
+      <ToasterContextProvider>
+        <AuthorizationContextProvider>
+          <App/>
+        </AuthorizationContextProvider>
+      </ToasterContextProvider>
     </Router>
   </StrictMode>,
 )

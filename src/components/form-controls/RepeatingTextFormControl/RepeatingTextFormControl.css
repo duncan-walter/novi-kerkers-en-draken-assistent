@@ -1,0 +1,9 @@
+.text-form-group-control__item {
+    display: flex;
+    flex-direction: row;
+    gap: .5em;
+}
+
+.text-form-group-control__text-form-control {
+    flex-grow: 1;
+}
