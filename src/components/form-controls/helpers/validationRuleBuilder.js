@@ -27,28 +27,28 @@ function buildFormControlValidationRules(label, validationRules, supportedValida
     ...(rules.minimumValue !== undefined && {
       min: {
         value: rules.minimumValue,
-        message: `${displayLabel} moet groter dan "${rules.minimumValue}" zijn.`
+        message: `${displayLabel} moet groter dan of gelijk aan "${rules.minimumValue}" zijn.`
       }
     }),
     // Maximum value
     ...(rules.maximumValue !== undefined && {
       max: {
         value: rules.maximumValue,
-        message: `${displayLabel} moet kleiner dan "${rules.maximumValue}" zijn.`
+        message: `${displayLabel} moet kleiner dan of gelijk aan"${rules.maximumValue}" zijn.`
       }
     }),
     // Minimum length
     ...(rules.minimumLength !== undefined && {
       minLength: {
         value: rules.minimumLength,
-        message: `${displayLabel} moet meer dan "${rules.minimumLength}" karakter(s) lang zijn.`
+        message: `${displayLabel} moet minstens "${rules.minimumLength}" karakter(s) lang zijn.`
       }
     }),
     // Maximum length
     ...(rules.maximumLength !== undefined && {
       maxLength: {
         value: rules.maximumLength,
-        message: `${displayLabel} moet minder dan "${rules.maximumLength}" karakter(s) lang zijn.`
+        message: `${displayLabel} mag maximaal "${rules.maximumLength}" karakter(s) lang zijn.`
       }
     }),
     // Custom validation rules
