@@ -9,7 +9,7 @@ function CharacterAbility({label, value}) {
 
       <div className="character-ability__value">
         <div className="character-ability__modifier">
-          {calculateAbilityModifier(value)}
+          {calculateAbilityModifier(value, true)}
         </div>
 
         <dd>{value}</dd>
