@@ -20,19 +20,19 @@ function EncounterTrackerPage() {
       'Selecteer conditions',
       'Speelvolgorde'
     ].map((title, index) => ({
-      order: index,
+      number: index,
       title: title
     }))
   ];
 
-  const [currentStep, setCurrentStep] = useState(steps[0]);
+  const [currentStepNumber, setCurrentStepNumber] = useState(0);
   const [showNextStepButton, setShowNextStepButton] = useState(true);
 
   const {
     register,
     setValue,
     watch,
-    formState: {errors},
+    formState: {errors}
   } = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -44,16 +44,16 @@ function EncounterTrackerPage() {
 
   const selectedCharacters = watch('selectedCharacters');
 
-  const nextStep = () => {
-    const step = steps.find(step => step.order === currentStep.order + 1);
+  const handleNextStepClick = async () => {
+    const nextStep = steps.find(step => step.number === currentStepNumber + 1);
 
-    if (step) {
-      setCurrentStep(step);
+    if (nextStep) {
+      setCurrentStepNumber(nextStep.number);
     }
   }
 
   const isStepValid = () => {
-    switch (currentStep.order) {
+    switch (currentStepNumber) {
       case 0:
         return selectedCharacters.length >= 2;
       case 1:
@@ -66,7 +66,7 @@ function EncounterTrackerPage() {
   }
 
   const renderStepComponent = () => {
-    switch (currentStep.order) {
+    switch (currentStepNumber) {
       case 0:
         return (
           <EncounterTrackerCharacterSelection
@@ -94,20 +94,20 @@ function EncounterTrackerPage() {
 
   return (
     <Panel
-      title={currentStep.title}
-      panelButton={showNextStepButton && currentStep.order !== steps.length - 1 &&
+      title={steps[currentStepNumber].title}
+      panelButton={showNextStepButton && currentStepNumber !== steps.length - 1 &&
         <Button
           label="Bevestigen"
-          onClick={nextStep}
+          onClick={handleNextStepClick}
           disabled={!isStepValid()}
         />
       }
     >
       {/* Creation steps */}
-      {currentStep.order < steps.length - 1 && renderStepComponent()}
+      {currentStepNumber < steps.length - 1 && renderStepComponent()}
 
       {/* Encounter tracker */}
-      {currentStep.order === steps.length - 1 && <>
+      {currentStepNumber === steps.length - 1 && <>
         <table>
           <thead>
             <tr>
