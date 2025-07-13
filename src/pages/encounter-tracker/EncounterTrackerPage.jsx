@@ -15,13 +15,14 @@ import EncounterTrackerInitiativeSelection from "./encounter-tracker-initiative-
 function EncounterTrackerPage() {
   const steps = [
     ...[
-      'Selecteer ten minste 2 personages',
-      'Vul initiatief worpen in',
-      'Selecteer conditions',
-      'Speelvolgorde'
-    ].map((title, index) => ({
+      {title: 'Selecteer ten minste 2 personages', formKey: 'selectedCharacters'},
+      {title: 'Vul initiatief worpen in', formKey: 'initiatives'},
+      {title: 'Selecteer conditions', formKey: 'conditions'},
+      {title: 'Speelvolgorde', formKey: null}
+    ].map(({title, formKey}, index) => ({
       number: index,
-      title: title
+      title: title,
+      formKey: formKey,
     }))
   ];
 
@@ -32,7 +33,8 @@ function EncounterTrackerPage() {
     register,
     setValue,
     watch,
-    formState: {errors}
+    formState: {errors},
+    trigger
   } = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -45,6 +47,13 @@ function EncounterTrackerPage() {
   const selectedCharacters = watch('selectedCharacters');
 
   const handleNextStepClick = async () => {
+    // Manually trigger current step validation in case the user has not interacted with the current step.
+    const isCurrentStepValid = await trigger(steps[currentStepNumber].formKey);
+
+    if (!isCurrentStepValid) {
+      return;
+    }
+
     const nextStep = steps.find(step => step.number === currentStepNumber + 1);
 
     if (nextStep) {
@@ -55,6 +64,7 @@ function EncounterTrackerPage() {
   const isStepValid = () => {
     switch (currentStepNumber) {
       case 0:
+        // TODO: See if this can be hooked up to React Hook From. If so, step validation can be done dynamically by using the formKey defined in the steps.
         return selectedCharacters.length >= 2;
       case 1:
         return !errors.initiatives;
