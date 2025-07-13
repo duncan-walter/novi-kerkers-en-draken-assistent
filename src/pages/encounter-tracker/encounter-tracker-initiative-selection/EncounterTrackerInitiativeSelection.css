@@ -1,0 +1,54 @@
+.encounter-tracker-initiative-selection {
+    width: 100%;
+}
+
+.initiative-selection__table {
+    display: flex;
+    flex-direction: column;
+    min-width: 800px;
+}
+
+.initiative-selection__table-header,
+.initiative-selection__table-row {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr;
+    padding: .5em 0;
+}
+
+.initiative-selection__table-header {
+    font-size: 1.2em;
+}
+
+.initiative-selection__characters-heading {
+    text-align: left;
+}
+
+.initiative-selection__rolled-initiative-heading,
+.initiative-selection__total-initiative-heading {
+    text-align: center;
+}
+
+.initiative-selection__character,
+.initiative-selection__rolled-initiative,
+.initiative-selection__total-initiative {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.initiative-selection__character {
+    justify-content: flex-start;
+}
+
+.initiative-selection__rolled-initiative,
+.initiative-selection__total-initiative {
+    justify-self: center;
+}
+
+.initiative-selection__rolled-initiative {
+    width: 100px;
+}
+
+.initiative-selection__total-initiative {
+    font-size: 2em;
+}

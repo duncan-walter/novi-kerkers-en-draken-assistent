@@ -29,15 +29,20 @@ function EncounterTrackerPage() {
   const [showNextStepButton, setShowNextStepButton] = useState(true);
 
   const {
+    register,
     setValue,
     watch,
+    formState: {errors},
   } = useForm({
+    mode: 'onChange',
     defaultValues: {
       selectedCharacters: [],
       initiatives: {},
       conditions: {}
     }
   });
+
+  const selectedCharacters = watch('selectedCharacters');
 
   const nextStep = () => {
     const step = steps.find(step => step.order === currentStep.order + 1);
@@ -50,9 +55,9 @@ function EncounterTrackerPage() {
   const isStepValid = () => {
     switch (currentStep.order) {
       case 0:
-        return watch('selectedCharacters').length >= 2;
+        return selectedCharacters.length >= 2;
       case 1:
-        return true;
+        return !errors.initiatives;
       case 2:
         return true
       default:
@@ -72,7 +77,11 @@ function EncounterTrackerPage() {
         );
       case 1:
         return (
-          <EncounterTrackerInitiativeSelection/>
+          <EncounterTrackerInitiativeSelection
+            watch={watch}
+            register={register}
+            errors={errors}
+          />
         );
       case 2:
         return (
