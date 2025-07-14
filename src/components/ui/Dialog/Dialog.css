@@ -1,0 +1,24 @@
+.dialog {
+    position: fixed;
+    top: 25%;
+    left: 45%;
+    border: none;
+    background: transparent;
+}
+
+.dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 500px;
+}
+
+.dialog__controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
