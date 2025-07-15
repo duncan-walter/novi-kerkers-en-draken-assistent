@@ -69,6 +69,7 @@ function EncounterTrackerPage() {
       case 1:
         return !errors.initiatives;
       case 2:
+        // This step cannot be invalid as of now.
         return true
       default:
         return false;
@@ -95,7 +96,10 @@ function EncounterTrackerPage() {
         );
       case 2:
         return (
-          <EncounterTrackerConditionSelection/>
+          <EncounterTrackerConditionSelection
+            setValue={setValue}
+            watch={watch}
+          />
         );
       default:
         return null;

@@ -1,0 +1,49 @@
+.encounter-tracker-condition-selection {
+    width: 100%;
+}
+
+.condition-selection__table {
+    display: flex;
+    flex-direction: column;
+    min-width: 800px;
+}
+
+.condition-selection__table-header,
+.condition-selection__table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: .5em 0;
+}
+
+.condition-selection__table-header {
+    font-size: 1.2em;
+}
+
+.condition-selection__character,
+.condition-selection__conditions {
+    display: flex;
+}
+
+.condition-selection__character {
+    justify-content: flex-start;
+}
+
+.condition-selection__conditions {
+    align-items: flex-start;
+    align-self: center;
+    flex-wrap: wrap;
+    gap: .5em;
+}
+
+.condition-selection__dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.condition-selection__dialog-conditions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .5em;
+}
