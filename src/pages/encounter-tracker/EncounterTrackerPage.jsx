@@ -89,6 +89,7 @@ function EncounterTrackerPage() {
       case 1:
         return (
           <EncounterTrackerInitiativeSelection
+            setValue={setValue}
             watch={watch}
             register={register}
             errors={errors}

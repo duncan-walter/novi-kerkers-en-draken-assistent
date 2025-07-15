@@ -1,6 +1,9 @@
 // Styling
 import './EncounterTrackerInitiativeSelection.css';
 
+// Icons
+import D20SVG from '/src/assets/icons/d20.svg?react';
+
 // Helpers
 import calculateInitiative from "../../../helpers/calculateInitiative.js";
 
@@ -8,9 +11,14 @@ import calculateInitiative from "../../../helpers/calculateInitiative.js";
 import CharacterCard from "../../../components/ui/CharacterCard/CharacterCard.jsx";
 import NumberFormControl from "../../../components/form-controls/NumberFormControl/NumberFormControl.jsx";
 
-function EncounterTrackerInitiativeSelection({watch, register, errors}) {
+function EncounterTrackerInitiativeSelection({setValue, watch, register, errors}) {
   const characters = watch('selectedCharacters');
   const initiatives = watch('initiatives');
+
+  const rollForInitiative = (characterId) => {
+    const rolledInitiative = Math.floor(Math.random() * 20 + 1);
+    setValue(`initiatives.${characterId}`, rolledInitiative, {shouldValidate: true});
+  }
 
   return (
     <div className="encounter-tracker-initiative-selection">
@@ -28,18 +36,25 @@ function EncounterTrackerInitiativeSelection({watch, register, errors}) {
             </div>
 
             <div className="initiative-selection__rolled-initiative">
-              <NumberFormControl
-                id={`initiatives.${character.id}`}
-                name={`initiatives.${character.id}`}
-                placeholder="0"
-                register={register}
-                error={errors?.initiatives?.[character.id]}
-                validationRules={{
-                  required: true,
-                  minimumValue: 1,
-                  maximumValue: 20
-                }}
-              />
+              <div className="initiative-selection__rolled-initiative-wrapper">
+                <NumberFormControl
+                  id={`initiatives.${character.id}`}
+                  name={`initiatives.${character.id}`}
+                  placeholder="0"
+                  register={register}
+                  error={errors?.initiatives?.[character.id]}
+                  validationRules={{
+                    required: true,
+                    minimumValue: 1,
+                    maximumValue: 20
+                  }}
+                />
+
+                <D20SVG
+                  className="initiative-selection__roll-for-initiative"
+                  onClick={() => rollForInitiative(character.id)}
+                />
+              </div>
             </div>
 
             <p className="initiative-selection__total-initiative">
