@@ -44,3 +44,7 @@
     flex-wrap: wrap;
     gap: .25em;
 }
+
+.encounter-tracker__active-character {
+    box-shadow: 0 0 0 5px var(--color-secondary);
+}

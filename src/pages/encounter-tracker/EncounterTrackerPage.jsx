@@ -8,7 +8,7 @@ import {PencilIcon, TrashIcon} from "@phosphor-icons/react";
 import calculateInitiative from "../../helpers/calculateInitiative.js";
 
 // Framework dependencies
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 
 // Components
@@ -38,6 +38,7 @@ function EncounterTrackerPage() {
 
   const [currentStepNumber, setCurrentStepNumber] = useState(0);
   const [showNextStepButton, setShowNextStepButton] = useState(true);
+  const [activeCharacter, setActiveCharacter] = useState(null);
 
   const {
     register,
@@ -60,6 +61,9 @@ function EncounterTrackerPage() {
 
   // Derived state (newly learnt concept).
   const isLastStep = currentStepNumber === steps.length - 1;
+  const sortedCharacters = [...selectedCharacters].sort((left, right) => {
+    return calculateInitiative(initiatives[right.id], right.dexterity) - calculateInitiative(initiatives[left.id], left.dexterity);
+  });
 
   const handleNextStepClick = async () => {
     // Manually trigger current step validation in case the user has not interacted with the current step.
@@ -74,6 +78,12 @@ function EncounterTrackerPage() {
     if (nextStep) {
       setCurrentStepNumber(nextStep.number);
     }
+  }
+
+  const handleNextActiveCharacterClick = () => {
+    const currentActiveCharacterIndex = sortedCharacters.indexOf(activeCharacter);
+    const nextActiveCharacterIndex = (currentActiveCharacterIndex + 1) % sortedCharacters.length;
+    setActiveCharacter(sortedCharacters[nextActiveCharacterIndex]);
   }
 
   const isStepValid = () => {
@@ -122,6 +132,12 @@ function EncounterTrackerPage() {
     }
   }
 
+  useEffect(() => {
+    if (isLastStep) {
+      setActiveCharacter(sortedCharacters[0]);
+    }
+  }, [isLastStep]);
+
   return (
     <Panel
       title={steps[currentStepNumber].title}
@@ -152,12 +168,10 @@ function EncounterTrackerPage() {
               <h2 className="encounter-tracker__heading">Beheer</h2>
             </div>
 
-            {[...selectedCharacters].sort((left, right) => {
-              return calculateInitiative(initiatives[right.id], right.dexterity) - calculateInitiative(initiatives[left.id], left.dexterity);
-            }).map(character => (
+            {sortedCharacters.map(character => (
               <div
                 key={character.id}
-                className="encounter-tracker__table-row"
+                className={`encounter-tracker__table-row ${activeCharacter?.id === character.id ? 'encounter-tracker__active-character' : ''}`}
               >
                 <div className="encounter-tracker__table-cell">
                   <CharacterCard character={character} variant='small'/>
@@ -192,6 +206,7 @@ function EncounterTrackerPage() {
 
           <Button
             label="Volgende beurt"
+            onClick={handleNextActiveCharacterClick}
           />
         </div>
       )}
