@@ -1,0 +1,46 @@
+.encounter-tracker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5em;
+}
+
+.encounter-tracker__table {
+    display: flex;
+    flex-direction: column;
+    min-width: 800px;
+    gap: .5em;
+}
+
+.encounter-tracker__table-header,
+.encounter-tracker__table-row {
+    display: grid;
+    grid-template-columns: 2fr .875fr .875fr 1.25fr auto;
+}
+
+.encounter-tracker__table-header {
+    font-size: 1.2em;
+}
+
+.encounter-tracker__centered-heading {
+    text-align: center;
+}
+
+.encounter-tracker__table-cell,
+.encounter-tracker__table-centered-cell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5em;
+}
+
+.encounter-tracker__table-centered-cell {
+    justify-content: center;
+}
+
+.encounter-tracker__conditions-cell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25em;
+}

@@ -1,6 +1,12 @@
 // Styling
 import './EncounterTrackerPage.css';
 
+// Icons
+import {PencilIcon, TrashIcon} from "@phosphor-icons/react";
+
+// Helpers
+import calculateInitiative from "../../helpers/calculateInitiative.js";
+
 // Framework dependencies
 import {useState} from "react";
 import {useForm} from "react-hook-form";
@@ -8,6 +14,10 @@ import {useForm} from "react-hook-form";
 // Components
 import Panel from "../../components/ui/Panel/Panel.jsx";
 import Button from "../../components/ui/Button/Button.jsx";
+import CharacterCard from "../../components/ui/CharacterCard/CharacterCard.jsx";
+import ConditionBadge from "../../components/ui/ConditionBadge/ConditionBadge.jsx";
+
+// Step components
 import EncounterTrackerConditionSelection from "./encounter-tracker-condition-selection/EncounterTrackerConditionSelection.jsx";
 import EncounterTrackerCharacterSelection from "./encounter-tracker-character-selection/EncounterTrackerCharacterSelection.jsx";
 import EncounterTrackerInitiativeSelection from "./encounter-tracker-initiative-selection/EncounterTrackerInitiativeSelection.jsx";
@@ -45,6 +55,11 @@ function EncounterTrackerPage() {
   });
 
   const selectedCharacters = watch('selectedCharacters');
+  const initiatives = watch('initiatives');
+  const conditions = watch('conditions');
+
+  // Derived state (newly learnt concept).
+  const isLastStep = currentStepNumber === steps.length - 1;
 
   const handleNextStepClick = async () => {
     // Manually trigger current step validation in case the user has not interacted with the current step.
@@ -110,38 +125,76 @@ function EncounterTrackerPage() {
   return (
     <Panel
       title={steps[currentStepNumber].title}
-      panelButton={showNextStepButton && currentStepNumber !== steps.length - 1 &&
+      panelButton={showNextStepButton && isLastStep ? (
+        <Button
+          label="Gevecht beëindigen"
+        />
+      ) : (
         <Button
           label="Bevestigen"
           onClick={handleNextStepClick}
           disabled={!isStepValid()}
         />
-      }
+      )}
     >
       {/* Creation steps */}
-      {currentStepNumber < steps.length - 1 && renderStepComponent()}
+      {!isLastStep && renderStepComponent()}
 
       {/* Encounter tracker */}
-      {currentStepNumber === steps.length - 1 && <>
-        <table>
-          <thead>
-            <tr>
-              <th>Personage</th>
-              <th>Initiatief</th>
-              <th>Hit points</th>
-              <th>Conditions</th>
-              <th>Beheer</th>
-            </tr>
-          </thead>
-          <tbody>
+      {isLastStep && (
+        <div className="encounter-tracker">
+          <div className="encounter-tracker__table">
+            <div className="encounter-tracker__table-header">
+              <h2 className="encounter-tracker__heading">Personage</h2>
+              <h2 className="encounter-tracker__centered-heading">Initiatief</h2>
+              <h2 className="encounter-tracker__centered-heading">Hit points</h2>
+              <h2 className="encounter-tracker__heading">Conditions</h2>
+              <h2 className="encounter-tracker__heading">Beheer</h2>
+            </div>
 
-          </tbody>
-        </table>
+            {[...selectedCharacters].sort((left, right) => {
+              return calculateInitiative(initiatives[right.id], right.dexterity) - calculateInitiative(initiatives[left.id], left.dexterity);
+            }).map(character => (
+              <div
+                key={character.id}
+                className="encounter-tracker__table-row"
+              >
+                <div className="encounter-tracker__table-cell">
+                  <CharacterCard character={character} variant='small'/>
+                </div>
 
-        <Button
-          label="Gevecht beëindigen"
-        />
-      </>}
+                <div className="encounter-tracker__table-centered-cell">
+                  <p>{calculateInitiative(initiatives[character.id], character.dexterity)}</p>
+                </div>
+
+                <div className="encounter-tracker__table-centered-cell">
+                  <p>{character.currentHitPoints}/{character.maxHitPoints}</p>
+                </div>
+
+                <div className="encounter-tracker__table-cell">
+                  <div className="encounter-tracker__conditions-cell">
+                    {conditions[character.id]?.map(condition => (
+                      <ConditionBadge
+                        key={`${condition}.${character.id}`}
+                        label={condition}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="encounter-tracker__table-cell encounter-tracker__management-cell">
+                  <Button icon={PencilIcon}/>
+                  <Button icon={TrashIcon}/>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <Button
+            label="Volgende beurt"
+          />
+        </div>
+      )}
     </Panel>
   );
 }
