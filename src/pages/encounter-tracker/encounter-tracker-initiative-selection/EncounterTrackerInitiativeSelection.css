@@ -67,3 +67,20 @@
 .initiative-selection__total-initiative {
     font-size: 2em;
 }
+
+/* Animation definitions */
+@keyframes roll-die {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-40px) rotate(360deg);
+    }
+    100% {
+        transform: translateY(0) rotate(720deg);
+    }
+}
+
+.rolling-die {
+    animation: roll-die 600ms ease-out;
+}

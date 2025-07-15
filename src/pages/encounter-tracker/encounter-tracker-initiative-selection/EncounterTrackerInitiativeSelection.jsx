@@ -7,15 +7,28 @@ import D20SVG from '/src/assets/icons/d20.svg?react';
 // Helpers
 import calculateInitiative from "../../../helpers/calculateInitiative.js";
 
+// Framework dependencies
+import {useState} from "react";
+
 // Components
 import CharacterCard from "../../../components/ui/CharacterCard/CharacterCard.jsx";
 import NumberFormControl from "../../../components/form-controls/NumberFormControl/NumberFormControl.jsx";
 
 function EncounterTrackerInitiativeSelection({setValue, watch, register, errors}) {
+  const [spinningDice, setSpinningDice] = useState([]);
+
   const characters = watch('selectedCharacters');
   const initiatives = watch('initiatives');
 
   const rollForInitiative = (characterId) => {
+    setSpinningDice(currentSpinningDice => [...currentSpinningDice, characterId]);
+
+    setTimeout(() => {
+      setSpinningDice(currentSpinningDice => {
+        return [...currentSpinningDice.filter(currentSpinningDie => currentSpinningDie !== characterId)];
+      });
+    }, 600);
+
     const rolledInitiative = Math.floor(Math.random() * 20 + 1);
     setValue(`initiatives.${characterId}`, rolledInitiative, {shouldValidate: true});
   }
@@ -51,7 +64,7 @@ function EncounterTrackerInitiativeSelection({setValue, watch, register, errors}
                 />
 
                 <D20SVG
-                  className="initiative-selection__roll-for-initiative"
+                  className={`initiative-selection__roll-for-initiative ${spinningDice.includes(character.id) ? 'rolling-die' : ''}`}
                   onClick={() => rollForInitiative(character.id)}
                 />
               </div>
