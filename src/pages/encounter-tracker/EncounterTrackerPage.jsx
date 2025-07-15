@@ -16,6 +16,7 @@ import Panel from "../../components/ui/Panel/Panel.jsx";
 import Button from "../../components/ui/Button/Button.jsx";
 import CharacterCard from "../../components/ui/CharacterCard/CharacterCard.jsx";
 import ConditionBadge from "../../components/ui/ConditionBadge/ConditionBadge.jsx";
+import Dialog from "../../components/ui/Dialog/Dialog.jsx";
 
 // Step components
 import EncounterTrackerConditionSelection from "./encounter-tracker-condition-selection/EncounterTrackerConditionSelection.jsx";
@@ -39,6 +40,11 @@ function EncounterTrackerPage() {
   const [currentStepNumber, setCurrentStepNumber] = useState(0);
   const [showNextStepButton, setShowNextStepButton] = useState(true);
   const [activeCharacter, setActiveCharacter] = useState(null);
+  const [dialog, setDialog] = useState({
+    isOpen: false,
+    mode: 'inactive',
+    character: null
+  });
 
   const {
     register,
@@ -80,10 +86,16 @@ function EncounterTrackerPage() {
     }
   }
 
-  const handleNextActiveCharacterClick = () => {
+  const handleHighlightNextActiveCharacter = () => {
     const currentActiveCharacterIndex = sortedCharacters.indexOf(activeCharacter);
     const nextActiveCharacterIndex = (currentActiveCharacterIndex + 1) % sortedCharacters.length;
     setActiveCharacter(sortedCharacters[nextActiveCharacterIndex]);
+  }
+
+  const handleDeleteCharacter = () => {
+    setValue('selectedCharacters',
+      selectedCharacters.filter(selectedCharacter => selectedCharacter.id !== dialog.character.id)
+    );
   }
 
   const isStepValid = () => {
@@ -129,6 +141,37 @@ function EncounterTrackerPage() {
         );
       default:
         return null;
+    }
+  }
+
+  const getDialogProperties = () => {
+    const defaultProperties = {
+      isOpen: dialog.isOpen,
+      closeDialogLabel: 'Sluiten',
+      closeDialog: () => setDialog({isOpen: false, mode: 'inactive', character: null})
+    }
+
+    if (dialog.mode === 'delete') {
+      return {
+        ...defaultProperties,
+        closeDialogLabel: 'Nee',
+        confirmDialogLabel: 'Ja',
+        onConfirmDialog: () => {
+          if (dialog.character.id === activeCharacter.id) {
+            handleHighlightNextActiveCharacter();
+          }
+
+          handleDeleteCharacter();
+
+          setDialog({isOpen: false, mode: 'inactive', character: null});
+        }
+      }
+    }
+
+    if (dialog.mode === 'edit') {
+      return {
+        ...defaultProperties
+      }
     }
   }
 
@@ -197,8 +240,16 @@ function EncounterTrackerPage() {
                 </div>
 
                 <div className="encounter-tracker__table-cell encounter-tracker__management-cell">
-                  <Button icon={PencilIcon}/>
-                  <Button icon={TrashIcon}/>
+                  <Button
+                    icon={PencilIcon}
+                    onClick={() => setDialog({isOpen: true, mode: 'edit', character: character})}
+                  />
+
+                  <Button
+                    icon={TrashIcon}
+                    onClick={() => setDialog({isOpen: true, mode: 'delete', character: character})}
+                    disabled={selectedCharacters.length <= 2}
+                  />
                 </div>
               </div>
             ))}
@@ -206,10 +257,35 @@ function EncounterTrackerPage() {
 
           <Button
             label="Volgende beurt"
-            onClick={handleNextActiveCharacterClick}
+            onClick={handleHighlightNextActiveCharacter}
           />
         </div>
       )}
+
+      {/* Note:
+        * Dialog can be filled differently dependent on the mode.
+        * The content is defined below, while the properties are defined in the getDialogProperties function
+        */}
+      <Dialog {...getDialogProperties()}>
+        <div className="encounter-tracker__dialog">
+          {dialog.mode === 'delete' && (<>
+            <h3><b>
+              Weet je zeker dat {dialog.character.name} niet meer meedoet?
+            </b></h3>
+            <p><em>
+              Dit betekent dat {dialog.character.name} uit het overzicht wordt verwijderd.
+              Als {dialog.character.name} op dit moment aan de beurt is, gaat de beurt automatisch naar het volgende
+              personage.
+            </em></p>
+          </>)}
+
+          {dialog.mode === 'edit' && (
+            <h3><b>
+              Gevechtseigenschappen van {dialog.character.name}.
+            </b></h3>
+          )}
+        </div>
+      </Dialog>
     </Panel>
   );
 }

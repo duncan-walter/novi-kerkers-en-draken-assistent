@@ -48,3 +48,9 @@
 .encounter-tracker__active-character {
     box-shadow: 0 0 0 5px var(--color-secondary);
 }
+
+.encounter-tracker__dialog {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
