@@ -2,9 +2,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: .5em;
     width: 250px;
     justify-self: center;
     cursor: pointer;
+}
+
+.character-card--small,
+.character-card--medium {
+    flex-direction: row;
+    width: 400px;
+}
+
+.character-card--small .character-card__image {
+    flex-basis: 75px;
+}
+
+.character-card--medium .character-card__image {
+    flex-basis: 125px;
 }
 
 .character-card__image {
