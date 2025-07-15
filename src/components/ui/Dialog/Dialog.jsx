@@ -8,7 +8,7 @@ import {useEffect, useRef} from "react";
 import Button from "../Button/Button.jsx";
 import Panel from "../Panel/Panel.jsx";
 
-function Dialog({isOpen, closeDialogLabel, closeDialog, children}) {
+function Dialog({isOpen, closeDialogLabel, closeDialog, confirmDialogLabel, onConfirmDialog, children}) {
   const dialogRef = useRef();
 
   useEffect(() => {
@@ -32,6 +32,14 @@ function Dialog({isOpen, closeDialogLabel, closeDialog, children}) {
           </div>
 
           <div className="dialog__controls">
+            {confirmDialogLabel && onConfirmDialog && (
+              <Button
+                type="button"
+                label={confirmDialogLabel}
+                onClick={onConfirmDialog}
+              />
+            )}
+
             <Button
               type="button"
               label={closeDialogLabel}
