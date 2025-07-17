@@ -10,6 +10,7 @@ import calculateInitiative from "../../helpers/calculateInitiative.js";
 // Framework dependencies
 import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
 
 // Custom hooks
 import {useToaster} from "../../contexts/ToasterContext.jsx";
@@ -85,6 +86,7 @@ function EncounterTrackerPage() {
   });
 
   const {showToast} = useToaster();
+  const navigate = useNavigate();
 
   // Watches
   const selectedCharacters = watch('selectedCharacters');
@@ -201,6 +203,15 @@ function EncounterTrackerPage() {
         onConfirmDialog: editCharacterHandleSubmit(onEditCharacterSubmit)
       };
     }
+
+    if (dialog.mode === 'end-encounter') {
+      return {
+        ...defaultProperties,
+        closeDialogLabel: 'Nee',
+        confirmDialogLabel: 'Ja',
+        onConfirmDialog: onEndEncounterSubmit
+      }
+    }
   }
 
   const onEditCharacterSubmit = (data) => {
@@ -242,6 +253,10 @@ function EncounterTrackerPage() {
     setDialog({isOpen: false, mode: 'inactive', character: null});
   }
 
+  const onEndEncounterSubmit = () => {
+    navigate('/');
+  }
+
   useEffect(() => {
     if (isLastStep) {
       setActiveCharacter(sortedCharacters[0]);
@@ -254,6 +269,7 @@ function EncounterTrackerPage() {
       panelButton={showNextStepButton && isLastStep ? (
         <Button
           label="Gevecht beëindigen"
+          onClick={() => {setDialog({isOpen: true, mode: 'end-encounter', character: null})}}
         />
       ) : (
         <Button
@@ -361,8 +377,7 @@ function EncounterTrackerPage() {
 
           {dialog.mode === 'edit' && (<>
             <h3><b>
-              Gevechtseigenschappen van&nbsp;
-              <u>{dialog.character.name}</u>.
+              Gevechtseigenschappen van <u>{dialog.character.name}</u>.
             </b></h3>
 
             <form>
@@ -412,6 +427,21 @@ function EncounterTrackerPage() {
                 }
               />
             </form>
+          </>)}
+
+          {dialog.mode === 'end-encounter' && (<>
+            <h3><b>
+              Weet je zeker dat je het gevecht wilt beëindigen?
+            </b></h3>
+
+            <p><em>
+              Dit betekent dat je wordt teruggestuurd naar het hoofdscherm.
+            </em></p>
+
+            <p>
+              <b>LET OP!</b> Houd er rekening mee dat lopende gevechten momenteel <b>niet worden opgeslagen</b>.
+              Je voortgang gaat verloren en kan niet worden hersteld.
+            </p>
           </>)}
         </div>
       </Dialog>
