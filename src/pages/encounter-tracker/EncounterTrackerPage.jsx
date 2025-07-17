@@ -18,6 +18,7 @@ import CharacterCard from "../../components/ui/CharacterCard/CharacterCard.jsx";
 import ConditionBadge from "../../components/ui/ConditionBadge/ConditionBadge.jsx";
 import Dialog from "../../components/ui/Dialog/Dialog.jsx";
 import NumberFormControl from "../../components/form-controls/NumberFormControl/NumberFormControl.jsx";
+import CharacterConditionsFormControl from "../../components/form-controls/CharacterConditionsFormControl/CharacterConditionsFormControl.jsx";
 
 // Step components
 import EncounterTrackerConditionSelection from "./encounter-tracker-condition-selection/EncounterTrackerConditionSelection.jsx";
@@ -68,6 +69,8 @@ function EncounterTrackerPage() {
     handleSubmit: editCharacterHandleSubmit,
     reset: editCharacterReset,
     formState: { errors: editCharacterErrors },
+    setValue: editCharacterSetValue,
+    watch: editCharacterWatch
   } = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -392,6 +395,13 @@ function EncounterTrackerPage() {
                   minimumValue: 1,
                   maximumValue: 20
                 }}
+              />
+
+              <CharacterConditionsFormControl
+                currentConditions={editCharacterWatch('newConditions')}
+                onChange={(updatedConditions) =>
+                  editCharacterSetValue('newConditions', updatedConditions)
+                }
               />
             </form>
           </>)}

@@ -38,40 +38,42 @@ function CharacterConditionsFormControl({characterId, currentConditions, onChang
     onChange(updatedConditions);
   };
 
-  return (<>
-    {conditionsLoading && <Spinner size='large'/>}
-    {!conditionsLoading && (<>
-      <section>
-        <h3>Huidige conditions:</h3>
-        <div className="character-conditions-form-control">
-          {currentConditions.map(condition => (
-            <ConditionBadge
-              key={`${characterId}.${condition}`}
-              label={condition}
-              onClick={() => handleConditionChange(condition, 'remove')}
-            />
-          ))}
-        </div>
-      </section>
+  return (
+    <div className="character-conditions-form-control">
+      {conditionsLoading && <Spinner size='large'/>}
+      {!conditionsLoading && (<>
+        <section>
+          <h3>Huidige conditions:</h3>
+          <div className="character-conditions-form-control__conditions">
+            {currentConditions.map(condition => (
+              <ConditionBadge
+                key={`${characterId}.${condition}`}
+                label={condition}
+                onClick={() => handleConditionChange(condition, 'remove')}
+              />
+            ))}
+          </div>
+        </section>
 
-      <section>
-        <h3>Beschikbare conditions:</h3>
-        <div className="character-conditions-form-control">
-          {availableCharacterConditions().map(condition => (
-            <ConditionBadge
-              key={`${characterId}.${condition.name}`}
-              label={condition.name}
-              onClick={() => handleConditionChange(condition.name, 'add')}
-            />
-          ))}
-        </div>
-      </section>
+        <section>
+          <h3>Beschikbare conditions:</h3>
+          <div className="character-conditions-form-control__conditions">
+            {availableCharacterConditions().map(condition => (
+              <ConditionBadge
+                key={`${characterId}.${condition.name}`}
+                label={condition.name}
+                onClick={() => handleConditionChange(condition.name, 'add')}
+              />
+            ))}
+          </div>
+        </section>
 
-      <p>
-        Klik op een condition om te (de)selecteren.
-      </p>
-    </>)}
-  </>);
+        <p>
+          Klik op een condition om te (de)selecteren.
+        </p>
+      </>)}
+    </div>
+  );
 }
 
 export default CharacterConditionsFormControl;

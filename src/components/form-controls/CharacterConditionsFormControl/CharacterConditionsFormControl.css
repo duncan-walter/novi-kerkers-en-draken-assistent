@@ -1,5 +1,11 @@
 .character-conditions-form-control {
     display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.character-conditions-form-control__conditions {
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: .5em;

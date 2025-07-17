@@ -34,9 +34,3 @@
     flex-wrap: wrap;
     gap: .5em;
 }
-
-.condition-selection__dialog {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
