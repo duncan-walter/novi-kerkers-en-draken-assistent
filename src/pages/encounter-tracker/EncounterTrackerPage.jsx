@@ -17,6 +17,7 @@ import Button from "../../components/ui/Button/Button.jsx";
 import CharacterCard from "../../components/ui/CharacterCard/CharacterCard.jsx";
 import ConditionBadge from "../../components/ui/ConditionBadge/ConditionBadge.jsx";
 import Dialog from "../../components/ui/Dialog/Dialog.jsx";
+import NumberFormControl from "../../components/form-controls/NumberFormControl/NumberFormControl.jsx";
 
 // Step components
 import EncounterTrackerConditionSelection from "./encounter-tracker-condition-selection/EncounterTrackerConditionSelection.jsx";
@@ -37,6 +38,7 @@ function EncounterTrackerPage() {
     }))
   ];
 
+  // States
   const [currentStepNumber, setCurrentStepNumber] = useState(0);
   const [showNextStepButton, setShowNextStepButton] = useState(true);
   const [activeCharacter, setActiveCharacter] = useState(null);
@@ -46,6 +48,7 @@ function EncounterTrackerPage() {
     character: null
   });
 
+  // Forms
   const {
     register,
     setValue,
@@ -60,7 +63,22 @@ function EncounterTrackerPage() {
       conditions: {}
     }
   });
+  const {
+    register: editCharacterRegister,
+    handleSubmit: editCharacterHandleSubmit,
+    reset: editCharacterReset,
+    formState: { errors: editCharacterErrors },
+  } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      newCurrentHitPoints: 0,
+      newArmorClass: 0,
+      newInitiative: 0,
+      newConditions: []
+    }
+  });
 
+  // Watches
   const selectedCharacters = watch('selectedCharacters');
   const initiatives = watch('initiatives');
   const conditions = watch('conditions');
@@ -156,23 +174,54 @@ function EncounterTrackerPage() {
         ...defaultProperties,
         closeDialogLabel: 'Nee',
         confirmDialogLabel: 'Ja',
-        onConfirmDialog: () => {
-          handleDeleteCharacter();
-
-          if (dialog.character.id === activeCharacter.id) {
-            handleHighlightNextActiveCharacter();
-          }
-
-          setDialog({isOpen: false, mode: 'inactive', character: null});
-        }
+        onConfirmDialog: onDeleteCharacterSubmit
       }
     }
 
     if (dialog.mode === 'edit') {
       return {
-        ...defaultProperties
-      }
+        ...defaultProperties,
+        closeDialogLabel: 'Annuleren',
+        confirmDialogLabel: 'Opslaan',
+        onConfirmDialog: editCharacterHandleSubmit(onEditCharacterSubmit)
+      };
     }
+  }
+
+  const onEditCharacterSubmit = (data) => {
+    const {newCurrentHitPoints, newArmorClass, newInitiative, newConditions } = data;
+
+    const updatedCharacters = selectedCharacters.map(character => {
+      return character.id === dialog.character.id
+        ? {...character, currentHitPoints: newCurrentHitPoints, armorClass: newArmorClass}
+        : character
+    });
+
+    const updatedInitiatives = {
+      ...initiatives,
+      [dialog.character.id]: newInitiative
+    };
+
+    const updatedConditions = {
+      ...conditions,
+      [dialog.character.id]: newConditions
+    };
+
+    setValue('selectedCharacters', updatedCharacters);
+    setValue('initiatives', updatedInitiatives)
+    setValue('conditions', updatedConditions)
+
+    setDialog({isOpen: false, mode: 'inactive', character: null});
+  }
+
+  const onDeleteCharacterSubmit = () => {
+    handleDeleteCharacter();
+
+    if (dialog.character.id === activeCharacter.id) {
+      handleHighlightNextActiveCharacter();
+    }
+
+    setDialog({isOpen: false, mode: 'inactive', character: null});
   }
 
   useEffect(() => {
@@ -242,7 +291,15 @@ function EncounterTrackerPage() {
                 <div className="encounter-tracker__table-cell encounter-tracker__management-cell">
                   <Button
                     icon={PencilIcon}
-                    onClick={() => setDialog({isOpen: true, mode: 'edit', character: character})}
+                    onClick={() => {
+                      editCharacterReset({
+                        newCurrentHitPoints: character.currentHitPoints,
+                        newArmorClass: character.armorClass,
+                        newInitiative: initiatives[character.id],
+                        newConditions: conditions[character.id]
+                      });
+                      setDialog({isOpen: true, mode: 'edit', character: character});
+                    }}
                   />
 
                   <Button
@@ -279,11 +336,53 @@ function EncounterTrackerPage() {
             </em></p>
           </>)}
 
-          {dialog.mode === 'edit' && (
+          {dialog.mode === 'edit' && (<>
             <h3><b>
-              Gevechtseigenschappen van {dialog.character.name}.
+              Gevechtseigenschappen van&nbsp;
+              <u>{dialog.character.name}</u>.
             </b></h3>
-          )}
+
+            <form>
+              <NumberFormControl
+                id="newCurrentHitPoints"
+                name="newCurrentHitPoints"
+                label="Huidige HP"
+                register={editCharacterRegister}
+                error={editCharacterErrors.newCurrentHitPoints}
+                validationRules={{
+                  required: true,
+                  minimumValue: 0,
+                  maximumValue: dialog.character.maxHitPoints
+                }}
+              />
+
+              <NumberFormControl
+                id="newArmorClass"
+                name="newArmorClass"
+                label="Armor class"
+                register={editCharacterRegister}
+                error={editCharacterErrors.newArmorClass}
+                validationRules={{
+                  required: true,
+                  minimumValue: -10,
+                  maximumValue: 50
+                }}
+              />
+
+              <NumberFormControl
+                id="newInitiative"
+                name="newInitiative"
+                label="Initiatief rol"
+                register={editCharacterRegister}
+                error={editCharacterErrors.newInitiative}
+                validationRules={{
+                  required: true,
+                  minimumValue: 1,
+                  maximumValue: 20
+                }}
+              />
+            </form>
+          </>)}
         </div>
       </Dialog>
     </Panel>
