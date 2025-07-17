@@ -87,7 +87,7 @@ function EncounterTrackerPage() {
   }
 
   const handleHighlightNextActiveCharacter = () => {
-    const currentActiveCharacterIndex = sortedCharacters.indexOf(activeCharacter);
+    const currentActiveCharacterIndex = sortedCharacters.findIndex(character => character.id === activeCharacter.id);
     const nextActiveCharacterIndex = (currentActiveCharacterIndex + 1) % sortedCharacters.length;
     setActiveCharacter(sortedCharacters[nextActiveCharacterIndex]);
   }
@@ -157,11 +157,11 @@ function EncounterTrackerPage() {
         closeDialogLabel: 'Nee',
         confirmDialogLabel: 'Ja',
         onConfirmDialog: () => {
+          handleDeleteCharacter();
+
           if (dialog.character.id === activeCharacter.id) {
             handleHighlightNextActiveCharacter();
           }
-
-          handleDeleteCharacter();
 
           setDialog({isOpen: false, mode: 'inactive', character: null});
         }
