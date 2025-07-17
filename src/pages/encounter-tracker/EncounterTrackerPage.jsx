@@ -319,7 +319,7 @@ function EncounterTrackerPage() {
                         newCurrentHitPoints: character.currentHitPoints,
                         newArmorClass: character.armorClass,
                         newInitiative: initiatives[character.id],
-                        newConditions: conditions[character.id]
+                        newConditions: conditions[character.id] ?? []
                       });
                       setDialog({isOpen: true, mode: 'edit', character: character});
                     }}
