@@ -83,7 +83,7 @@ function EncounterTrackerPage() {
       newConditions: []
     }
   });
-  
+
   const {showToast} = useToaster();
 
   // Watches
