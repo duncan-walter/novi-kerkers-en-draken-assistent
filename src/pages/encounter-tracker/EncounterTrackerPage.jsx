@@ -11,6 +11,9 @@ import calculateInitiative from "../../helpers/calculateInitiative.js";
 import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 
+// Custom hooks
+import {useToaster} from "../../contexts/ToasterContext.jsx";
+
 // Components
 import Panel from "../../components/ui/Panel/Panel.jsx";
 import Button from "../../components/ui/Button/Button.jsx";
@@ -80,6 +83,8 @@ function EncounterTrackerPage() {
       newConditions: []
     }
   });
+  
+  const {showToast} = useToaster();
 
   // Watches
   const selectedCharacters = watch('selectedCharacters');
@@ -222,6 +227,9 @@ function EncounterTrackerPage() {
     setValue('conditions', updatedConditions)
 
     setDialog({isOpen: false, mode: 'inactive', character: null});
+
+    const updatedCharacterName = selectedCharacters.find(character => character.id === dialog.character.id).name;
+    showToast(`${updatedCharacterName} voelt zich zo goed als nieuw! Of niet...`, 'success');
   }
 
   const onDeleteCharacterSubmit = () => {
