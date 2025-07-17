@@ -8,6 +8,7 @@
 .encounter-tracker__table {
     display: flex;
     flex-direction: column;
+    width: 100%;
     min-width: 800px;
     gap: .5em;
 }
@@ -15,11 +16,11 @@
 .encounter-tracker__table-header,
 .encounter-tracker__table-row {
     display: grid;
-    grid-template-columns: 2fr .875fr .875fr 1.25fr auto;
+    grid-template-columns: 2fr .75fr .5fr .5fr 1.5fr .75fr;
 }
 
 .encounter-tracker__table-header {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .encounter-tracker__centered-heading {

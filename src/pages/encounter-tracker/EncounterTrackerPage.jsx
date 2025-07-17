@@ -262,7 +262,8 @@ function EncounterTrackerPage() {
             <div className="encounter-tracker__table-header">
               <h2 className="encounter-tracker__heading">Personage</h2>
               <h2 className="encounter-tracker__centered-heading">Initiatief</h2>
-              <h2 className="encounter-tracker__centered-heading">Hit points</h2>
+              <h2 className="encounter-tracker__centered-heading">HP</h2>
+              <h2 className="encounter-tracker__centered-heading">AC</h2>
               <h2 className="encounter-tracker__heading">Conditions</h2>
               <h2 className="encounter-tracker__heading">Beheer</h2>
             </div>
@@ -282,6 +283,10 @@ function EncounterTrackerPage() {
 
                 <div className="encounter-tracker__table-centered-cell">
                   <p>{character.currentHitPoints}/{character.maxHitPoints}</p>
+                </div>
+
+                <div className="encounter-tracker__table-centered-cell">
+                  <p>{character.armorClass}</p>
                 </div>
 
                 <div className="encounter-tracker__table-cell">
