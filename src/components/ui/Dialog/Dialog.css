@@ -21,4 +21,6 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    gap: .5em;
+    margin-top: .5em;
 }
