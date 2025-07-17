@@ -114,6 +114,13 @@ function EncounterTrackerPage() {
     setValue('selectedCharacters',
       selectedCharacters.filter(selectedCharacter => selectedCharacter.id !== dialog.character.id)
     );
+
+    // Underscores are discards, this mechanism separates the deleted initiatives & conditions from te remaining ones.
+    const {[dialog.character.id]: _, ...remainingInitiatives} = initiatives;
+    setValue('initiatives', remainingInitiatives);
+
+    const {[dialog.character.id]: __, ...remainingConditions} = conditions;
+    setValue('conditions', remainingConditions)
   }
 
   const isStepValid = () => {
