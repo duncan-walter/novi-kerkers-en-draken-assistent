@@ -4,6 +4,7 @@ import './GameInformationPage.css';
 // Framework dependencies
 import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
 
 // Custom hooks
 import useRequestState from "../../hooks/useRequestState.js";
@@ -19,6 +20,7 @@ import Panel from "../../components/ui/Panel/Panel.jsx";
 import Spinner from "../../components/ui/Spinner/Spinner.jsx";
 import SelectFormControl from "../../components/form-controls/SelectFormControl/SelectFormControl.jsx";
 import SearchFormControl from "../../components/form-controls/SearchFormControl/SearchFormControl.jsx";
+import SearchResultItem from "../../components/ui/SearchResultItem/SearchResultItem.jsx";
 
 function GameInformationPage() {
   const {
@@ -49,8 +51,12 @@ function GameInformationPage() {
     }
   });
 
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResult, setSearchResult] = useState({
+    type: null,
+    items: []
+  });
 
+  const navigate = useNavigate();
   const {showToast} = useToaster();
 
   const onSearchSubmit = async (data) => {
@@ -58,7 +64,7 @@ function GameInformationPage() {
     let items = []
 
     switch (data.gameInformationType) {
-      case 'weapon':
+      case 'weapons':
         response = await getWeaponsInformation();
         items = response?.equipment || [];
         break;
@@ -67,91 +73,95 @@ function GameInformationPage() {
         items = response?.results || [];
         break;
       default:
-        setSearchResults([]);
+        setSearchResult({type: null, items: []});
         return;
     }
 
     const filteredResults = filterResponse(items, data.gameInformationSearchTerm);
-    setSearchResults(filteredResults);
+    setSearchResult({type: data.gameInformationType, items: [...filteredResults]});
   }
 
-  const filterResponse = (items, searchTerm) => {
-    if (!searchTerm) {
-      return items;
+    const filterResponse = (items, searchTerm) => {
+      if (!searchTerm) {
+        return items;
+      }
+
+      const normalizedSearchTerm = searchTerm.toLowerCase().trim();
+
+      return items.filter(item =>
+        item.name.toLowerCase().includes(normalizedSearchTerm)
+      );
     }
 
-    const normalizedSearchTerm = searchTerm.toLowerCase().trim();
+    // Generic error from useRequestState.
+    useEffect(() => {
+      [weaponsInformationError, monstersInformationError].forEach(error => {
+        if (error) {
+          showToast(error, 'error');
+        }
+      });
+    }, [weaponsInformationError, monstersInformationError]);
 
-    return items.filter(item =>
-      item.name.toLowerCase().includes(normalizedSearchTerm)
+    return (
+      <Panel
+        title="Spelinformatie"
+        panelButton={
+          <Button
+            type="button"
+            label="Favorieten"
+          />
+        }
+      >
+        <div className="game-information-search-controls">
+          <form onSubmit={handleSubmit(onSearchSubmit)}>
+            <SelectFormControl
+              id="gameInformationType"
+              name="gameInformationType"
+              label="Type"
+              placeholder="Selecteer type"
+              register={register}
+              error={errors.gameInformationType}
+              options={[
+                {value: "weapons", label: "Wapens"},
+                {value: "monsters", label: "Monsters"}
+              ]}
+              validationRules={{
+                required: true
+              }}
+            />
+
+            <SearchFormControl
+              id="gameInformationSearchTerm"
+              name="gameInformationSearchTerm"
+              label="Zoekopdracht"
+              register={register}
+              error={errors.gameInformationSearchTerm}
+              validationRules={{
+                minimumLength: 0,
+                maximumLength: 50
+              }}
+              onSearch={handleSubmit(onSearchSubmit)}
+            />
+          </form>
+        </div>
+
+        <div className="game-information-search-results">
+          {weaponsInformationLoading || monstersInformationLoading ? (
+            <Spinner size="large"/>
+          ) : (
+            searchResult.items.length >= 1 && (searchResult.items.map(searchResultItem => (
+              <SearchResultItem
+                key={searchResultItem.name}
+                label={searchResultItem.name}
+                onClick={() => {
+                  navigate(`${searchResult.type}/${searchResultItem.index}`)
+                }}
+              />
+            )))
+          )}
+        </div>
+      </Panel>
     );
   }
 
-  // Generic error from useRequestState.
-  useEffect(() => {
-    [weaponsInformationError, monstersInformationError].forEach(error => {
-      if (error) {
-        showToast(error, 'error');
-      }
-    });
-  }, [weaponsInformationError, monstersInformationError]);
-
-  return (
-    <Panel
-      title="Spelinformatie"
-      panelButton={
-        <Button
-          type="button"
-          label="Favorieten"
-        />
-      }
-    >
-      <div className="game-information-search-controls">
-        <form onSubmit={handleSubmit(onSearchSubmit)}>
-          <SelectFormControl
-            id="gameInformationType"
-            name="gameInformationType"
-            label="Type"
-            placeholder="Selecteer type"
-            register={register}
-            error={errors.gameInformationType}
-            options={[
-              {value: "weapon", label: "Wapens"},
-              {value: "monsters", label: "Monsters"}
-            ]}
-            validationRules={{
-              required: true
-            }}
-          />
-
-          <SearchFormControl
-            id="gameInformationSearchTerm"
-            name="gameInformationSearchTerm"
-            label="Zoekopdracht"
-            register={register}
-            error={errors.gameInformationSearchTerm}
-            validationRules={{
-              minimumLength: 0,
-              maximumLength: 50
-            }}
-            onSearch={handleSubmit(onSearchSubmit)}
-          />
-        </form>
-      </div>
-
-      <div className="game-information-search-results">
-        {weaponsInformationLoading || monstersInformationLoading ? (
-          <Spinner size="large"/>
-        ) : (
-          searchResults.length >= 1 && (
-            searchResults.map(searchResult => (
-              <p key={searchResult.name}>{searchResult.name}</p>
-            ))
-          )
-        )}
-      </div>
-    </Panel>
-  );
-}
-
-export default GameInformationPage;
+  export default GameInformationPage;
