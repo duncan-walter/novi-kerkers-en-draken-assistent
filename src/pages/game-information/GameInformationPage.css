@@ -1,0 +1,5 @@
+.game-information-search-controls form {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
