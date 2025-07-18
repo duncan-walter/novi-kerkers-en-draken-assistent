@@ -21,6 +21,8 @@ import TestingZonePage from "./pages/testing-zone/TestingZonePage.jsx";
 import CharacterOverviewPage from "./pages/character-management/character-overview/CharacterOverviewPage.jsx";
 import CharacterCreatePage from "./pages/character-management/character-create/CharacterCreatePage.jsx";
 import CharacterDetailsPage from "./pages/character-management/character-details/CharacterDetailsPage.jsx";
+import WeaponInformationPage from "./pages/game-information/weapon-information/WeaponInformationPage.jsx";
+import MonsterInformationPage from "./pages/game-information/monster-information/MonsterInformationPage.jsx";
 
 function App() {
   const authorizationContext = useContext(AuthorizationContext);
@@ -42,7 +44,11 @@ function App() {
           <Route path="create-character" element={<CharacterCreatePage/>}/>
         </Route>
         <Route path="encounter-tracker" element={<EncounterTrackerPage/>}/>
-        <Route path="game-information" element={<GameInformationPage/>}/>
+        <Route path="game-information">
+          <Route index element={<GameInformationPage/>}/>
+          <Route path="weapons/:id" element={<WeaponInformationPage/>}/>
+          <Route path="monsters/:id" element={<MonsterInformationPage/>}/>
+        </Route>
         <Route path="testing-zone" element={<TestingZonePage/>}/>
       </Route>
 
