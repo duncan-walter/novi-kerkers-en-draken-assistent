@@ -30,13 +30,13 @@ function WeaponInformationPage() {
   }, [params.id]);
 
   return (
-    <Panel title={weapon && weapon.name}>
-      {loading && (
-        <Spinner size="large"/>
-      )}
+    <div className="weapon-information">
+      <Panel title={weapon && weapon.name}>
+        {loading && (
+          <Spinner size="large"/>
+        )}
 
-      {!loading && weapon && (
-        <div className="weapon-information">
+        {!loading && weapon && (<>
           <div className="weapon-information__row">
             <dl className="weapon-information__column">
               <div>
@@ -90,9 +90,9 @@ function WeaponInformationPage() {
               <dd>{weapon.cost.quantity}{weapon.cost.unit}</dd>
             </div>
           </dl>
-        </div>
-      )}
-    </Panel>
+        </>)}
+      </Panel>
+    </div>
   );
 }
 
