@@ -52,53 +52,55 @@ function LoginPage() {
     }
   }
 
-  return (<>
-    {/* TODO: See how a practical reusable component can be realized for the welcome message on the login/register pages. */}
-    <div className="login-welcome-message">
-      <p className="login-welcome-message__title">
-        Een mistige stem roept:
-      </p>
-      <p className="login-welcome-message__spoken">
-        "Wat is je naam, reiziger?<br/>
-        En bewijs dat je bent wie je zegt te zijn!"</p>
-    </div>
-
-    <Panel variant="medium">
-      <form className="login-form" onSubmit={handleSubmit(handleFormSubmit)}>
-        <TextFormControl
-          id="login-form-email"
-          name="loginFormEmail"
-          label="E-mailadres"
-          placeholder="student@novi-education.nl"
-          register={register}
-          error={errors.loginFormEmail}
-          validationRules={{
-            required: true
-          }}
-        />
-
-        <PasswordFormControl
-          id="login-form-password"
-          name="loginFormPassword"
-          label="Wachtwoord"
-          register={register}
-          error={errors.loginFormPassword}
-          validationRules={{
-            required: true
-          }}
-        />
-
-        <p className="login-form__no-account">
-          Nog geen account?&nbsp;
-          <LinkElement url="/register" label="Klik dan hier!" underline={true}/>
+  return (
+    <div>
+      {/* TODO: See how a practical reusable component can be realized for the welcome message on the login/register pages. */}
+      <div className="login-welcome-message">
+        <p className="login-welcome-message__title">
+          Een mistige stem roept:
         </p>
+        <p className="login-welcome-message__spoken">
+          "Wat is je naam, reiziger?<br/>
+          En bewijs dat je bent wie je zegt te zijn!"</p>
+      </div>
 
-        <div className="login-form__submit-button">
-          <Button label="Inloggen" type="submit"/>
-        </div>
-      </form>
-    </Panel>
-  </>);
+      <Panel variant="medium">
+        <form className="login-form" onSubmit={handleSubmit(handleFormSubmit)}>
+          <TextFormControl
+            id="login-form-email"
+            name="loginFormEmail"
+            label="E-mailadres"
+            placeholder="student@novi-education.nl"
+            register={register}
+            error={errors.loginFormEmail}
+            validationRules={{
+              required: true
+            }}
+          />
+
+          <PasswordFormControl
+            id="login-form-password"
+            name="loginFormPassword"
+            label="Wachtwoord"
+            register={register}
+            error={errors.loginFormPassword}
+            validationRules={{
+              required: true
+            }}
+          />
+
+          <p className="login-form__no-account">
+            Nog geen account?&nbsp;
+            <LinkElement url="/register" label="Klik dan hier!" underline={true}/>
+          </p>
+
+          <div className="login-form__submit-button">
+            <Button label="Inloggen" type="submit"/>
+          </div>
+        </form>
+      </Panel>
+    </div>
+  );
 }
 
 export default LoginPage;

@@ -75,71 +75,73 @@ function RegisterPage() {
     }
   }, [password]);
 
-  return (<>
-    <div className="register-welcome-message">
-      <p className="register-welcome-message__title">
-        Een nieuwe held betreedt de wereld.
-      </p>
-      <p className="register-welcome-message__spoken">
-        "Maar eerst: wie ben jij echt?<br/>
-        Vul je gegevens in, jongeling."
-      </p>
-    </div>
-
-    <Panel variant="medium">
-      <form className="register-form" onSubmit={handleSubmit(handleFormSubmit)}>
-        <TextFormControl
-          id="register-form-email"
-          name="registerFormEmail"
-          label="E-mailadres"
-          placeholder="student@novi-education.nl"
-          register={register}
-          error={errors.registerFormEmail}
-          validationRules={{
-            required: true,
-            validateEmail: true
-          }}
-        />
-
-        <PasswordFormControl
-          id="register-form-password"
-          name="registerFormPassword"
-          label="Wachtwoord"
-          register={register}
-          error={errors.registerFormPassword}
-          validationRules={{
-            required: true,
-            minimumLength: 8,
-            maximumLength: 255
-          }}
-        />
-
-        <PasswordFormControl
-          id="register-form-repeat-password"
-          name="registerFormRepeatPassword"
-          label="Wachtwoord herhalen"
-          register={register}
-          error={errors.registerFormRepeatPassword}
-          validationRules={{
-            required: true,
-            matchFormControl: {
-              name: 'registerFormPassword',
-              label: 'Wachtwoord'
-            }
-          }}
-        />
-
-        <p className="register-form__no-account">
-          Heb je al een account?&nbsp;
-          <LinkElement url="/login" label="Klik dan hier!" underline={true}/>
+  return (
+    <div>
+      <div className="register-welcome-message">
+        <p className="register-welcome-message__title">
+          Een nieuwe held betreedt de wereld.
         </p>
+        <p className="register-welcome-message__spoken">
+          "Maar eerst: wie ben jij echt?<br/>
+          Vul je gegevens in, jongeling."
+        </p>
+      </div>
 
-        <div className="register-form__submit-button">
-          <Button label="Registreren" type="submit"/>
-        </div>
-      </form>
-    </Panel>
-  </>);
+      <Panel variant="medium">
+        <form className="register-form" onSubmit={handleSubmit(handleFormSubmit)}>
+          <TextFormControl
+            id="register-form-email"
+            name="registerFormEmail"
+            label="E-mailadres"
+            placeholder="student@novi-education.nl"
+            register={register}
+            error={errors.registerFormEmail}
+            validationRules={{
+              required: true,
+              validateEmail: true
+            }}
+          />
+
+          <PasswordFormControl
+            id="register-form-password"
+            name="registerFormPassword"
+            label="Wachtwoord"
+            register={register}
+            error={errors.registerFormPassword}
+            validationRules={{
+              required: true,
+              minimumLength: 8,
+              maximumLength: 255
+            }}
+          />
+
+          <PasswordFormControl
+            id="register-form-repeat-password"
+            name="registerFormRepeatPassword"
+            label="Wachtwoord herhalen"
+            register={register}
+            error={errors.registerFormRepeatPassword}
+            validationRules={{
+              required: true,
+              matchFormControl: {
+                name: 'registerFormPassword',
+                label: 'Wachtwoord'
+              }
+            }}
+          />
+
+          <p className="register-form__no-account">
+            Heb je al een account?&nbsp;
+            <LinkElement url="/login" label="Klik dan hier!" underline={true}/>
+          </p>
+
+          <div className="register-form__submit-button">
+            <Button label="Registreren" type="submit"/>
+          </div>
+        </form>
+      </Panel>
+    </div>
+  );
 }
 
 export default RegisterPage;
