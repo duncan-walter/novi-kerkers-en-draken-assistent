@@ -1,6 +1,10 @@
 // Styling
 import './GameInformationPage.css';
 
+// Icons
+import {FileDashedIcon} from "@phosphor-icons/react";
+
+
 // Framework dependencies
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
@@ -19,6 +23,7 @@ import Panel from "../../components/ui/Panel/Panel.jsx";
 import Spinner from "../../components/ui/Spinner/Spinner.jsx";
 import SearchResultItem from "../../components/ui/SearchResultItem/SearchResultItem.jsx";
 import GameInformationSearchForm from "../../components/forms/GameInformationSearchForm/GameInformationSearchForm.jsx";
+import ZeroState from "../../components/ui/ZeroState/ZeroState.jsx";
 
 function GameInformationPage() {
   const {
@@ -38,7 +43,7 @@ function GameInformationPage() {
     isAbortable: true
   });
 
-
+  const [userHasSearched, setUserHasSearched] = useState(false);
   const [searchResult, setSearchResult] = useState({
     type: null,
     items: []
@@ -48,6 +53,8 @@ function GameInformationPage() {
   const {showToast} = useToaster();
 
   const onSearchSubmit = async (data) => {
+    setUserHasSearched(true);
+
     let response;
     let items = []
 
@@ -109,11 +116,24 @@ function GameInformationPage() {
         />
       </div>
 
-      <div className="game-information-search-results">
+      <div
+        className={
+          searchResult.items.length >= 1 || weaponsInformationLoading || monstersInformationLoading
+            ? "game-information-search-results"
+            : "game-information-search-no-results"
+        }
+      >
         {weaponsInformationLoading || monstersInformationLoading ? (
           <Spinner size="large"/>
-        ) : (
-          searchResult.items.length >= 1 && (searchResult.items.map(searchResultItem => (
+        ) : !userHasSearched ? (
+          <h2>Selecteer een type spelinformatie en druk op de zoekknop!</h2>
+        ) : searchResult.items.length === 0 ? (
+          <ZeroState
+            icon={FileDashedIcon}
+            text="Je bladert door vergeelde perkamentrollen, maar vindt geen spoor van wat je zoekt."
+          />
+        ) : searchResult.items.length >= 1 && (
+          searchResult.items.map(searchResultItem => (
             <SearchResultItem
               key={searchResultItem.name}
               label={searchResultItem.name}
@@ -121,7 +141,7 @@ function GameInformationPage() {
                 navigate(`${searchResult.type}/${searchResultItem.index}`)
               }}
             />
-          )))
+          ))
         )}
       </div>
     </Panel>
