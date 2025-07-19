@@ -81,87 +81,90 @@ function GameInformationPage() {
     setSearchResult({type: data.gameInformationType, items: [...filteredResults]});
   }
 
-    const filterResponse = (items, searchTerm) => {
-      if (!searchTerm) {
-        return items;
-      }
+  const filterResponse = (items, searchTerm) => {
+    // TODO: For now magic items are not supported yet, only normal equipment. Implement this in an elegant way when necessary.
+    let supportedItems = items.filter(item => !item.url.includes('magic-items'));
 
-      const normalizedSearchTerm = searchTerm.toLowerCase().trim();
-
-      return items.filter(item =>
-        item.name.toLowerCase().includes(normalizedSearchTerm)
-      );
+    if (!searchTerm) {
+      return supportedItems;
     }
 
-    // Generic error from useRequestState.
-    useEffect(() => {
-      [weaponsInformationError, monstersInformationError].forEach(error => {
-        if (error) {
-          showToast(error, 'error');
-        }
-      });
-    }, [weaponsInformationError, monstersInformationError]);
+    const normalizedSearchTerm = searchTerm.toLowerCase().trim();
 
-    return (
-      <Panel
-        title="Spelinformatie"
-        panelButton={
-          <Button
-            type="button"
-            label="Favorieten"
-          />
-        }
-      >
-        <div className="game-information-search-controls">
-          <form onSubmit={handleSubmit(onSearchSubmit)}>
-            <SelectFormControl
-              id="gameInformationType"
-              name="gameInformationType"
-              label="Type"
-              placeholder="Selecteer type"
-              register={register}
-              error={errors.gameInformationType}
-              options={[
-                {value: "weapons", label: "Wapens"},
-                {value: "monsters", label: "Monsters"}
-              ]}
-              validationRules={{
-                required: true
-              }}
-            />
-
-            <SearchFormControl
-              id="gameInformationSearchTerm"
-              name="gameInformationSearchTerm"
-              label="Zoekopdracht"
-              register={register}
-              error={errors.gameInformationSearchTerm}
-              validationRules={{
-                minimumLength: 0,
-                maximumLength: 50
-              }}
-              onSearch={handleSubmit(onSearchSubmit)}
-            />
-          </form>
-        </div>
-
-        <div className="game-information-search-results">
-          {weaponsInformationLoading || monstersInformationLoading ? (
-            <Spinner size="large"/>
-          ) : (
-            searchResult.items.length >= 1 && (searchResult.items.map(searchResultItem => (
-              <SearchResultItem
-                key={searchResultItem.name}
-                label={searchResultItem.name}
-                onClick={() => {
-                  navigate(`${searchResult.type}/${searchResultItem.index}`)
-                }}
-              />
-            )))
-          )}
-        </div>
-      </Panel>
+    return supportedItems.filter(item =>
+      item.name.toLowerCase().includes(normalizedSearchTerm)
     );
   }
 
-  export default GameInformationPage;
+  // Generic error from useRequestState.
+  useEffect(() => {
+    [weaponsInformationError, monstersInformationError].forEach(error => {
+      if (error) {
+        showToast(error, 'error');
+      }
+    });
+  }, [weaponsInformationError, monstersInformationError]);
+
+  return (
+    <Panel
+      title="Spelinformatie"
+      panelButton={
+        <Button
+          type="button"
+          label="Favorieten"
+        />
+      }
+    >
+      <div className="game-information-search-controls">
+        <form onSubmit={handleSubmit(onSearchSubmit)}>
+          <SelectFormControl
+            id="gameInformationType"
+            name="gameInformationType"
+            label="Type"
+            placeholder="Selecteer type"
+            register={register}
+            error={errors.gameInformationType}
+            options={[
+              {value: "weapons", label: "Wapens"},
+              {value: "monsters", label: "Monsters"}
+            ]}
+            validationRules={{
+              required: true
+            }}
+          />
+
+          <SearchFormControl
+            id="gameInformationSearchTerm"
+            name="gameInformationSearchTerm"
+            label="Zoekopdracht"
+            register={register}
+            error={errors.gameInformationSearchTerm}
+            validationRules={{
+              minimumLength: 0,
+              maximumLength: 50
+            }}
+            onSearch={handleSubmit(onSearchSubmit)}
+          />
+        </form>
+      </div>
+
+      <div className="game-information-search-results">
+        {weaponsInformationLoading || monstersInformationLoading ? (
+          <Spinner size="large"/>
+        ) : (
+          searchResult.items.length >= 1 && (searchResult.items.map(searchResultItem => (
+            <SearchResultItem
+              key={searchResultItem.name}
+              label={searchResultItem.name}
+              onClick={() => {
+                navigate(`${searchResult.type}/${searchResultItem.index}`)
+              }}
+            />
+          )))
+        )}
+      </div>
+    </Panel>
+  );
+}
+
+export default GameInformationPage;
