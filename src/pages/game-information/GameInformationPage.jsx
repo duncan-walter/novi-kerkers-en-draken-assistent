@@ -3,7 +3,6 @@ import './GameInformationPage.css';
 
 // Framework dependencies
 import {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 
 // Custom hooks
@@ -18,9 +17,8 @@ import monsterInformationService from "../../services/monsterInformationService.
 import Button from "../../components/ui/Button/Button.jsx";
 import Panel from "../../components/ui/Panel/Panel.jsx";
 import Spinner from "../../components/ui/Spinner/Spinner.jsx";
-import SelectFormControl from "../../components/form-controls/SelectFormControl/SelectFormControl.jsx";
-import SearchFormControl from "../../components/form-controls/SearchFormControl/SearchFormControl.jsx";
 import SearchResultItem from "../../components/ui/SearchResultItem/SearchResultItem.jsx";
+import GameInformationSearchForm from "../../components/forms/GameInformationSearchForm/GameInformationSearchForm.jsx";
 
 function GameInformationPage() {
   const {
@@ -40,16 +38,6 @@ function GameInformationPage() {
     isAbortable: true
   });
 
-  const {
-    handleSubmit,
-    register,
-    formState: {errors}
-  } = useForm({
-    defaultValues: {
-      gameInformationType: null,
-      gameInformationSearchTerm: null
-    }
-  });
 
   const [searchResult, setSearchResult] = useState({
     type: null,
@@ -115,37 +103,10 @@ function GameInformationPage() {
         />
       }
     >
-      <div className="game-information-search-controls">
-        <form onSubmit={handleSubmit(onSearchSubmit)}>
-          <SelectFormControl
-            id="gameInformationType"
-            name="gameInformationType"
-            label="Type"
-            placeholder="Selecteer type"
-            register={register}
-            error={errors.gameInformationType}
-            options={[
-              {value: "weapons", label: "Wapens"},
-              {value: "monsters", label: "Monsters"}
-            ]}
-            validationRules={{
-              required: true
-            }}
-          />
-
-          <SearchFormControl
-            id="gameInformationSearchTerm"
-            name="gameInformationSearchTerm"
-            label="Zoekopdracht"
-            register={register}
-            error={errors.gameInformationSearchTerm}
-            validationRules={{
-              minimumLength: 0,
-              maximumLength: 50
-            }}
-            onSearch={handleSubmit(onSearchSubmit)}
-          />
-        </form>
+      <div className="game-information-search-form">
+        <GameInformationSearchForm
+          onSubmit={onSearchSubmit}
+        />
       </div>
 
       <div className="game-information-search-results">

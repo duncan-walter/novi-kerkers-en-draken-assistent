@@ -1,9 +1,3 @@
-.game-information-search-controls form {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-}
-
 .game-information-search-results {
     display: grid;
     grid-template-columns: repeat(6, 1fr);

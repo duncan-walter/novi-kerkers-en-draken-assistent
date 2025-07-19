@@ -1,0 +1,13 @@
+.game-information-search-form {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.game-information-search-form__type {
+    width: 200px;
+}
+
+.game-information-search-form__search-term {
+    width: 325px;
+}
