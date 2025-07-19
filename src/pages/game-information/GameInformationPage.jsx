@@ -4,7 +4,6 @@ import './GameInformationPage.css';
 // Icons
 import {FileDashedIcon} from "@phosphor-icons/react";
 
-
 // Framework dependencies
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
@@ -24,6 +23,10 @@ import Spinner from "../../components/ui/Spinner/Spinner.jsx";
 import SearchResultItem from "../../components/ui/SearchResultItem/SearchResultItem.jsx";
 import GameInformationSearchForm from "../../components/forms/GameInformationSearchForm/GameInformationSearchForm.jsx";
 import ZeroState from "../../components/ui/ZeroState/ZeroState.jsx";
+import PaginationControls from "../../components/ui/PaginationControls/PaginationControls.jsx";
+
+// Local variables
+const pageSize = 36;
 
 function GameInformationPage() {
   const {
@@ -44,9 +47,12 @@ function GameInformationPage() {
   });
 
   const [userHasSearched, setUserHasSearched] = useState(false);
-  const [searchResult, setSearchResult] = useState({
+  const [allResults, setAllResults] = useState([]);
+  const [currentPageResults, setCurrentPageResults] = useState({
     type: null,
-    items: []
+    items: [],
+    page: 1,
+    count: 0
   });
 
   const navigate = useNavigate();
@@ -68,16 +74,24 @@ function GameInformationPage() {
         items = response?.results || [];
         break;
       default:
-        setSearchResult({type: null, items: []});
+        setCurrentPageResults({type: null, items: [], page: 1, count: 0});
         return;
     }
 
+    // TODO: For now magic items are not supported yet, only normal equipment. Implement this in an elegant way when necessary.
     const filteredResults = filterResponse(items, data.gameInformationSearchTerm);
-    setSearchResult({type: data.gameInformationType, items: [...filteredResults]});
+    const pageResults = getPageResults(filteredResults, 1);
+
+    setAllResults(filteredResults);
+    setCurrentPageResults({
+      type: data.gameInformationType,
+      items: [...pageResults],
+      page: 1,
+      count: filteredResults.length
+    });
   }
 
   const filterResponse = (items, searchTerm) => {
-    // TODO: For now magic items are not supported yet, only normal equipment. Implement this in an elegant way when necessary.
     let supportedItems = items.filter(item => !item.url.includes('magic-items'));
 
     if (!searchTerm) {
@@ -90,6 +104,30 @@ function GameInformationPage() {
       item.name.toLowerCase().includes(normalizedSearchTerm)
     );
   }
+
+  // TODO: The current API used to retrieve game information does not support paging, update this to use API paging when supported.
+  const getPageResults = (items, page) => {
+    if (items.length <= pageSize) {
+      return items;
+    }
+
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = (page) * pageSize;
+
+    return items.slice(startIndex, endIndex);
+  }
+
+  useEffect(() => {
+    if (userHasSearched && currentPageResults.page) {
+      const nextPageResultItems = getPageResults(allResults, currentPageResults.page);
+
+      setCurrentPageResults(previousPageResults => ({
+          ...previousPageResults,
+          items: nextPageResultItems
+        })
+      );
+    }
+  }, [currentPageResults.page]);
 
   // Generic error from useRequestState.
   useEffect(() => {
@@ -116,34 +154,50 @@ function GameInformationPage() {
         />
       </div>
 
-      <div
-        className={
-          searchResult.items.length >= 1 || weaponsInformationLoading || monstersInformationLoading
-            ? "game-information-search-results"
-            : "game-information-search-no-results"
-        }
-      >
-        {weaponsInformationLoading || monstersInformationLoading ? (
-          <Spinner size="large"/>
-        ) : !userHasSearched ? (
-          <h2>Selecteer een type spelinformatie en druk op de zoekknop!</h2>
-        ) : searchResult.items.length === 0 ? (
-          <ZeroState
-            icon={FileDashedIcon}
-            text="Je bladert door vergeelde perkamentrollen, maar vindt geen spoor van wat je zoekt."
-          />
-        ) : searchResult.items.length >= 1 && (
-          searchResult.items.map(searchResultItem => (
-            <SearchResultItem
-              key={searchResultItem.name}
-              label={searchResultItem.name}
-              onClick={() => {
-                navigate(`${searchResult.type}/${searchResultItem.index}`)
-              }}
+      {currentPageResults.items.length >= 1 ? (
+        <>
+          <div className="game-information-search-results">
+            {currentPageResults.items.map(currentPageResult => (
+              <SearchResultItem
+                key={currentPageResult.name}
+                label={currentPageResult.name}
+                onClick={() => {
+                  navigate(`${currentPageResults.type}/${currentPageResult.index}`)
+                }}
+              />
+            ))}
+          </div>
+
+          <div className="game-information-search-results-pagination">
+            <PaginationControls
+              currentPage={currentPageResults.page}
+              pageSize={pageSize}
+              resultCount={currentPageResults.count}
+              onPrevious={() => setCurrentPageResults(previousPageResults => ({
+                ...previousPageResults,
+                page: previousPageResults.page - 1
+              }))}
+              onNext={() => setCurrentPageResults(previousPageResults => ({
+                ...previousPageResults,
+                page: previousPageResults.page + 1
+              }))}
             />
-          ))
-        )}
-      </div>
+          </div>
+        </>
+      ) : (
+        <div className="game-information-search-no-results">
+          {weaponsInformationLoading || monstersInformationLoading ? (
+            <Spinner size="large"/>
+          ) : !userHasSearched ? (
+            <h2>Selecteer een type spelinformatie en druk op de zoekknop!</h2>
+          ) : (
+            <ZeroState
+              icon={FileDashedIcon}
+              text="Je bladert door vergeelde perkamentrollen, maar vindt geen spoor van wat je zoekt."
+            />
+          )}
+        </div>
+      )}
     </Panel>
   );
 }
