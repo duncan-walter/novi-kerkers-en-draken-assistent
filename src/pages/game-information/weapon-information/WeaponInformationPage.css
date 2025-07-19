@@ -1,0 +1,39 @@
+.weapon-information {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em;
+}
+
+.weapon-information__row {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.weapon-information__row-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.weapon-information__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.weapon-information dt:after {
+    content: ':';
+}
+
+.weapon-information dd {
+    margin: .5em;
+}
+
+.weapon-information ul {
+    list-style: none;
+}
+
+.weapon-information ul li:before {
+    content: "- ";
+}
