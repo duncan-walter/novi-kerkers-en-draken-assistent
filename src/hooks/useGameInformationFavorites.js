@@ -32,8 +32,8 @@ function useGameInformationFavorites() {
     return favorites.some(favorite => getFavoriteKey(favorite) === favoriteKey);
   }
 
-  const sortedFavorites = [...favorites].sort((a, b) =>
-    a.name.localeCompare(b.name)
+  const sortedFavorites = [...favorites].sort((left, right) =>
+    left.name.localeCompare(right.name)
   );
 
   return {favorites: sortedFavorites, toggleFavorite, isFavorite};

@@ -11,6 +11,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 // Custom hooks
 import useRequestState from "../../hooks/useRequestState.js";
 import {useToaster} from "../../contexts/ToasterContext.jsx";
+import useGameInformationFavorites from "../../hooks/useGameInformationFavorites.js";
 
 // Services
 import weaponInformationService from "../../services/weaponInformationService.js";
@@ -53,7 +54,12 @@ function GameInformationPage() {
     items: [],
     page: 1
   });
+  const [previousSearch, setPreviousSearch] = useState({
+    allResults: [],
+    currentPageResults: []
+  });
 
+  const {favorites, toggleFavorite, isFavorite} = useGameInformationFavorites();
   const navigate = useNavigate();
   const location = useLocation();
   const {showToast} = useToaster();
@@ -68,11 +74,11 @@ function GameInformationPage() {
     switch (type) {
       case 'weapons':
         response = await getWeaponsInformation();
-        items = response?.equipment || [];
+        items = (response?.equipment || []).map(item => ({...item, type}));
         break;
       case 'monsters':
         response = await getMonstersInformation();
-        items = response?.results || [];
+        items = (response?.results || []).map(item => ({...item, type}));
         break;
       default:
         setCurrentPageResults({type: null, items: [], page: 1});
@@ -105,6 +111,31 @@ function GameInformationPage() {
       searchTerm: data.gameInformationSearchTerm,
       page: 1
     })
+  }
+
+  const onFavoriteButtonClick = () => {
+    if (currentPageResults.type === 'favorites') {
+      if (previousSearch) {
+        setAllResults(previousSearch.allResults);
+        setCurrentPageResults(previousSearch.currentPageResults);
+      } else {
+        setCurrentPageResults({ type: null, items: [], page: 1 });
+        setUserHasSearched(false);
+      }
+    } else {
+      setPreviousSearch({
+        allResults,
+        currentPageResults
+      });
+
+      setAllResults(favorites);
+      setCurrentPageResults({
+        type: 'favorites',
+        items: getPageResults(favorites, 1),
+        page: 1,
+      });
+      setUserHasSearched(true);
+    }
   }
 
   const filterResponse = (items, searchTerm) => {
@@ -196,7 +227,12 @@ function GameInformationPage() {
       panelButton={
         <Button
           type="button"
-          label="Favorieten"
+          label={
+            currentPageResults.type === 'favorites'
+              ? 'Favorieten verbergen'
+              : 'Favorieten weergeven'
+          }
+          onClick={onFavoriteButtonClick}
         />
       }
     >
@@ -218,7 +254,12 @@ function GameInformationPage() {
                 key={currentPageResult.name}
                 label={currentPageResult.name}
                 onClick={() => {
-                  navigate(`${currentPageResults.type}/${currentPageResult.index}`)
+                  navigate(`${currentPageResult.type}/${currentPageResult.index}`)
+                }}
+                isFavorite={isFavorite(currentPageResult)}
+                onFavoriteClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(currentPageResult);
                 }}
               />
             ))}
