@@ -1,0 +1,65 @@
+.weapon-information {
+    flex-basis: 750px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em;
+}
+
+.weapon-information__loading {
+    display: flex;
+    justify-content: center;
+}
+
+.weapon-information__row {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.weapon-information__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.weapon-information dt:after {
+    content: ':';
+}
+
+.weapon-information dd {
+    margin: .5em;
+}
+
+.weapon-information ul {
+    list-style: none;
+}
+
+.weapon-information ul li:before {
+    content: "- ";
+}
+
+.weapon-information__footer-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 2.5em;
+    gap: 2em;
+}
+
+/* Specific information classes start here */
+.weapon-information__damage dd {
+    display: flex;
+    flex-direction: column;
+}
+
+.weapon-information__cost dd {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 22px;
+    gap: .5em;
+}
+
+.weapon-information__cost-image {
+    width: 1.5em;
+}

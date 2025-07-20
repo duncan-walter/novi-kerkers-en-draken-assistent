@@ -1,0 +1,16 @@
+.game-information-search-results {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1em;
+}
+
+.game-information-search-no-results {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5em;
+}
+
+.game-information-search-results-pagination {
+    margin-top: 2em;
+}

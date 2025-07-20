@@ -15,11 +15,13 @@ function ZeroState({icon: Icon, text, buttonLabel, buttonIcon, buttonOnClick}) {
 
       <p className="zero-state__text">{text}</p>
 
-      <Button
-        label={buttonLabel}
-        icon={buttonIcon}
-        onClick={buttonOnClick}
-      />
+      {buttonLabel && (
+        <Button
+          label={buttonLabel}
+          icon={buttonIcon}
+          onClick={buttonOnClick}
+        />
+      )}
     </div>
   )
 }

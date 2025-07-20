@@ -1,0 +1,51 @@
+.monster-information {
+    flex-basis: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em;
+}
+
+.monster-information__loading {
+    display: flex;
+    justify-content: center;
+}
+
+.monster-information__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.monster-information__row {
+    display: flex;
+    flex-direction: row;
+    gap: 2em
+}
+
+.monster-information__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 250px;
+}
+
+.monster-information__footer-row {
+    justify-content: flex-end;
+    text-align: center;
+}
+
+.monster-information dt:after {
+    content: ':';
+}
+
+.monster-information dd {
+    margin: .5em;
+}
+
+/* Specific information classes start here */
+.monster-information__speed dd {
+    white-space: pre-wrap;
+}
+.monster-information__abilities-row {
+    width: 500px;
+}
