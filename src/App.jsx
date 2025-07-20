@@ -17,7 +17,6 @@ import HomePage from "./pages/home/HomePage.jsx";
 import EncounterTrackerPage from "./pages/encounter-tracker/EncounterTrackerPage.jsx";
 import GameInformationPage from "./pages/game-information/GameInformationPage.jsx";
 import NotFoundPage from "./pages/not-found/NotFoundPage.jsx";
-import TestingZonePage from "./pages/testing-zone/TestingZonePage.jsx";
 import CharacterOverviewPage from "./pages/character-management/character-overview/CharacterOverviewPage.jsx";
 import CharacterCreatePage from "./pages/character-management/character-create/CharacterCreatePage.jsx";
 import CharacterDetailsPage from "./pages/character-management/character-details/CharacterDetailsPage.jsx";
@@ -49,7 +48,6 @@ function App() {
           <Route path="weapons/:id" element={<WeaponInformationPage/>}/>
           <Route path="monsters/:id" element={<MonsterInformationPage/>}/>
         </Route>
-        <Route path="testing-zone" element={<TestingZonePage/>}/>
       </Route>
 
       {/* Not found / other pages */}
