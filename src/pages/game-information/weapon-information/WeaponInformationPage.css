@@ -5,6 +5,11 @@
     gap: 2.5em;
 }
 
+.weapon-information__loading {
+    display: flex;
+    justify-content: center;
+}
+
 .weapon-information__row {
     display: flex;
     flex-direction: row;
@@ -33,12 +38,18 @@
     content: "- ";
 }
 
+.weapon-information__footer-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 2.5em;
+    gap: 2em;
+}
+
 /* Specific information classes start here */
-.weapon-information__cost {
+.weapon-information__damage dd {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    margin-top: 2.5em;
 }
 
 .weapon-information__cost dd {

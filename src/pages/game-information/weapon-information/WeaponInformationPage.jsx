@@ -36,68 +36,92 @@ function WeaponInformationPage() {
     <div className="weapon-information">
       <Panel title={weapon && weapon.name}>
         {loading && (
-          <Spinner size="large"/>
+          <div className="weapon-information__loading">
+            <Spinner size="large"/>
+          </div>
         )}
 
         {!loading && weapon && (<>
           <div className="weapon-information__row">
             <dl className="weapon-information__column">
-              <div>
-                <dt>Damage</dt>
-                <dd>
-                  <div>{weapon.damage['damage_dice']} ({weapon.damage['damage_type'].name})</div>
+              {(weapon.damage || weapon['two_handed_damage']) && (
+                <div className="weapon-information__damage">
+                  <dt>Damage</dt>
+                  <dd>
+                    {weapon.damage && (
+                      <span>{weapon.damage['damage_dice']} ({weapon.damage['damage_type'].name})</span>
+                    )}
 
-                  {weapon['two_handed_damage'] && (
-                    <div>
-                      {weapon['two_handed_damage']['damage_dice']} ({weapon['two_handed_damage']['damage_type'].name}) (2h)
-                    </div>
-                  )}
-                </dd>
-              </div>
+                    {weapon['two_handed_damage'] && (
+                      <span>
+                      {weapon['two_handed_damage']['damage_dice']} ({weapon['two_handed_damage']['damage_type'].name})
+                      (2h)
+                    </span>
+                    )}
+                  </dd>
+                </div>
+              )}
 
-              <div>
-                <dt>Bereik</dt>
-                <dd>{weapon.range.normal}ft{weapon.range.long ? ` / ${weapon.range.long}ft` : ''}</dd>
-              </div>
+              {weapon.range && (
+                <div>
+                  <dt>Bereik</dt>
+                  <dd>{weapon.range.normal}ft{weapon.range.long ? ` / ${weapon.range.long}ft` : ''}</dd>
+                </div>
+              )}
 
               {weapon['throw_range'] && (
                 <div>
-                  <dt>Gooi bereik</dt>
-                  <dd>{weapon['throw_range'].normal}/{weapon['throw_range'].long}</dd>
+                  <dt>Werpbereik</dt>
+                  <dd>{weapon['throw_range'].normal}ft / {weapon['throw_range'].long}ft</dd>
                 </div>
               )}
             </dl>
 
             <dl className="weapon-information__column">
-              <div>
-                <dt>Wapen categorie</dt>
-                <dd>{weapon['category_range']}</dd>
-              </div>
+              {weapon['category_range'] && (
+                <div>
+                  <dt>Wapen categorie</dt>
+                  <dd>{weapon['category_range']}</dd>
+                </div>
+              )}
 
-              <div>
-                <dt>Eigenschappen</dt>
-                <dd>
-                  <ul>
-                    {weapon.properties.map(property =>
-                      <li key={property.name}>{property.name}</li>
-                    )}
-                  </ul>
-                </dd>
-              </div>
+              {weapon.properties && weapon.properties.length > 0 && (
+                <div>
+                  <dt>Eigenschappen</dt>
+                  <dd>
+                    <ul>
+                      {weapon.properties.map(property =>
+                        <li key={property.name}>{property.name}</li>
+                      )}
+                    </ul>
+                  </dd>
+                </div>
+              )}
             </dl>
           </div>
 
-          {weapon.cost && (
-            <dl className="weapon-information__row-end weapon-information__cost">
-              <dt>Waarde</dt>
-              <dd>
-                <span>{weapon.cost.quantity}</span>
-                <span className="weapon-information__cost-image">
+          <div className="weapon-information__footer-row">
+            <dl className="weapon-information__row">
+              {(weapon.weight || weapon.weight === 0) && (
+                <div>
+                  <dt>Gewicht</dt>
+                  <dd>{weapon.weight} lbs</dd>
+                </div>
+              )}
+
+              {weapon.cost && (
+                <div className="weapon-information__cost">
+                  <dt>Waarde</dt>
+                  <dd>
+                    <span>{weapon.cost.quantity}</span>
+                    <span className="weapon-information__cost-image">
                     <img src={currencyMap.find(currency => currency.id === weapon.cost.unit).icon}/>
                   </span>
-              </dd>
+                  </dd>
+                </div>
+              )}
             </dl>
-          )}
+          </div>
         </>)}
       </Panel>
     </div>
