@@ -12,8 +12,29 @@
     cursor: pointer;
     text-align: center;
     height: 4.25em;
+    position: relative;
 }
 
 .search-result-item__label {
     color: var(--color-primary);
+}
+
+.search-result-item__favorite {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #DAA520;
+}
+
+.search-result-item__favorite:hover {
+    transform: scale(1.1);
+}
+
+.search-result-item__favorite-inactive {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.search-result-item:hover .search-result-item__favorite-inactive {
+    opacity: 1
 }
