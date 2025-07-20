@@ -11,6 +11,9 @@ import useRequestState from "../../../hooks/useRequestState.js";
 // Services
 import weaponInformationService from "../../../services/weaponInformationService.js";
 
+// Helpers and constants
+import currencyMap from "../../../constants/currencyMap.js";
+
 // Components
 import Panel from "../../../components/ui/Panel/Panel.jsx";
 import Spinner from "../../../components/ui/Spinner/Spinner.jsx";
@@ -84,12 +87,17 @@ function WeaponInformationPage() {
             </dl>
           </div>
 
-          <dl className="weapon-information__row-end">
-            <div>
+          {weapon.cost && (
+            <dl className="weapon-information__row-end weapon-information__cost">
               <dt>Waarde</dt>
-              <dd>{weapon.cost.quantity}{weapon.cost.unit}</dd>
-            </div>
-          </dl>
+              <dd>
+                <span>{weapon.cost.quantity}</span>
+                <span className="weapon-information__cost-image">
+                    <img src={currencyMap.find(currency => currency.id === weapon.cost.unit).icon}/>
+                  </span>
+              </dd>
+            </dl>
+          )}
         </>)}
       </Panel>
     </div>

@@ -11,12 +11,6 @@
     gap: 2em;
 }
 
-.weapon-information__row-end {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-}
-
 .weapon-information__column {
     display: flex;
     flex-direction: column;
@@ -37,4 +31,24 @@
 
 .weapon-information ul li:before {
     content: "- ";
+}
+
+/* Specific information classes start here */
+.weapon-information__cost {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 2.5em;
+}
+
+.weapon-information__cost dd {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 22px;
+    gap: .5em;
+}
+
+.weapon-information__cost-image {
+    width: 1.5em;
 }
