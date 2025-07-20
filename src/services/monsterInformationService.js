@@ -18,6 +18,16 @@ const monsterInformationService = {
     }
 
     return request;
+  },
+
+  getMonsterInformationByIndex: (index, options = {useCache: false}) => {
+    let request = (_, signal) => dnd5eClient.get(`${endpoint}/${index}`, {signal});
+
+    if (options.useCache) {
+      request = requestWithCache(request, `${monsterInformationKey}:${index}`, 3600);
+    }
+
+    return request;
   }
 }
 
