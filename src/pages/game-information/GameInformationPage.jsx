@@ -6,7 +6,7 @@ import {FileDashedIcon} from "@phosphor-icons/react";
 
 // Framework dependencies
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 // Custom hooks
 import useRequestState from "../../hooks/useRequestState.js";
@@ -51,20 +51,21 @@ function GameInformationPage() {
   const [currentPageResults, setCurrentPageResults] = useState({
     type: null,
     items: [],
-    page: 1,
-    count: 0
+    page: 1
   });
 
   const navigate = useNavigate();
+  const location = useLocation();
   const {showToast} = useToaster();
 
-  const onSearchSubmit = async (data) => {
-    setUserHasSearched(true);
+  // Derived state
+  const queryStringParams = new URLSearchParams(location.search);
 
+  const runSearch = async ({type, searchTerm = '', page = 1}) => {
     let response;
     let items = []
 
-    switch (data.gameInformationType) {
+    switch (type) {
       case 'weapons':
         response = await getWeaponsInformation();
         items = response?.equipment || [];
@@ -74,21 +75,36 @@ function GameInformationPage() {
         items = response?.results || [];
         break;
       default:
-        setCurrentPageResults({type: null, items: [], page: 1, count: 0});
+        setCurrentPageResults({type: null, items: [], page: 1});
         return;
     }
 
     // TODO: For now magic items are not supported yet, only normal equipment. Implement this in an elegant way when necessary.
-    const filteredResults = filterResponse(items, data.gameInformationSearchTerm);
+    const filteredResults = filterResponse(items, searchTerm);
     const pageResults = getPageResults(filteredResults, 1);
 
     setAllResults(filteredResults);
     setCurrentPageResults({
-      type: data.gameInformationType,
-      items: [...pageResults],
-      page: 1,
-      count: filteredResults.length
+      type: type,
+      items: pageResults,
+      page: page,
+      searchTerm: searchTerm,
     });
+
+    setUserHasSearched(true);
+    setQueryString({
+      type: type,
+      page: page,
+      searchTerm: searchTerm
+    });
+  }
+
+  const onSearchSubmit = async (data) => {
+    await runSearch({
+      type: data.gameInformationType,
+      searchTerm: data.gameInformationSearchTerm,
+      page: 1
+    })
   }
 
   const filterResponse = (items, searchTerm) => {
@@ -117,6 +133,36 @@ function GameInformationPage() {
     return items.slice(startIndex, endIndex);
   }
 
+  const setQueryString = ({type, page, searchTerm}) => {
+    const queryStringParams = new URLSearchParams();
+
+    if (type) {
+      queryStringParams.append('type', type);
+    }
+
+    if (page) {
+      queryStringParams.append('page', page);
+    }
+
+    if (searchTerm) {
+      queryStringParams.append('searchTerm', searchTerm);
+    }
+
+    navigate(`?${queryStringParams.toString()}`, {replace: true})
+  }
+
+  // Initialize if queryString with type is present
+  useEffect(() => {
+    if (queryStringParams.get('type')) {
+      runSearch({
+        type: queryStringParams.get('type'),
+        searchTerm: queryStringParams.get('searchTerm') ?? '',
+        page: Number(queryStringParams.get('page') ?? 1)
+      })
+    }
+  }, []);
+
+  // Act on pagination changes
   useEffect(() => {
     if (userHasSearched && currentPageResults.page) {
       const nextPageResultItems = getPageResults(allResults, currentPageResults.page);
@@ -126,6 +172,12 @@ function GameInformationPage() {
           items: nextPageResultItems
         })
       );
+
+      setQueryString({
+        type: currentPageResults.type,
+        page: currentPageResults.page,
+        searchTerm: currentPageResults.searchTerm,
+      });
     }
   }, [currentPageResults.page]);
 
@@ -151,6 +203,10 @@ function GameInformationPage() {
       <div className="game-information-search-form">
         <GameInformationSearchForm
           onSubmit={onSearchSubmit}
+          defaultValues={{
+            type: queryStringParams.get('type') ?? '',
+            searchTerm: queryStringParams.get('searchTerm') ?? '',
+          }}
         />
       </div>
 
@@ -172,7 +228,7 @@ function GameInformationPage() {
             <PaginationControls
               currentPage={currentPageResults.page}
               pageSize={pageSize}
-              resultCount={currentPageResults.count}
+              resultCount={allResults.length}
               onPrevious={() => setCurrentPageResults(previousPageResults => ({
                 ...previousPageResults,
                 page: previousPageResults.page - 1

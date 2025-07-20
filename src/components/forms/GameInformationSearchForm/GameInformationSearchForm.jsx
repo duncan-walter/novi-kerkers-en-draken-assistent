@@ -2,23 +2,34 @@
 import './GameInformationSearchForm.css';
 
 // Framework dependencies
+import {useEffect} from "react";
 import {useForm} from "react-hook-form";
 
 // Components
 import SelectFormControl from "../../form-controls/SelectFormControl/SelectFormControl.jsx";
 import SearchFormControl from "../../form-controls/SearchFormControl/SearchFormControl.jsx";
 
-function GameInformationSearchForm({onSubmit}) {
+function GameInformationSearchForm({onSubmit, defaultValues = {}}) {
+  const {type, searchTerm} = defaultValues
+
   const {
     handleSubmit,
     register,
-    formState: {errors}
+    formState: {errors},
+    reset
   } = useForm({
     defaultValues: {
-      gameInformationType: null,
-      gameInformationSearchTerm: null
+      gameInformationType: type,
+      gameInformationSearchTerm: searchTerm
     }
   });
+
+  useEffect(() => {
+    reset({
+      gameInformationType: type,
+      gameInformationSearchTerm: searchTerm
+    })
+  }, [defaultValues]);
 
   return (
     <form
