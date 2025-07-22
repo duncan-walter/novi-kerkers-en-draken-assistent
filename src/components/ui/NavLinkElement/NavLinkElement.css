@@ -15,3 +15,7 @@
     color: var(--color-text-secondary);
     filter: brightness(110%);
 }
+
+.navigation-item--active li {
+    color: var(--color-text-secondary);
+}
