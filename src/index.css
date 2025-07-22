@@ -65,7 +65,8 @@ span,
 legend,
 dl,
 dt,
-dd {
+dd,
+li {
     color: var(--color-text-primary);
 }
 

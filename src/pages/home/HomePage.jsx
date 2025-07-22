@@ -23,7 +23,8 @@ function HomePage() {
           </p>
 
           <p>
-            Deze applicatie is jouw trouwe reisgenoot aan de speeltafel en is geen vervanger van het dobbelsteenritueel of
+            Deze applicatie is jouw trouwe reisgenoot aan de speeltafel en is geen vervanger van het dobbelsteenritueel
+            of
             het plezier van handgeschreven character sheets, maar een hulpmiddel om de vaart in jullie avontuur te
             houden.
           </p>
@@ -48,13 +49,14 @@ function HomePage() {
 
           <p>
             Creëer nieuwe personages met:
-            <ul>
-              <li>Naam, class, subclass en ras</li>
-              <li>Alle 6 ability scores, proficiency bonus, armor class, HP en XP</li>
-              <li>Size en alignment</li>
-              <li>Valuta, uitrusting en notities</li>
-            </ul>
           </p>
+
+          <ul>
+            <li>Naam, class, subclass en ras</li>
+            <li>Alle 6 ability scores, proficiency bonus, armor class, HP en XP</li>
+            <li>Size en alignment</li>
+            <li>Valuta, uitrusting en notities</li>
+          </ul>
 
           <p>
             <strong>Bekijk</strong> je personages, <strong>pas hun eigenschappen aan</strong>, en houd hun voortgang bij
@@ -72,12 +74,16 @@ function HomePage() {
           <div className="home-page-content__button-group">
             <Button
               label="Nieuw personage"
-              onClick={() => {navigate('/character-management/create-character')}}
+              onClick={() => {
+                navigate('/character-management/create-character')
+              }}
             />
 
             <Button
               label="Bekijk je personages"
-              onClick={() => {navigate('/character-management')}}
+              onClick={() => {
+                navigate('/character-management')
+              }}
               variant="secondary"
             />
           </div>
@@ -97,13 +103,14 @@ function HomePage() {
 
           <p>
             In het overzichtsscherm:
-            <ul>
-              <li>Zie de initiatieven in volgorde</li>
-              <li>Bekijk en wijzig stats zoals HP, AC en conditions</li>
-              <li>Klik op <strong>"volgende beurt"</strong> om het gevecht voort te zetten</li>
-              <li>Het actieve personage wordt automatisch gemarkeerd</li>
-            </ul>
           </p>
+
+          <ul>
+            <li>Zie de initiatieven in volgorde</li>
+            <li>Bekijk en wijzig stats zoals HP, AC en conditions</li>
+            <li>Klik op <strong>"volgende beurt"</strong> om het gevecht voort te zetten</li>
+            <li>Het actieve personage wordt automatisch gemarkeerd</li>
+          </ul>
 
           <p>
             <strong>Let op:</strong> gevechten worden nog niet opgeslagen.
@@ -115,7 +122,9 @@ function HomePage() {
 
           <Button
             label="Start een gevecht"
-            onClick={() => {navigate('/encounter-tracker')}}
+            onClick={() => {
+              navigate('/encounter-tracker')
+            }}
           />
         </section>
 
@@ -124,11 +133,12 @@ function HomePage() {
 
           <p>
             Zoek snel en gemakkelijk naar details over:
-            <ul>
-              <li><strong>Wapens</strong></li>
-              <li><strong>Monsters</strong></li>
-            </ul>
           </p>
+
+          <ul>
+            <li><strong>Wapens</strong></li>
+            <li><strong>Monsters</strong></li>
+          </ul>
 
           <p>
             Kies een type, geef een zoekterm op of blader pagina voor pagina door de resultaten. Voeg nuttige bronnen
@@ -146,7 +156,9 @@ function HomePage() {
 
           <Button
             label="Zoek spelinformatie"
-            onClick={() => {navigate('/game-information')}}
+            onClick={() => {
+              navigate('/game-information')
+            }}
           />
         </section>
       </div>
