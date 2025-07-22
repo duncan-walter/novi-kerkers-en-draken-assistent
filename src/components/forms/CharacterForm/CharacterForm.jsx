@@ -199,7 +199,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-charisma"
                     name="characterFormCharisma"
                     label="Charisma"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -210,7 +210,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-constitution"
                     name="characterFormConstitution"
                     label="Constitution"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -221,7 +221,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-dexterity"
                     name="characterFormDexterity"
                     label="Dexterity"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -234,7 +234,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-intelligence"
                     name="characterFormIntelligence"
                     label="Intelligence"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -245,7 +245,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-strength"
                     name="characterFormStrength"
                     label="Strength"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -256,7 +256,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-wisdom"
                     name="characterFormWisdom"
                     label="Wisdom"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
