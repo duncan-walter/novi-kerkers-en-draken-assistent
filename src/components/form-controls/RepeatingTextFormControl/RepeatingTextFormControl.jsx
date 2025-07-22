@@ -2,14 +2,14 @@
 import './RepeatingTextFormControl.css';
 
 // Icons
-import {PlusIcon, XIcon} from "@phosphor-icons/react";
+import {PlusIcon, XIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
 import {useEffect, useRef, useState} from 'react';
 
 // Components
-import TextFormControl from '../TextFormControl/TextFormControl.jsx';
-import Button from "../../ui/Button/Button.jsx";
+import TextFormControl from '@components/form-controls/TextFormControl/TextFormControl.jsx';
+import Button from '@components/ui/Button/Button.jsx';
 
 function RepeatingTextFormControl({id, name, label, placeholder, register, unregister, watch, errors, validationRules}) {
   const [textFormControls, setTextFormControls] = useState([]);

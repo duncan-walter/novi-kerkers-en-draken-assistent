@@ -2,7 +2,7 @@
 import './SearchResultItem.css';
 
 // Icons
-import {StarIcon} from "@phosphor-icons/react";
+import {StarIcon} from '@phosphor-icons/react';
 
 function SearchResultItem({label, onClick, isFavorite, onFavoriteClick}) {
   return (

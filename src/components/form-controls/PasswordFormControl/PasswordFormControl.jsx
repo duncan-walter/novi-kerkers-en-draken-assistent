@@ -5,7 +5,7 @@ import './PasswordFormControl.css';
 import {EyeIcon, EyeSlashIcon} from '@phosphor-icons/react';
 
 // Helpers
-import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js";
+import buildFormControlValidationRules from '@components/form-controls/helpers/validationRuleBuilder.js';
 
 // Framework dependencies
 import {useState} from 'react';

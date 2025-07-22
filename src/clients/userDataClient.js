@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 // Helpers and constants
-import {getLocalStorageItem} from "../helpers/localStorageHelpers.js";
-import {userKey} from "../constants/localStorageKeys.js";
+import {getLocalStorageItem} from '@helpers/localStorageHelpers.js';
+import {userKey} from '@constants/localStorageKeys.js';
 
 const userDataClient = axios.create({
   baseURL: import.meta.env.VITE_NOVI_DYNAMIC_API_BASE_URL,

@@ -2,7 +2,7 @@
 import './Toaster.css';
 
 // Components
-import Toast from "../Toast/Toast.jsx";
+import Toast from '@components/ui/Toast/Toast.jsx';
 
 function Toaster({toasts, removeToast}) {
   return (

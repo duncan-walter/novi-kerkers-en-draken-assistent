@@ -1,4 +1,4 @@
-import calculateAbilityModifier from "./calculateAbilityModifier.js";
+import calculateAbilityModifier from '@helpers/calculateAbilityModifier.js';
 
 function calculateInitiative(initiativeRoll, dexterity)  {
   if (isNaN(initiativeRoll)) {

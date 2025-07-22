@@ -2,10 +2,10 @@
 import './SearchFormControl.css';
 
 // Icons
-import {MagnifyingGlassIcon} from "@phosphor-icons/react";
+import {MagnifyingGlassIcon} from '@phosphor-icons/react';
 
 // Helpers
-import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js";
+import buildFormControlValidationRules from '@components/form-controls/helpers/validationRuleBuilder.js';
 
 /* Notes:
  * - Supported validationRules parameter properties:

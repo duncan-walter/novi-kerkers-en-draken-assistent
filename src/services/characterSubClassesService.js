@@ -1,9 +1,9 @@
 // Custom hooks
-import dnd5eClient from '../clients/dnd5eClient.js';
+import dnd5eClient from '@clients/dnd5eClient.js';
 
 // Helpers and constants
-import {requestWithCache} from '../helpers/requestHelpers.js';
-import {characterSubClassesKey} from '../constants/localStorageKeys.js';
+import {requestWithCache} from '@helpers/requestHelpers.js';
+import {characterSubClassesKey} from '@constants/localStorageKeys.js';
 
 // Local constants
 const client = dnd5eClient;

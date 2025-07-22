@@ -2,29 +2,29 @@
 import './GameInformationPage.css';
 
 // Icons
-import {FileDashedIcon} from "@phosphor-icons/react";
+import {FileDashedIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
-import {useEffect, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useEffect, useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 // Custom hooks
-import useRequestState from "../../hooks/useRequestState.js";
-import {useToaster} from "../../contexts/ToasterContext.jsx";
-import useGameInformationFavorites from "../../hooks/useGameInformationFavorites.js";
+import useRequestState from '@hooks/useRequestState.js';
+import {useToaster} from '@contexts/ToasterContext.jsx';
+import useGameInformationFavorites from '@hooks/useGameInformationFavorites.js';
 
 // Services
-import weaponInformationService from "../../services/weaponInformationService.js";
-import monsterInformationService from "../../services/monsterInformationService.js";
+import weaponInformationService from '@services/weaponInformationService.js';
+import monsterInformationService from '@services/monsterInformationService.js';
 
 // Components
-import Button from "../../components/ui/Button/Button.jsx";
-import Panel from "../../components/ui/Panel/Panel.jsx";
-import Spinner from "../../components/ui/Spinner/Spinner.jsx";
-import SearchResultItem from "../../components/ui/SearchResultItem/SearchResultItem.jsx";
-import GameInformationSearchForm from "../../components/forms/GameInformationSearchForm/GameInformationSearchForm.jsx";
-import ZeroState from "../../components/ui/ZeroState/ZeroState.jsx";
-import PaginationControls from "../../components/ui/PaginationControls/PaginationControls.jsx";
+import Button from '@components/ui/Button/Button.jsx';
+import Panel from '@components/ui/Panel/Panel.jsx';
+import Spinner from '@components/ui/Spinner/Spinner.jsx';
+import SearchResultItem from '@components/ui/SearchResultItem/SearchResultItem.jsx';
+import GameInformationSearchForm from '@components/forms/GameInformationSearchForm/GameInformationSearchForm.jsx';
+import ZeroState from '@components/ui/ZeroState/ZeroState.jsx';
+import PaginationControls from '@components/ui/PaginationControls/PaginationControls.jsx';
 
 // Local variables
 const pageSize = 36;

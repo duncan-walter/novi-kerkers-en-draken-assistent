@@ -1,8 +1,8 @@
 // Framework dependencies
-import {createContext, useContext, useState} from "react";
+import {createContext, useContext, useState} from 'react';
 
 // Components
-import Toaster from "../components/ui/Toaster/Toaster.jsx";
+import Toaster from '@components/ui/Toaster/Toaster.jsx';
 
 const ToasterContext = createContext(null);
 

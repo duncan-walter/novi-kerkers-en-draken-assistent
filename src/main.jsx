@@ -8,8 +8,8 @@ import {createRoot} from 'react-dom/client';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 // Contexts
-import AuthorizationContextProvider from "./contexts/AuthorizationContext.jsx";
-import ToasterContextProvider from "./contexts/ToasterContext.jsx";
+import AuthorizationContextProvider from '@contexts/AuthorizationContext.jsx';
+import ToasterContextProvider from '@contexts/ToasterContext.jsx';
 
 // Components
 import App from './App.jsx';

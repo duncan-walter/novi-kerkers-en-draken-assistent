@@ -1,6 +1,6 @@
 import './SelectFormControl.css';
 
-import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js";
+import buildFormControlValidationRules from '@components/form-controls/helpers/validationRuleBuilder.js';
 
 /* Notes:
  * - Supported validationRules parameter properties:

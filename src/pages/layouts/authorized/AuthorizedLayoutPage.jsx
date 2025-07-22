@@ -5,7 +5,7 @@ import './AuthorizedLayoutPage.css';
 import {Outlet} from 'react-router-dom';
 
 // Components
-import Sidebar from '../../../components/ui/Sidebar/Sidebar.jsx';
+import Sidebar from '@components/ui/Sidebar/Sidebar.jsx';
 
 function AuthorizedLayoutPage() {
   return (

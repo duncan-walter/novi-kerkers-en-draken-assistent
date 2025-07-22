@@ -2,10 +2,10 @@
 import './Navigation.css';
 
 // Constants
-import navigationItems from '../../../constants/navigationItems.js';
+import navigationItems from '@constants/navigationItems.js';
 
-//Components
-import NavLinkElement from '../NavLinkElement/NavLinkElement.jsx';
+// Components
+import NavLinkElement from '@components/ui/NavLinkElement/NavLinkElement.jsx';
 
 function Navigation() {
   return (

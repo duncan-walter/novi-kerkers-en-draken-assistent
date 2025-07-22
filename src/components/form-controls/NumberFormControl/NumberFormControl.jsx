@@ -1,6 +1,6 @@
 import './NumberFormControl.css';
 
-import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js";
+import buildFormControlValidationRules from '@components/form-controls/helpers/validationRuleBuilder.js';
 
 // TODO: If time allows for it, implement custom "spinners" (increment an decrement arrows).
 

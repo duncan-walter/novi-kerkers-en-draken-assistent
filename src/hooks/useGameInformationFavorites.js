@@ -1,9 +1,9 @@
 // Framework dependencies
-import {useEffect, useState} from "react";
+import {useEffect, useState} from 'react';
 
 // Helpers and constants
-import {getLocalStorageItem, setLocalStorageItem} from "../helpers/localStorageHelpers.js";
-import {gameInformationFavoritesKey} from "../constants/localStorageKeys.js";
+import {getLocalStorageItem, setLocalStorageItem} from '@helpers/localStorageHelpers.js';
+import {gameInformationFavoritesKey} from '@constants/localStorageKeys.js';
 
 function useGameInformationFavorites() {
   const [favorites, setFavorites] = useState(getLocalStorageItem(gameInformationFavoritesKey) ?? []);

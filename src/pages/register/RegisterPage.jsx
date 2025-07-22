@@ -2,22 +2,22 @@
 import './RegisterPage.css';
 
 // Framework dependencies
-import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 
 // Custom hooks
-import {useToaster} from "../../contexts/ToasterContext.jsx";
+import {useToaster} from '@contexts/ToasterContext.jsx';
 
 // Services
-import {register as registerUser} from '../../services/authorizationService.js';
+import {register as registerUser} from '@services/authorizationService.js';
 
 // Components
-import Panel from '../../components/ui/Panel/Panel.jsx';
-import LinkElement from '../../components/ui/LinkElement/LinkElement.jsx';
-import Button from '../../components/ui/Button/Button.jsx';
-import TextFormControl from '../../components/form-controls/TextFormControl/TextFormControl.jsx';
-import PasswordFormControl from '../../components/form-controls/PasswordFormControl/PasswordFormControl.jsx';
+import Panel from '@components/ui/Panel/Panel.jsx';
+import LinkElement from '@components/ui/LinkElement/LinkElement.jsx';
+import Button from '@components/ui/Button/Button.jsx';
+import TextFormControl from '@components/form-controls/TextFormControl/TextFormControl.jsx';
+import PasswordFormControl from '@components/form-controls/PasswordFormControl/PasswordFormControl.jsx';
 
 function RegisterPage() {
   const {

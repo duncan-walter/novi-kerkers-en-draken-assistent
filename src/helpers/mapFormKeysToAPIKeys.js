@@ -1,4 +1,4 @@
-import {firstCharacterToLowerCase, firstCharacterToUpperCase} from "./formatCaseHelpers.js";
+import {firstCharacterToLowerCase, firstCharacterToUpperCase} from '@helpers/formatCaseHelpers.js';
 
 /* Notes:
  * Maps the form data object's keys to api object keys and vise versa is reverse is true.

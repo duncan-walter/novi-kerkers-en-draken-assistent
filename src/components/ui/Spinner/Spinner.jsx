@@ -2,7 +2,7 @@
 import './Spinner.css';
 
 // SVGs
-import SpinnerSVG from '/src/assets/animations/spinner.svg?react';
+import SpinnerSVG from '@assets/animations/spinner.svg?react';
 
 function Spinner({size = 'small', variant = 'primary'}) {
   return (

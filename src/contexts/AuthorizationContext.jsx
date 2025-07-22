@@ -1,16 +1,16 @@
 // Framework dependencies
 import {createContext, useEffect, useState} from 'react';
-import {jwtDecode} from "jwt-decode";
+import {jwtDecode} from 'jwt-decode';
 
 // Custom hooks
-import {useToaster} from "./ToasterContext.jsx";
+import {useToaster} from '@contexts/ToasterContext.jsx';
 
 // Services
-import * as authorizationService from '../services/authorizationService.js';
+import * as authorizationService from '@services/authorizationService.js';
 
 // Helpers and constants
-import {getLocalStorageItem} from "../helpers/localStorageHelpers.js";
-import {userKey} from "../constants/localStorageKeys.js";
+import {getLocalStorageItem} from '@helpers/localStorageHelpers.js';
+import {userKey} from '@constants/localStorageKeys.js';
 
 // TODO: WebStorm complains about fast refresh not working because of this export, fix it.
 export const AuthorizationContext = createContext(null);

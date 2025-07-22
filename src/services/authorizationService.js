@@ -1,9 +1,9 @@
 // Clients
-import authorizationClient from '../clients/authorizationClient.js';
+import authorizationClient from '@clients/authorizationClient.js';
 
 // Helpers and constants
-import {setLocalStorageItem, removeLocalStorageItem} from '../helpers/localStorageHelpers.js';
-import {userKey} from '../constants/localStorageKeys.js';
+import {setLocalStorageItem, removeLocalStorageItem} from '@helpers/localStorageHelpers.js';
+import {userKey} from '@constants/localStorageKeys.js';
 
 async function login(email, password) {
   try {

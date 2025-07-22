@@ -2,11 +2,11 @@
 import './HomePage.css';
 
 // Framework dependencies
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 
 // Components
-import Panel from "../../components/ui/Panel/Panel.jsx";
-import Button from "../../components/ui/Button/Button.jsx";
+import Panel from '@components/ui/Panel/Panel.jsx';
+import Button from '@components/ui/Button/Button.jsx';
 
 
 function HomePage() {

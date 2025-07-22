@@ -2,13 +2,12 @@
 import userDataClient from '../clients/userDataClient.js';
 
 // Framework dependencies
-import {jwtDecode} from "jwt-decode";
-
+import {jwtDecode} from 'jwt-decode';
 
 // Helpers and constants
-import {requestWithCache} from '../helpers/requestHelpers.js';
-import {getLocalStorageItem} from "../helpers/localStorageHelpers.js";
-import {charactersKey, userKey} from '../constants/localStorageKeys.js';
+import {requestWithCache} from '@helpers/requestHelpers.js';
+import {getLocalStorageItem} from '@helpers/localStorageHelpers.js';
+import {charactersKey, userKey} from '@constants/localStorageKeys.js';
 
 // Local constants
 const client = userDataClient;

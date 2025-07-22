@@ -5,7 +5,7 @@ import './Toast.css';
 import {CheckCircleIcon, XCircleIcon, XIcon} from '@phosphor-icons/react';
 
 // Components
-import Panel from '../Panel/Panel.jsx';
+import Panel from '@components/ui/Panel/Panel.jsx';
 
 function Toast({message, type = "success", onClose}) {
   const iconByType = {

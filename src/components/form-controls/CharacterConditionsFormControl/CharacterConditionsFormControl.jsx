@@ -2,14 +2,14 @@
 import './CharacterConditionsFormControl.css';
 
 // Custom hooks
-import useRequestState from "../../../hooks/useRequestState.js";
+import useRequestState from '@hooks/useRequestState.js';
 
 // Services
-import characterConditionsService from "../../../services/characterConditionsService.js";
+import characterConditionsService from '@services/characterConditionsService.js';
 
 // Components
-import Spinner from "../../ui/Spinner/Spinner.jsx";
-import ConditionBadge from "../../ui/ConditionBadge/ConditionBadge.jsx";
+import Spinner from '@components/ui/Spinner/Spinner.jsx';
+import ConditionBadge from '@components/ui/ConditionBadge/ConditionBadge.jsx';
 
 // TODO: This component can be extended to include the rendering of the readonly variant too.
 function CharacterConditionsFormControl({characterId, currentConditions, onChange}) {

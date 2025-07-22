@@ -2,19 +2,19 @@
 import './Sidebar.css';
 
 // Images / icons
-import DNDLogo from '/src/assets/logos/dnd-logo-white.png';
+import DNDLogo from '@assets/logos/dnd-logo-white.png';
 import {DoorIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
-import {useContext} from "react";
+import {useContext} from 'react';
 import {Link} from 'react-router-dom';
 
 // Contexts
-import {AuthorizationContext} from '../../../contexts/AuthorizationContext.jsx';
+import {AuthorizationContext} from '@contexts/AuthorizationContext.jsx';
 
 // Components
-import Navigation from "../Navigation/Navigation.jsx";
-import Button from "../Button/Button.jsx";
+import Navigation from '@components/ui/Navigation/Navigation.jsx';
+import Button from '@components/ui/Button/Button.jsx';
 
 function Sidebar() {
   const authorizationContext = useContext(AuthorizationContext);

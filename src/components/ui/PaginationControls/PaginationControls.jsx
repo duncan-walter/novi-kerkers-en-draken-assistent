@@ -5,7 +5,7 @@ import './PaginationControls.css';
 import {CaretLeftIcon, CaretRightIcon} from '@phosphor-icons/react';
 
 // Components
-import Button from "../Button/Button.jsx";
+import Button from '@components/ui/Button/Button.jsx';
 
 function PaginationControls({currentPage, pageSize, resultCount, onNext, onPrevious}) {
   const disableNext = currentPage * pageSize >= resultCount;

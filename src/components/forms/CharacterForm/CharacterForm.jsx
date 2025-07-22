@@ -2,20 +2,20 @@
 import './CharacterForm.css';
 
 // Images / Icons
-import CopperPiece from '../../../assets/images/copper-piece.png'
-import SilverPiece from '../../../assets/images/silver-piece.png'
-import ElectrumPiece from '../../../assets/images/electrum-piece.png'
-import GoldPiece from '../../../assets/images/gold-piece.png'
-import PlatinumPiece from '../../../assets/images/platinum-piece.png'
+import CopperPiece from '@assets/images/copper-piece.png'
+import SilverPiece from '@assets/images/silver-piece.png'
+import ElectrumPiece from '@assets/images/electrum-piece.png'
+import GoldPiece from '@assets/images/gold-piece.png'
+import PlatinumPiece from '@assets/images/platinum-piece.png'
 import {FloppyDiskIcon, XIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
-import {useEffect} from "react";
-import {useForm} from "react-hook-form";
-import {jwtDecode} from "jwt-decode";
+import {useEffect} from 'react';
+import {useForm} from 'react-hook-form';
+import {jwtDecode} from 'jwt-decode';
 
 // Custom hooks
-import useRequestState from "../../../hooks/useRequestState.js";
+import useRequestState from '@hooks/useRequestState.js';
 
 // Services
 import characterTypeService from "../../../services/characterTypeService.js";
@@ -24,10 +24,10 @@ import characterSubClassesService from "../../../services/characterSubClassesSer
 import characterRacesService from "../../../services/characterRacesService.js";
 
 // Helpers and constants
-import mapFormKeysToAPIKeys from "../../../helpers/mapFormKeysToAPIKeys.js";
-import {firstCharacterToUpperCase} from "../../../helpers/formatCaseHelpers.js";
-import {getLocalStorageItem} from "../../../helpers/localStorageHelpers.js";
-import {userKey} from "../../../constants/localStorageKeys.js";
+import mapFormKeysToAPIKeys from '@helpers/mapFormKeysToAPIKeys.js';
+import {firstCharacterToUpperCase} from '@helpers/formatCaseHelpers.js';
+import {getLocalStorageItem} from '@helpers/localStorageHelpers.js';
+import {userKey} from '@constants/localStorageKeys.js';
 
 // Components
 import SelectFormControl from "../../form-controls/SelectFormControl/SelectFormControl.jsx";

@@ -2,22 +2,22 @@
 import './MonsterInformationPage.css';
 
 // Framework dependencies
-import {useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 
 // Custom hooks
-import useRequestState from "../../../hooks/useRequestState.js";
+import useRequestState from '@hooks/useRequestState.js';
 
 // Services
-import monsterInformationService from "../../../services/monsterInformationService.js";
+import monsterInformationService from '@services/monsterInformationService.js';
 
 // Helpers
-import {firstCharacterToUpperCase} from "../../../helpers/formatCaseHelpers.js";
+import {firstCharacterToUpperCase} from '@helpers/formatCaseHelpers.js';
 
 // Components
-import Panel from "../../../components/ui/Panel/Panel.jsx";
-import Spinner from "../../../components/ui/Spinner/Spinner.jsx";
-import CharacterAbility from "../../../components/ui/CharacterAbility/CharacterAbility.jsx";
+import Panel from '@components/ui/Panel/Panel.jsx';
+import Spinner from '@components/ui/Spinner/Spinner.jsx';
+import CharacterAbility from '@components/ui/CharacterAbility/CharacterAbility.jsx';
 
 function MonsterInformationPage() {
   const params = useParams();
