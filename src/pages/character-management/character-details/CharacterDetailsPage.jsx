@@ -25,6 +25,7 @@ import characterTypeService from '@services/characterTypeService.js';
 // Helpers and constants
 import mapFormKeysToAPIKeys from '@helpers/mapFormKeysToAPIKeys.js';
 import showDefaultStatusCodeToast from '@helpers/showDefaultStatusCodeToast.js';
+import calculateCharacterLevel from "@helpers/calculateCharacterLevel.js";
 import {firstCharacterToUpperCase} from '@helpers/formatCaseHelpers.js';
 import {removeLocalStorageItem} from '@helpers/localStorageHelpers.js';
 import {charactersKey} from '@constants/localStorageKeys.js';
@@ -162,7 +163,7 @@ function CharacterDetailsPage() {
 
   return (
     <Panel
-      title={getCharacterLoading ? '' : character?.name}
+      title={getCharacterLoading ? '' : `${character?.name} (lvl. ${calculateCharacterLevel(character?.experiencePoints)})`}
       panelButton={
         <Button
           label={mode === 'read' ? 'Personage aanpassen' : 'Annuleren'}
