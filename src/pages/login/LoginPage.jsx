@@ -95,7 +95,11 @@ function LoginPage() {
           </p>
 
           <div className="login-form__submit-button">
-            <Button label="Inloggen" type="submit"/>
+            <Button
+              label="Inloggen"
+              type="submit"
+              disabled={Object.keys(errors).length > 0}
+            />
           </div>
         </form>
       </Panel>

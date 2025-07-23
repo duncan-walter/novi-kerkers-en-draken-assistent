@@ -136,7 +136,11 @@ function RegisterPage() {
           </p>
 
           <div className="register-form__submit-button">
-            <Button label="Registreren" type="submit"/>
+            <Button
+              label="Registreren"
+              type="submit"
+              disabled={Object.keys(errors).length > 0}
+            />
           </div>
         </form>
       </Panel>
