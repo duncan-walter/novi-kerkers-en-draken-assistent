@@ -78,7 +78,16 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
       errors
     },
     watch
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      characterFormCharisma: 10,
+      characterFormConstitution: 10,
+      characterFormDexterity: 10,
+      characterFormIntelligence: 10,
+      characterFormStrength: 10,
+      characterFormWisdom: 10
+    }
+  });
 
   useEffect(() => {
     if (initialValues) {
@@ -524,6 +533,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
             label="Opslaan"
             loading={loading}
             icon={FloppyDiskIcon}
+            disabled={Object.keys(errors).length > 0}
           />
         </div>
       </form>
