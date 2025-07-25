@@ -2,17 +2,17 @@
 import './EncounterTrackerInitiativeSelection.css';
 
 // Icons
-import D20SVG from '/src/assets/icons/d20.svg?react';
+import D20SVG from '@assets/icons/d20.svg?react';
 
 // Helpers
-import calculateInitiative from "../../../helpers/calculateInitiative.js";
+import calculateInitiative from '@helpers/calculateInitiative.js';
 
 // Framework dependencies
-import {useState} from "react";
+import {useState} from 'react';
 
 // Components
-import CharacterCard from "../../../components/ui/CharacterCard/CharacterCard.jsx";
-import NumberFormControl from "../../../components/form-controls/NumberFormControl/NumberFormControl.jsx";
+import CharacterCard from '@components/ui/CharacterCard/CharacterCard.jsx';
+import NumberFormControl from '@components/form-controls/NumberFormControl/NumberFormControl.jsx';
 
 function EncounterTrackerInitiativeSelection({setValue, watch, register, errors}) {
   const [spinningDice, setSpinningDice] = useState([]);

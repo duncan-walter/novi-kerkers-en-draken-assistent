@@ -2,32 +2,32 @@
 import './EncounterTrackerPage.css';
 
 // Icons
-import {PencilIcon, TrashIcon} from "@phosphor-icons/react";
+import {PencilIcon, TrashIcon} from '@phosphor-icons/react';
 
 // Helpers
-import calculateInitiative from "../../helpers/calculateInitiative.js";
+import calculateInitiative from '@helpers/calculateInitiative.js';
 
 // Framework dependencies
-import {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from 'react';
+import {useForm} from 'react-hook-form';
+import {useNavigate} from 'react-router-dom';
 
 // Custom hooks
-import {useToaster} from "../../contexts/ToasterContext.jsx";
+import {useToaster} from '@contexts/ToasterContext.jsx';
 
 // Components
-import Panel from "../../components/ui/Panel/Panel.jsx";
-import Button from "../../components/ui/Button/Button.jsx";
-import CharacterCard from "../../components/ui/CharacterCard/CharacterCard.jsx";
-import ConditionBadge from "../../components/ui/ConditionBadge/ConditionBadge.jsx";
-import Dialog from "../../components/ui/Dialog/Dialog.jsx";
-import NumberFormControl from "../../components/form-controls/NumberFormControl/NumberFormControl.jsx";
-import CharacterConditionsFormControl from "../../components/form-controls/CharacterConditionsFormControl/CharacterConditionsFormControl.jsx";
+import Panel from '@components/ui/Panel/Panel.jsx';
+import Button from '@components/ui/Button/Button.jsx';
+import CharacterCard from '@components/ui/CharacterCard/CharacterCard.jsx';
+import ConditionBadge from '@components/ui/ConditionBadge/ConditionBadge.jsx';
+import Dialog from '@components/ui/Dialog/Dialog.jsx';
+import NumberFormControl from '@components/form-controls/NumberFormControl/NumberFormControl.jsx';
+import CharacterConditionsFormControl from '@components/form-controls/CharacterConditionsFormControl/CharacterConditionsFormControl.jsx';
 
 // Step components
-import EncounterTrackerConditionSelection from "./encounter-tracker-condition-selection/EncounterTrackerConditionSelection.jsx";
-import EncounterTrackerCharacterSelection from "./encounter-tracker-character-selection/EncounterTrackerCharacterSelection.jsx";
-import EncounterTrackerInitiativeSelection from "./encounter-tracker-initiative-selection/EncounterTrackerInitiativeSelection.jsx";
+import EncounterTrackerConditionSelection from '@pages/encounter-tracker/encounter-tracker-condition-selection/EncounterTrackerConditionSelection.jsx';
+import EncounterTrackerCharacterSelection from '@pages/encounter-tracker/encounter-tracker-character-selection/EncounterTrackerCharacterSelection.jsx';
+import EncounterTrackerInitiativeSelection from '@pages/encounter-tracker/encounter-tracker-initiative-selection/EncounterTrackerInitiativeSelection.jsx';
 
 function EncounterTrackerPage() {
   const steps = [

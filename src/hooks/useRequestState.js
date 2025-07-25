@@ -2,7 +2,7 @@
 import {useEffect, useState} from 'react';
 
 // Custom hooks
-import useAbortableRequest from './useAbortableRequest.js';
+import useAbortableRequest from '@hooks/useAbortableRequest.js';
 
 function useRequestState(request, options = {executeOnMount: false, isAbortable: false}) {
   const [data, setData] = useState(null);

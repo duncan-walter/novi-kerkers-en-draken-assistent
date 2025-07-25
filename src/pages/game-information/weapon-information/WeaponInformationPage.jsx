@@ -2,21 +2,21 @@
 import './WeaponInformationPage.css';
 
 // Framework dependencies
-import {useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 
 // Custom hooks
-import useRequestState from "../../../hooks/useRequestState.js";
+import useRequestState from '@hooks/useRequestState.js';
 
 // Services
-import weaponInformationService from "../../../services/weaponInformationService.js";
+import weaponInformationService from '@services/weaponInformationService.js';
 
 // Helpers and constants
-import currencyMap from "../../../constants/currencyMap.js";
+import currencyMap from '@constants/currencyMap.js';
 
 // Components
-import Panel from "../../../components/ui/Panel/Panel.jsx";
-import Spinner from "../../../components/ui/Spinner/Spinner.jsx";
+import Panel from '@components/ui/Panel/Panel.jsx';
+import Spinner from '@components/ui/Spinner/Spinner.jsx';
 
 function WeaponInformationPage() {
   const params = useParams();

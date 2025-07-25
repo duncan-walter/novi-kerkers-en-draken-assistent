@@ -5,22 +5,22 @@ import './CharacterOverviewPage.css';
 import {UserPlusIcon, PlusIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
-import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 // Custom hooks
-import useRequestState from "../../../hooks/useRequestState.js";
-import {useToaster} from "../../../contexts/ToasterContext.jsx";
+import useRequestState from '@hooks/useRequestState.js';
+import {useToaster} from '@contexts/ToasterContext.jsx';
 
 // Services
-import characterService from "../../../services/characterService.js";
+import characterService from '@services/characterService.js';
 
 // Components
-import Panel from '../../../components/ui/Panel/Panel.jsx';
-import Button from '../../../components/ui/Button/Button.jsx';
-import Spinner from '../../../components/ui/Spinner/Spinner.jsx';
-import ZeroState from '../../../components/ui/ZeroState/ZeroState.jsx';
-import CharacterCard from '../../../components/ui/CharacterCard/CharacterCard.jsx';
+import Panel from '@components/ui/Panel/Panel.jsx';
+import Button from '@components/ui/Button/Button.jsx';
+import Spinner from '@components/ui/Spinner/Spinner.jsx';
+import ZeroState from '@components/ui/ZeroState/ZeroState.jsx';
+import CharacterCard from '@components/ui/CharacterCard/CharacterCard.jsx';
 
 function CharacterOverviewPage() {
   const {data, loading, error} = useRequestState(

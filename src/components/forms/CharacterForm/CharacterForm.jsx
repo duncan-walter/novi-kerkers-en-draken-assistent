@@ -2,20 +2,20 @@
 import './CharacterForm.css';
 
 // Images / Icons
-import CopperPiece from '../../../assets/images/copper-piece.png'
-import SilverPiece from '../../../assets/images/silver-piece.png'
-import ElectrumPiece from '../../../assets/images/electrum-piece.png'
-import GoldPiece from '../../../assets/images/gold-piece.png'
-import PlatinumPiece from '../../../assets/images/platinum-piece.png'
+import CopperPiece from '@assets/images/copper-piece.png'
+import SilverPiece from '@assets/images/silver-piece.png'
+import ElectrumPiece from '@assets/images/electrum-piece.png'
+import GoldPiece from '@assets/images/gold-piece.png'
+import PlatinumPiece from '@assets/images/platinum-piece.png'
 import {FloppyDiskIcon, XIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
-import {useEffect} from "react";
-import {useForm} from "react-hook-form";
-import {jwtDecode} from "jwt-decode";
+import {useEffect} from 'react';
+import {useForm} from 'react-hook-form';
+import {jwtDecode} from 'jwt-decode';
 
 // Custom hooks
-import useRequestState from "../../../hooks/useRequestState.js";
+import useRequestState from '@hooks/useRequestState.js';
 
 // Services
 import characterTypeService from "../../../services/characterTypeService.js";
@@ -24,10 +24,10 @@ import characterSubClassesService from "../../../services/characterSubClassesSer
 import characterRacesService from "../../../services/characterRacesService.js";
 
 // Helpers and constants
-import mapFormKeysToAPIKeys from "../../../helpers/mapFormKeysToAPIKeys.js";
-import {firstCharacterToUpperCase} from "../../../helpers/formatCaseHelpers.js";
-import {getLocalStorageItem} from "../../../helpers/localStorageHelpers.js";
-import {userKey} from "../../../constants/localStorageKeys.js";
+import mapFormKeysToAPIKeys from '@helpers/mapFormKeysToAPIKeys.js';
+import {firstCharacterToUpperCase} from '@helpers/formatCaseHelpers.js';
+import {getLocalStorageItem} from '@helpers/localStorageHelpers.js';
+import {userKey} from '@constants/localStorageKeys.js';
 
 // Components
 import SelectFormControl from "../../form-controls/SelectFormControl/SelectFormControl.jsx";
@@ -78,7 +78,16 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
       errors
     },
     watch
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      characterFormCharisma: 10,
+      characterFormConstitution: 10,
+      characterFormDexterity: 10,
+      characterFormIntelligence: 10,
+      characterFormStrength: 10,
+      characterFormWisdom: 10
+    }
+  });
 
   useEffect(() => {
     if (initialValues) {
@@ -199,7 +208,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-charisma"
                     name="characterFormCharisma"
                     label="Charisma"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -210,7 +219,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-constitution"
                     name="characterFormConstitution"
                     label="Constitution"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -221,7 +230,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-dexterity"
                     name="characterFormDexterity"
                     label="Dexterity"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -234,7 +243,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-intelligence"
                     name="characterFormIntelligence"
                     label="Intelligence"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -245,7 +254,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-strength"
                     name="characterFormStrength"
                     label="Strength"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -256,7 +265,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
                     id="character-form-wisdom"
                     name="characterFormWisdom"
                     label="Wisdom"
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={30}
                     register={register}
                     watch={watch}
@@ -524,6 +533,7 @@ function CharacterForm({initialValues, loading, onSubmit, onCancel}) {
             label="Opslaan"
             loading={loading}
             icon={FloppyDiskIcon}
+            disabled={Object.keys(errors).length > 0}
           />
         </div>
       </form>

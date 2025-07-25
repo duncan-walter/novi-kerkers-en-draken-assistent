@@ -2,23 +2,23 @@
 import './EncounterTrackerCharacterSelection.css';
 
 // Icons
-import {PlusIcon, UserPlusIcon} from "@phosphor-icons/react";
+import {PlusIcon, UserPlusIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
-import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 // Custom hooks
-import useRequestState from "../../../hooks/useRequestState.js";
-import {useToaster} from "../../../contexts/ToasterContext.jsx";
+import useRequestState from '@hooks/useRequestState.js';
+import {useToaster} from '@contexts/ToasterContext.jsx';
 
 // Services
-import characterService from "../../../services/characterService.js";
+import characterService from '@services/characterService.js';
 
 // Components
-import Spinner from "../../../components/ui/Spinner/Spinner.jsx";
-import CharacterCard from "../../../components/ui/CharacterCard/CharacterCard.jsx";
-import ZeroState from "../../../components/ui/ZeroState/ZeroState.jsx";
+import Spinner from '@components/ui/Spinner/Spinner.jsx';
+import CharacterCard from '@components/ui/CharacterCard/CharacterCard.jsx';
+import ZeroState from '@components/ui/ZeroState/ZeroState.jsx';
 
 function EncounterTrackerCharacterSelection({setValue, watch, hideNextStepButton}) {
   const formName = 'selectedCharacters';

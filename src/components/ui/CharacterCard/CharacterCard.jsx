@@ -5,7 +5,7 @@ import './CharacterCard.css';
 import {UserIcon, SkullIcon, PawPrintIcon, MaskHappyIcon} from '@phosphor-icons/react';
 
 // Helpers
-import calculateCharacterLevel from "../../../helpers/calculateCharacterLevel.js";
+import calculateCharacterLevel from '@helpers/calculateCharacterLevel.js';
 
 function CharacterCard({character, variant = 'large', onClick}) {
   const iconSizes = {

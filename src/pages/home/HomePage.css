@@ -1,0 +1,29 @@
+.home-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.home-page-content h2 {
+    margin-bottom: .5em;
+}
+
+.home-page-content h2::before {
+    content: "| ";
+    font-weight: 600;
+}
+
+.home-page-content p {
+    margin: 1em 0;
+}
+
+.home-page-content ul {
+    list-style: "- ";
+    padding: .5em 1.5em;
+}
+
+.home-page-content__button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}

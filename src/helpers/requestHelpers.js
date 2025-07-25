@@ -1,5 +1,5 @@
 // Helpers
-import {getLocalStorageItem, setLocalStorageItem} from './localStorageHelpers.js';
+import {getLocalStorageItem, setLocalStorageItem} from '@helpers/localStorageHelpers.js';
 
 function requestWithCache(request, cacheKey, timeToLiveInSeconds) {
   return async (payload, signal) => {

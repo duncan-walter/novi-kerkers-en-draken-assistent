@@ -2,7 +2,7 @@
 import './Button.css';
 
 // Components
-import Spinner from '../Spinner/Spinner.jsx';
+import Spinner from '@components/ui/Spinner/Spinner.jsx';
 
 function Button({label, icon: Icon, type = 'button', variant = 'primary', loading = false, disabled = false, onClick = () => {}}) {
   const variants = {

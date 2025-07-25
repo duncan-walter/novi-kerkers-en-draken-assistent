@@ -1,10 +1,10 @@
 // Custom hooks
-import userDataClient from '../clients/userDataClient.js';
+import userDataClient from '@clients/userDataClient.js';
 
 
 // Helpers and constants
-import {requestWithCache} from "../helpers/requestHelpers.js";
-import {characterPossessionsKey} from "../constants/localStorageKeys.js";
+import {requestWithCache} from '@helpers/requestHelpers.js';
+import {characterPossessionsKey} from '@constants/localStorageKeys.js';
 
 // Local constants
 const client = userDataClient;

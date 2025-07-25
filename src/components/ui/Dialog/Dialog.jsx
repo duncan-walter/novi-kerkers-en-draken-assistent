@@ -2,11 +2,11 @@
 import './Dialog.css';
 
 // Framework dependencies
-import {useEffect, useRef} from "react";
+import {useEffect, useRef} from 'react';
 
 // Components
-import Button from "../Button/Button.jsx";
-import Panel from "../Panel/Panel.jsx";
+import Button from '@components/ui/Button/Button.jsx';
+import Panel from '@components/ui/Panel/Panel.jsx';
 
 function Dialog({isOpen, closeDialogLabel, closeDialog, confirmDialogLabel, onConfirmDialog, children}) {
   const dialogRef = useRef();

@@ -5,7 +5,7 @@ import './NavLinkElement.css';
 import {NavLink} from 'react-router-dom';
 
 // Components
-import Panel from '../Panel/Panel.jsx';
+import Panel from '@components/ui/Panel/Panel.jsx';
 
 function NavLinkElement({url, label}) {
   return (

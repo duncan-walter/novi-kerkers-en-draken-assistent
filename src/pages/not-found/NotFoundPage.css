@@ -1,0 +1,23 @@
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("@assets/backgrounds/unauthorized-background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.not-found-page p {
+    margin: 1em 0;
+}
+
+.not-found-page ul {
+    list-style: "- ";
+    padding: .5em 1.5em;
+}
+
+.not-found-page__panel {
+    width: 750px;
+}

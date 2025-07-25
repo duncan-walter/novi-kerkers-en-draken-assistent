@@ -2,26 +2,26 @@
 import './CharacterCreatePage.css';
 
 // Framework dependencies
-import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 // Custom hooks
-import useRequestState from "../../../hooks/useRequestState.js";
-import {useToaster} from "../../../contexts/ToasterContext.jsx";
+import useRequestState from '@hooks/useRequestState.js';
+import {useToaster} from '@contexts/ToasterContext.jsx';
 
 // Services
-import characterService from "../../../services/characterService.js";
-import characterPossessionsService from "../../../services/characterPossessionsService.js";
+import characterService from '@services/characterService.js';
+import characterPossessionsService from '@services/characterPossessionsService.js';
 
 // Helpers and constants
-import mapFormKeysToAPIKeys from "../../../helpers/mapFormKeysToAPIKeys.js";
-import showDefaultStatusCodeToast from "../../../helpers/showDefaultStatusCodeToast.js";
-import {removeLocalStorageItem} from "../../../helpers/localStorageHelpers.js";
-import {charactersKey} from "../../../constants/localStorageKeys.js";
+import mapFormKeysToAPIKeys from '@helpers/mapFormKeysToAPIKeys.js';
+import showDefaultStatusCodeToast from '@helpers/showDefaultStatusCodeToast.js';
+import {removeLocalStorageItem} from '@helpers/localStorageHelpers.js';
+import {charactersKey} from '@constants/localStorageKeys.js';
 
 // Components
-import Panel from '../../../components/ui/Panel/Panel.jsx';
-import CharacterForm from "../../../components/forms/CharacterForm/CharacterForm.jsx";
+import Panel from '@components/ui/Panel/Panel.jsx';
+import CharacterForm from '@components/forms/CharacterForm/CharacterForm.jsx';
 
 function CharacterCreatePage() {
   const {data, statusCode, loading, executeRequest} = useRequestState(

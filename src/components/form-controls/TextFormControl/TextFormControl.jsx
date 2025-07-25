@@ -1,6 +1,6 @@
 import './TextFormControl.css';
 
-import buildFormControlValidationRules from "../helpers/validationRuleBuilder.js";
+import buildFormControlValidationRules from '@components/form-controls/helpers/validationRuleBuilder.js';
 
 /* Notes:
  * - Placeholder parameter is optional and will not be rendered if it is not passed as an argument.

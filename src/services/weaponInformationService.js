@@ -1,9 +1,9 @@
 // Custom hooks
-import dnd5eClient from '../clients/dnd5eClient.js';
+import dnd5eClient from '@clients/dnd5eClient.js';
 
 // Helpers and constants
-import {requestWithCache} from '../helpers/requestHelpers.js';
-import {weaponInformationKey} from '../constants/localStorageKeys.js';
+import {requestWithCache} from '@helpers/requestHelpers.js';
+import {weaponInformationKey} from '@constants/localStorageKeys.js';
 
 const weaponInformationService = {
   getWeaponInformationIndex: (options = {useCache: false}) => {

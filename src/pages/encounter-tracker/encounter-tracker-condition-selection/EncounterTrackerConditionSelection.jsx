@@ -2,17 +2,17 @@
 import './EncounterTrackerConditionSelection.css';
 
 // Icons
-import {PencilIcon} from "@phosphor-icons/react";
+import {PencilIcon} from '@phosphor-icons/react';
 
 // Framework dependencies
-import {useState} from "react";
+import {useState} from 'react';
 
 // Components
-import Button from "../../../components/ui/Button/Button.jsx";
-import Dialog from "../../../components/ui/Dialog/Dialog.jsx";
-import CharacterCard from "../../../components/ui/CharacterCard/CharacterCard.jsx";
-import ConditionBadge from "../../../components/ui/ConditionBadge/ConditionBadge.jsx";
-import CharacterConditionsFormControl from "../../../components/form-controls/CharacterConditionsFormControl/CharacterConditionsFormControl.jsx";
+import Button from '@components/ui/Button/Button.jsx';
+import Dialog from '@components/ui/Dialog/Dialog.jsx';
+import CharacterCard from '@components/ui/CharacterCard/CharacterCard.jsx';
+import ConditionBadge from '@components/ui/ConditionBadge/ConditionBadge.jsx';
+import CharacterConditionsFormControl from '@components/form-controls/CharacterConditionsFormControl/CharacterConditionsFormControl.jsx';
 
 function EncounterTrackerConditionSelection({watch, setValue}) {
   const [dialog, setDialog] = useState({

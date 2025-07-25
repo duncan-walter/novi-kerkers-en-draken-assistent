@@ -1,4 +1,4 @@
-import levelExperiencePointsThresholds from '../constants/characterLevelThresholds.js';
+import levelExperiencePointsThresholds from '@constants/characterLevelThresholds.js';
 
 function calculateCharacterLevel(experiencePoints) {
   let currentLevel = 1;

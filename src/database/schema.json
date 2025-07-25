@@ -245,8 +245,16 @@
   "users": [
     {
       "id": 0,
-      "email": "kerkersendrakenassistent@testaccount.nl",
-      "password": "ditwachtiszomoeilijkhetisgewoonnietteraden",
+      "email": "account.with.data@kda.com",
+      "password": "thispasswordisincrediblydifficulttocrack",
+      "roles": [
+        "user"
+      ]
+    },
+    {
+      "id": 1,
+      "email": "account.with.no.data@kda.com",
+      "password": "thispasswordislessdifficulttocrack",
       "roles": [
         "user"
       ]
@@ -320,7 +328,7 @@
         "race": "dwarf",
         "charisma": 5,
         "constitution": 18,
-        "dexterity": 0,
+        "dexterity": 1,
         "intelligence": 14,
         "strength": 18,
         "wisdom": 11,

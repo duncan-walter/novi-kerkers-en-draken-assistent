@@ -2,42 +2,41 @@
 import './CharacterDetailsPage.css';
 
 // Icons
-import {PencilIcon, XIcon} from "@phosphor-icons/react";
-import CopperPiece from "../../../assets/images/copper-piece.png";
-import SilverPiece from "../../../assets/images/silver-piece.png";
-import ElectrumPiece from "../../../assets/images/electrum-piece.png";
-import GoldPiece from "../../../assets/images/gold-piece.png";
-import PlatinumPiece from "../../../assets/images/platinum-piece.png";
+import {PencilIcon, XIcon} from '@phosphor-icons/react';
+import CopperPiece from '@assets/images/copper-piece.png';
+import SilverPiece from '@assets/images/silver-piece.png';
+import ElectrumPiece from '@assets/images/electrum-piece.png';
+import GoldPiece from '@assets/images/gold-piece.png';
+import PlatinumPiece from '@assets/images/platinum-piece.png';
 
 // Framework dependencies
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
 
 // Custom hooks
-import useRequestState from "../../../hooks/useRequestState.js";
-import {useToaster} from "../../../contexts/ToasterContext.jsx";
+import useRequestState from '@hooks/useRequestState.js';
+import {useToaster} from '@contexts/ToasterContext.jsx';
 
 // Services
-import characterService from "../../../services/characterService.js";
-import characterPossessionsService from "../../../services/characterPossessionsService.js";
-import characterTypeService from "../../../services/characterTypeService.js";
+import characterService from '@services/characterService.js';
+import characterPossessionsService from '@services/characterPossessionsService.js';
+import characterTypeService from '@services/characterTypeService.js';
 
 // Helpers and constants
-import mapFormKeysToAPIKeys from "../../../helpers/mapFormKeysToAPIKeys.js";
-import showDefaultStatusCodeToast from "../../../helpers/showDefaultStatusCodeToast.js";
-import {firstCharacterToUpperCase} from "../../../helpers/formatCaseHelpers.js";
-import {removeLocalStorageItem} from "../../../helpers/localStorageHelpers.js";
-import {charactersKey} from "../../../constants/localStorageKeys.js";
+import mapFormKeysToAPIKeys from '@helpers/mapFormKeysToAPIKeys.js';
+import showDefaultStatusCodeToast from '@helpers/showDefaultStatusCodeToast.js';
+import calculateCharacterLevel from "@helpers/calculateCharacterLevel.js";
+import {firstCharacterToUpperCase} from '@helpers/formatCaseHelpers.js';
+import {removeLocalStorageItem} from '@helpers/localStorageHelpers.js';
+import {charactersKey} from '@constants/localStorageKeys.js';
 
 // Components
-import Panel from "../../../components/ui/Panel/Panel.jsx";
-import Button from "../../../components/ui/Button/Button.jsx";
-import Spinner from "../../../components/ui/Spinner/Spinner.jsx";
-import CharacterForm from "../../../components/forms/CharacterForm/CharacterForm.jsx";
-import {
-  CharacterAlignmentDetails
-} from "../../../components/form-controls/CharacterAlignmentFormControl/CharacterAlignmentFormControl.jsx";
-import CharacterAbility from "../../../components/ui/CharacterAbility/CharacterAbility.jsx";
+import Panel from '@components/ui/Panel/Panel.jsx';
+import Button from '@components/ui/Button/Button.jsx';
+import Spinner from '@components/ui/Spinner/Spinner.jsx';
+import CharacterForm from '@components/forms/CharacterForm/CharacterForm.jsx';
+import {CharacterAlignmentDetails} from '@components/form-controls/CharacterAlignmentFormControl/CharacterAlignmentFormControl.jsx';
+import CharacterAbility from '@components/ui/CharacterAbility/CharacterAbility.jsx';
 
 function CharacterDetailsPage() {
   const [mode, setMode] = useState('read');
@@ -164,7 +163,7 @@ function CharacterDetailsPage() {
 
   return (
     <Panel
-      title={getCharacterLoading ? '' : character?.name}
+      title={getCharacterLoading ? '' : `${character?.name} (lvl. ${calculateCharacterLevel(character?.experiencePoints)})`}
       panelButton={
         <Button
           label={mode === 'read' ? 'Personage aanpassen' : 'Annuleren'}
