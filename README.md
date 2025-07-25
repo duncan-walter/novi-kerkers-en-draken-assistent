@@ -40,14 +40,7 @@ handelingen tijdens het spel. Minder administratie, meer avontuur! Na het inlogg
     - Blader door de resultaten
     - Klik op een resultaat voor uitgebreide details
 
-<figure>
-  <video controls>
-    <source src="/public/project-preview.mp4" type="video/mp4">
-  </video>
-  <figcaption>
-    Figuur 1: Een korte demonstratie van het configureren en bijhouden van een gevecht. Het personagebeheer wordt slechts beperkt getoond. De video wordt weergegeven op 2x snelheid.
-  </figcaption>
-</figure>
+https://github.com/user-attachments/assets/6b0dfd09-3dd6-4138-a630-a697a1657d74
 
 ## Benodigdheden
 
