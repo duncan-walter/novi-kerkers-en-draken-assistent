@@ -44,16 +44,8 @@ https://github.com/user-attachments/assets/6b0dfd09-3dd6-4138-a630-a697a1657d74
 
 ## Benodigdheden
 
-Deze applicatie maakt gebruikt van environment variabelen. Normaal gesproken worden deze niet openbaar gedeeld, maar in
-dit zijn ze opgenomen zodat de examinator de applicatie kan draaien:
-
-```
-VITE_NOVI_DYNAMIC_API_BASE_URL=https://novi-backend-api-wgsgz.ondigitalocean.app/api  
-VITE_NOVI_DYNAMIC_API_PROJECT_ID=ec0bf4cc-4e94-4807-8041-d95b0731722b  
-VITE_DND5E_API_BASE_URL=https://www.dnd5eapi.co/api/2014 
-```
-
-In het volgende hoofdstuk wordt uitgelegd waar deze environment variabelen moeten worden neergezet.
+Deze applicatie maakt gebruik van environment variabelen. Normaal gesproken worden deze niet openbaar gedeeld, maar in
+dit geval zijn ze opgenomen zodat de examinator de applicatie kan draaien. Het instellen van deze variabelen wordt in het volgende hoofdstuk toegelicht.
 
 Voor het draaien van deze applicatie is een werkende backend vereist. Hiervoor is gebruikgemaakt van de NOVI Dynamic
 API. De backed zou al correct geconfigureerd moeten zijn. Mocht dit niet het geval zijn, dan kunnen de optionele stappen
@@ -83,20 +75,26 @@ Volg de onderstaande stappen om de omgeving correct op te zetten en de applicati
    Kopieer het bestand `.env.dist` naar de root van het project en hernoem het naar `.env`.
 
 4. **Vul de environment variabelen in**  
-   Kopieer de juiste waarden uit het hoofdstuk *Benodigdheden* hierboven. Normaal gesproken worden deze variabelen niet
-   openbaar gedeeld, maar in dit geval zijn ze opgenomen.
+   Hoewel environment variabelen normaal gesproken niet openbaar gedeeld worden, zijn ze in dit geval
+   toegevoegd zodat de applicatie correct kan functioneren tijdens de beoordeling. Voeg de onderstaande
+   waarden toe aan het zojuist aangemaakte `.env`-bestand:
+   ```
+   VITE_NOVI_DYNAMIC_API_BASE_URL=https://novi-backend-api-wgsgz.ondigitalocean.app/api  
+   VITE_NOVI_DYNAMIC_API_PROJECT_ID=ec0bf4cc-4e94-4807-8041-d95b0731722b  
+   VITE_DND5E_API_BASE_URL=https://www.dnd5eapi.co/api/2014
+   ```
 
-5. **Installeer de benodigde packages**  
+6. **Installeer de benodigde packages**  
    Voer het volgende commando uit in de root van het project:
-```bash
-npm install
-```
+    ```bash
+    npm install
+    ```
 
 6. **Start de applicatie**  
    Start de webserver met het volgende commando:
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ```
 
 7. **Open de applicatie in de browser**  
    Navigeer naar de volgende URL (standaard):
